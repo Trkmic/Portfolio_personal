@@ -1,13 +1,17 @@
+---
+// AIChatbot.astro
+---
+
 <div class="fixed bottom-6 right-6 z-50 font-sans">
   <!-- Botón flotante -->
   <button 
     id="chat-toggle-btn"
-    class="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] hover:scale-110 transition-all duration-300 cursor-pointer group"
+    class="w-14 h-14 rounded-full bg-theme-primary hover:scale-110 text-black flex items-center justify-center shadow-[0_0_20px_var(--theme-glow)] hover:shadow-[0_0_30px_var(--theme-glow)] transition-all duration-300 cursor-pointer group"
     aria-label="Abrir chat con IA"
   >
     <span class="relative flex h-3 w-3 absolute -top-1 -right-1">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-theme-primary opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-theme-primary"></span>
     </span>
     <i class="fa-solid fa-robot text-2xl group-hover:rotate-12 transition-transform"></i>
   </button>
@@ -15,20 +19,20 @@
   <!-- Ventana de Chat -->
   <div 
     id="chat-window" 
-    class="hidden absolute bottom-18 right-0 w-[350px] sm:w-[400px] h-[500px] flex flex-col rounded-2xl border border-emerald-500/20 bg-slate-950/95 backdrop-blur-xl shadow-[0_0_40px_rgba(16,185,129,0.15)] overflow-hidden transition-all duration-300 scale-95 origin-bottom-right"
+    class="hidden absolute bottom-18 right-0 w-[350px] sm:w-[400px] h-[500px] flex flex-col rounded-2xl border border-theme-primary/20 bg-slate-950/95 backdrop-blur-xl shadow-[0_0_40px_var(--theme-glow)] overflow-hidden transition-all duration-300 scale-95 origin-bottom-right"
   >
     <!-- Cabecera -->
-    <div class="bg-gradient-to-r from-emerald-950/50 to-slate-950 px-4 py-3 flex items-center justify-between border-b border-emerald-900/30">
+    <div class="bg-gradient-to-r from-theme-bg/50 to-slate-950 px-4 py-3 flex items-center justify-between border-b border-theme-secondary/30">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+        <div class="w-8 h-8 rounded-full bg-theme-primary/10 flex items-center justify-center text-theme-primary border border-theme-primary/20">
           <i class="fa-solid fa-robot text-sm"></i>
         </div>
         <div>
           <h3 class="font-bold text-white text-sm font-mono flex items-center gap-1.5">
             IgnacIA
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="w-2 h-2 rounded-full bg-theme-primary animate-pulse"></span>
           </h3>
-          <span class="text-[10px] text-emerald-600 font-medium">Asistente de Ignacio</span>
+          <span class="text-[10px] text-theme-secondary font-medium">Asistente de Ignacio</span>
         </div>
       </div>
       
@@ -36,7 +40,7 @@
         <!-- Botón Configuración (API Key) -->
         <button 
           id="chat-settings-btn"
-          class="text-slate-500 hover:text-emerald-400 transition-colors p-1.5 rounded-lg hover:bg-slate-900 cursor-pointer"
+          class="text-slate-500 hover:text-theme-primary transition-colors p-1.5 rounded-lg hover:bg-slate-900 cursor-pointer"
           title="Configurar Gemini API Key"
         >
           <i class="fa-solid fa-gear"></i>
@@ -53,7 +57,7 @@
     </div>
 
     <!-- Panel de Configuración (Oculto por defecto) -->
-    <div id="chat-settings-panel" class="hidden bg-slate-900/90 border-b border-emerald-900/20 p-4 text-xs space-y-3">
+    <div id="chat-settings-panel" class="hidden bg-slate-900/90 border-b border-theme-secondary/20 p-4 text-xs space-y-3">
       <p class="text-slate-400">
         Por defecto, utilizo un <strong>procesador local inteligente</strong>. Para hablar de forma libre e ilimitada conmigo, ingresa una clave de API de Gemini:
       </p>
@@ -62,11 +66,11 @@
           type="password" 
           id="gemini-key-input" 
           placeholder="AIzaSy..." 
-          class="flex-1 bg-black border border-emerald-900/50 rounded-lg px-2.5 py-1.5 text-white font-mono placeholder-slate-600 focus:outline-none focus:border-emerald-500/50"
+          class="flex-1 bg-black border border-theme-secondary/50 rounded-lg px-2.5 py-1.5 text-white font-mono placeholder-slate-600 focus:outline-none focus:border-theme-primary/50"
         />
         <button 
           id="save-key-btn" 
-          class="bg-emerald-600 hover:bg-emerald-500 text-black font-bold px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+          class="bg-theme-primary hover:bg-theme-primary/95 text-black font-bold px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
         >
           Guardar
         </button>
@@ -80,16 +84,16 @@
     <!-- Mensajes -->
     <div 
       id="chat-messages" 
-      class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-emerald-900 scrollbar-track-transparent"
+      class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-theme-secondary scrollbar-track-transparent"
     >
       <!-- Mensaje Inicial -->
       <div class="flex items-start gap-2.5">
-        <div class="w-7 h-7 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 border border-emerald-500/20">
+        <div class="w-7 h-7 rounded-full bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 border border-theme-primary/20">
           <i class="fa-solid fa-robot text-xs"></i>
         </div>
         <div class="flex flex-col gap-1 max-w-[85%]">
-          <div class="bg-emerald-950/20 border border-emerald-900/30 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed">
-            ¡Hola! Soy <strong>IgnacIA</strong>, la asistente virtual de Ignacio Torres. 
+          <div class="bg-theme-bg-accent border border-theme-secondary/30 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed">
+            ¡Hola! Soy <strong>IgnacIA</strong>, la asistente virtual de Ignacio Trkmic Torres. 
             <br/><br/>
             ¿En qué te puedo ayudar hoy? Puedes preguntarme sobre su experiencia, estudios, tecnologías o formas de contacto.
           </div>
@@ -99,17 +103,17 @@
     </div>
 
     <!-- Sugerencias Rápidas -->
-    <div id="chat-suggestions" class="px-4 py-2 flex flex-wrap gap-1.5 border-t border-emerald-900/10 bg-slate-950">
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-emerald-950/30 text-emerald-500 hover:text-emerald-400 border border-emerald-900/30 hover:border-emerald-500/30 transition-all cursor-pointer">
+    <div id="chat-suggestions" class="px-4 py-2 flex flex-wrap gap-1.5 border-t border-theme-secondary/10 bg-slate-950">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
         ¿Qué proyectos tiene?
       </button>
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-emerald-950/30 text-emerald-500 hover:text-emerald-400 border border-emerald-900/30 hover:border-emerald-500/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
         ¿Cuáles son sus estudios?
       </button>
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-emerald-950/30 text-emerald-500 hover:text-emerald-400 border border-emerald-900/30 hover:border-emerald-500/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
         ¿Nivel de inglés?
       </button>
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-emerald-950/30 text-emerald-500 hover:text-emerald-400 border border-emerald-900/30 hover:border-emerald-500/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
         ¿Cómo contactarlo?
       </button>
     </div>
@@ -117,18 +121,18 @@
     <!-- Formulario de Envío -->
     <form 
       id="chat-form" 
-      class="p-3 border-t border-emerald-900/30 bg-black flex gap-2"
+      class="p-3 border-t border-theme-secondary/30 bg-black flex gap-2"
     >
       <input 
         type="text" 
         id="chat-input" 
         placeholder="Pregúntame algo..." 
         autocomplete="off"
-        class="flex-1 bg-slate-950 border border-emerald-900/50 rounded-xl px-3.5 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/50"
+        class="flex-1 bg-slate-950 border border-theme-secondary/50 rounded-xl px-3.5 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-theme-primary/50"
       />
       <button 
         type="submit" 
-        class="w-9 h-9 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-black flex items-center justify-center transition-colors cursor-pointer"
+        class="w-9 h-9 rounded-xl bg-theme-primary hover:bg-theme-primary/90 text-black flex items-center justify-center transition-colors cursor-pointer"
         aria-label="Enviar mensaje"
       >
         <i class="fa-solid fa-paper-plane text-sm"></i>
@@ -269,7 +273,7 @@
     if (sender === 'user') {
       messageDiv.innerHTML = `
         <div class="flex flex-col gap-1 max-w-[85%] items-end">
-          <div class="bg-emerald-600 text-black font-semibold rounded-2xl px-3.5 py-2 text-sm leading-relaxed">
+          <div class="bg-theme-primary text-black font-semibold rounded-2xl px-3.5 py-2 text-sm leading-relaxed">
             ${escapeHTML(text)}
           </div>
           <span class="text-[9px] text-slate-600 font-mono">Tú • ${timestamp}</span>
@@ -277,11 +281,11 @@
       `;
     } else {
       messageDiv.innerHTML = `
-        <div class="w-7 h-7 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 border border-emerald-500/20">
+        <div class="w-7 h-7 rounded-full bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 border border-theme-primary/20">
           <i class="fa-solid fa-robot text-xs"></i>
         </div>
         <div class="flex flex-col gap-1 max-w-[85%]">
-          <div class="bg-emerald-950/20 border border-emerald-900/30 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed whitespace-pre-line">
+          <div class="bg-slate-900/40 border border-theme-secondary/20 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed whitespace-pre-line">
             ${text}
           </div>
           <span class="text-[9px] text-slate-600 font-mono">IgnacIA • ${timestamp}</span>
@@ -307,13 +311,13 @@
     typingDiv.id = 'typing-indicator';
     typingDiv.className = 'flex items-start gap-2.5';
     typingDiv.innerHTML = `
-      <div class="w-7 h-7 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 border border-emerald-500/20">
+      <div class="w-7 h-7 rounded-full bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 border border-theme-primary/20">
         <i class="fa-solid fa-robot text-xs"></i>
       </div>
-      <div class="bg-emerald-950/10 border border-emerald-900/20 text-slate-400 rounded-2xl px-3.5 py-2 text-sm flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
-        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
-        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+      <div class="bg-slate-900/30 border border-theme-secondary/20 text-slate-400 rounded-2xl px-3.5 py-2 text-sm flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 bg-theme-primary rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+        <span class="w-1.5 h-1.5 bg-theme-primary rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+        <span class="w-1.5 h-1.5 bg-theme-primary rounded-full animate-bounce" style="animation-delay: 300ms"></span>
       </div>
     `;
     chatMessages.appendChild(typingDiv);
@@ -359,7 +363,7 @@
 
     // 6. Mensaje de bienvenida / Saludos
     if (q.includes('hola') || q.includes('buenas') || q.includes('saludos') || q.includes('que tal') || q.includes('buenos dias')) {
-      return `¡Hola! Soy IgnacIA, un bot conversacional programado para responder preguntas sobre la trayectoria de Ignacio Torres. ¿Qué te gustaría saber sobre él?\n\n- Sus **proyectos** más recientes.\n- Sus **estudios** en la UTN.\n- Su nivel de **inglés**.\n- Formas de **contacto**.`;
+      return `¡Hola! Soy IgnacIA, un bot conversacional programado para responder preguntas sobre la trayectoria de Ignacio Trkmic Torres. ¿Qué te gustaría saber sobre él?\n\n- Sus **proyectos** más recientes.\n- Sus **estudios** en la UTN.\n- Su nivel de **inglés**.\n- Formas de **contacto**.`;
     }
 
     // 7. Default fallback

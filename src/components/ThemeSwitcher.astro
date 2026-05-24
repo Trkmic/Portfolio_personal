@@ -1,0 +1,63 @@
+---
+// ThemeSwitcher.astro
+---
+
+<div class="fixed top-6 right-6 z-50 flex items-center gap-2">
+  <div class="bg-slate-950/80 backdrop-blur-md border border-slate-900 px-3 py-2 rounded-full flex gap-3 items-center shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+    <!-- Icono de paleta -->
+    <span class="text-slate-500 text-xs font-mono"><i class="fa-solid fa-palette"></i></span>
+    
+    <!-- Botón Emerald -->
+    <button 
+      class="theme-btn w-4 h-4 rounded-full bg-emerald-500 hover:scale-125 transition-transform cursor-pointer border border-white/20 active:scale-95" 
+      data-theme="theme-emerald"
+      title="Tema Emerald (Matrix)"
+    ></button>
+
+    <!-- Botón Cyberpunk -->
+    <button 
+      class="theme-btn w-4 h-4 rounded-full bg-rose-500 hover:scale-125 transition-transform cursor-pointer border border-white/20 active:scale-95" 
+      data-theme="theme-cyberpunk"
+      title="Tema Cyberpunk"
+    ></button>
+
+    <!-- Botón Dracula -->
+    <button 
+      class="theme-btn w-4 h-4 rounded-full bg-purple-500 hover:scale-125 transition-transform cursor-pointer border border-white/20 active:scale-95" 
+      data-theme="theme-dracula"
+      title="Tema Dracula"
+    ></button>
+  </div>
+</div>
+
+<!-- Script en línea para evitar el parpadeo de color al cargar -->
+<script is:inline>
+  (function () {
+    const savedTheme = localStorage.getItem('theme') || 'theme-emerald';
+    document.documentElement.className = savedTheme;
+  })();
+</script>
+
+<script>
+  const themeButtons = document.querySelectorAll('.theme-btn');
+
+  function applyTheme(themeName: string) {
+    // Quitar clases previas de tema
+    document.documentElement.classList.remove('theme-emerald', 'theme-cyberpunk', 'theme-dracula');
+    
+    // Aplicar el nuevo tema
+    document.documentElement.classList.add(themeName);
+    
+    // Guardar preferencia
+    localStorage.setItem('theme', themeName);
+  }
+
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.getAttribute('data-theme');
+      if (theme) {
+        applyTheme(theme);
+      }
+    });
+  });
+</script>

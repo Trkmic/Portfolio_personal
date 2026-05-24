@@ -1,1 +1,54 @@
 @import "tailwindcss";
+
+@theme {
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-glow: var(--theme-glow);
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-bg-accent: var(--theme-bg-accent);
+}
+
+/* Variables de Temas */
+:root {
+  --theme-primary: #10b981;
+  /* emerald-500 */
+  --theme-secondary: #047857;
+  /* emerald-700 */
+  --theme-glow: rgba(16, 185, 129, 0.2);
+  --theme-bg: #022c22;
+  /* emerald-950 */
+  --theme-bg-accent: rgba(16, 185, 129, 0.05);
+}
+
+/* Tema Emerald (Por defecto / Matrix) */
+html.theme-emerald {
+  --theme-primary: #10b981;
+  --theme-secondary: #047857;
+  --theme-glow: rgba(16, 185, 129, 0.2);
+  --theme-bg: #022c22;
+  --theme-bg-accent: rgba(16, 185, 129, 0.05);
+}
+
+/* Tema Cyberpunk (Pink & Blue) */
+html.theme-cyberpunk {
+  --theme-primary: #f43f5e;
+  /* rose-500 */
+  --theme-secondary: #06b6d4;
+  /* cyan-500 */
+  --theme-glow: rgba(244, 63, 94, 0.25);
+  --theme-bg: #1e1b4b;
+  /* indigo-950 */
+  --theme-bg-accent: rgba(244, 63, 94, 0.05);
+}
+
+/* Tema Dracula (Purple & Pink) */
+html.theme-dracula {
+  --theme-primary: #bd93f9;
+  /* purple-dracula */
+  --theme-secondary: #ff79c6;
+  /* pink-dracula */
+  --theme-glow: rgba(189, 147, 249, 0.25);
+  --theme-bg: #282a36;
+  /* dracula-bg */
+  --theme-bg-accent: rgba(189, 147, 249, 0.05);
+}
