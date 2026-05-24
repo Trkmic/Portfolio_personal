@@ -303,39 +303,107 @@ const proyectos = [
                 Contacto
             </h2>
             
-            <div class="bg-theme-bg-accent p-8 rounded-2xl border border-theme-secondary/30 text-center space-y-6">
-                <div>
+            <div class="bg-slate-950/40 p-6 sm:p-8 rounded-2xl border border-theme-secondary/35 space-y-6 hover:border-theme-primary/30 transition-all duration-300">
+                <div class="text-center sm:text-left">
                     <h3 class="text-2xl font-bold text-white">{nombreCompleto}</h3>
                     <p class="text-theme-primary font-mono mt-1 uppercase italic tracking-wider text-xs">Desarrollador Backend / Fullstack</p>
+                    <p class="text-slate-400 text-sm mt-3">
+                        ¿Tienes una propuesta laboral, proyecto o consulta? Escríbeme directamente desde el formulario.
+                    </p>
                 </div>
 
-                <a 
-                    href="mailto:trkmicignacio@gmail.com" 
-                    class="inline-flex items-center gap-3 bg-theme-primary/10 hover:bg-theme-primary/20 text-theme-primary hover:text-theme-primary/80 px-6 py-3 rounded-xl border border-theme-secondary/50 hover:border-theme-primary/30 transition-all duration-300 font-mono text-sm group"
-                >
-                    <i class="fa-solid fa-envelope group-hover:-translate-y-0.5 transition-transform"></i>
-                    trkmicignacio@gmail.com
-                </a>
+                <!-- Formulario interactivo -->
+                <form id="contact-form" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label for="contact-name" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Nombre</label>
+                            <input 
+                                type="text" 
+                                id="contact-name" 
+                                name="name" 
+                                required
+                                placeholder="Tu nombre" 
+                                class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors"
+                            />
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="contact-email" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Correo Electrónico</label>
+                            <input 
+                                type="email" 
+                                id="contact-email" 
+                                name="email" 
+                                required
+                                placeholder="tu@correo.com" 
+                                class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors"
+                            />
+                        </div>
+                    </div>
 
-                <div class="flex justify-center gap-8 text-4xl pt-4">
-                    <a href="https://linkedin.com/in/ignacio-trkmic-5a797827a/" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="hover:scale-125 transition-transform text-slate-600 hover:text-theme-primary"
-                       title="LinkedIn">
-                        <i class="fa-brands fa-linkedin"></i>
+                    <div class="space-y-1.5">
+                        <label for="contact-subject" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Asunto</label>
+                        <input 
+                            type="text" 
+                            id="contact-subject" 
+                            name="subject" 
+                            required
+                            placeholder="Motivo del mensaje" 
+                            class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors"
+                        />
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label for="contact-message" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Mensaje</label>
+                        <textarea 
+                            id="contact-message" 
+                            name="message" 
+                            rows="4" 
+                            required
+                            placeholder="Escribe tu mensaje aquí..." 
+                            class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors resize-none"
+                        ></textarea>
+                    </div>
+
+                    <!-- Estado de envío (éxito/error/instrucción) -->
+                    <div id="contact-status" class="hidden text-xs p-3.5 rounded-xl border font-mono"></div>
+
+                    <button 
+                        type="submit" 
+                        id="contact-submit-btn"
+                        class="w-full bg-theme-primary hover:bg-theme-primary/90 text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_var(--theme-glow)] hover:shadow-[0_0_25px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center gap-2 cursor-pointer"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                    </button>
+                </form>
+
+                <div class="border-t border-theme-secondary/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <a 
+                        href="mailto:trkmicignacio@gmail.com" 
+                        class="inline-flex items-center gap-2 text-slate-400 hover:text-theme-primary transition-colors text-sm font-mono"
+                    >
+                        <i class="fa-solid fa-envelope"></i>
+                        trkmicignacio@gmail.com
                     </a>
 
-                    <a href="https://github.com/Trkmic" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="hover:scale-125 transition-transform text-white hover:text-theme-primary"
-                       title="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
+                    <div class="flex gap-6 text-2xl">
+                        <a href="https://linkedin.com/in/ignacio-trkmic-5a797827a/" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="hover:scale-125 transition-transform text-slate-600 hover:text-theme-primary"
+                           title="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+
+                        <a href="https://github.com/Trkmic" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="hover:scale-125 transition-transform text-white hover:text-theme-primary"
+                           title="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <p class="text-slate-600 text-xs italic pt-4 font-mono">
+                <p class="text-slate-600 text-[11px] italic font-mono text-center">
                     Abierto a pasantías, posiciones junior y proyectos freelance.
                 </p>
             </div>
@@ -526,6 +594,92 @@ const proyectos = [
     setTimeout(() => {
         timelineObserver.observe(timelineItems[0]);
     }, 200);
+
+    // ==========================================
+    // Formulario de Contacto (Formspree / Web3Forms)
+    // ==========================================
+    // REEMPLAZA ESTE KEY con tu ID de Formspree (crealo gratis en https://formspree.io)
+    // o con tu Access Key de Web3Forms (crealo gratis en https://web3forms.com)
+    // Si dejas 'YOUR_KEY_HERE', el formulario te guiará con instrucciones para activarlo.
+    const CONTACT_SERVICE = 'formspree'; // 'formspree' o 'web3forms'
+    const SERVICE_KEY = 'YOUR_KEY_HERE'; // Reemplazar con el ID/Key correspondiente
+    
+    const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+    const contactSubmitBtn = document.getElementById('contact-submit-btn') as HTMLButtonElement;
+    const contactStatus = document.getElementById('contact-status');
+
+    contactForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        if (!contactStatus || !contactSubmitBtn) return;
+        
+        // Limpiar estado anterior
+        contactStatus.className = "hidden text-xs p-3.5 rounded-xl border font-mono";
+        contactStatus.innerHTML = "";
+        
+        // Verificar si no se configuró la clave aún
+        if (SERVICE_KEY === 'YOUR_KEY_HERE') {
+            contactStatus.classList.remove('hidden');
+            contactStatus.classList.add('border-amber-500/30', 'text-amber-400', 'bg-amber-950/20');
+            contactStatus.innerHTML = `⚠️ <strong>¡El formulario está maquetado!</strong><br/>Para empezar a recibir correos reales en tu email:
+            <ol class="list-decimal pl-4 mt-2 space-y-1">
+                <li>Registrate gratis en <a href="https://formspree.io" target="_blank" class="underline hover:text-white font-bold">Formspree.io</a>.</li>
+                <li>Crea un formulario nuevo y copia el <strong>Form ID</strong> (ej: <code>xqkrpeoz</code>).</li>
+                <li>Abre el archivo <code>src/pages/index.astro</code>, ve a la línea final del script y reemplaza <code>'YOUR_KEY_HERE'</code> con tu Form ID.</li>
+            </ol>`;
+            return;
+        }
+
+        // Efecto de carga en botón
+        const originalBtnHTML = contactSubmitBtn.innerHTML;
+        contactSubmitBtn.disabled = true;
+        contactSubmitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Enviando mensaje...`;
+
+        // Recolectar datos
+        const formData = new FormData(contactForm);
+        const data: Record<string, string> = {};
+        formData.forEach((value, key) => {
+            data[key] = value.toString();
+        });
+
+        // Endpoint dinámico
+        const endpoint = CONTACT_SERVICE === 'web3forms'
+            ? 'https://api.web3forms.com/submit'
+            : `https://formspree.io/f/${SERVICE_KEY}`;
+
+        // Añadir Access Key si se usa Web3Forms
+        if (CONTACT_SERVICE === 'web3forms') {
+            data['access_key'] = SERVICE_KEY;
+        }
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                contactStatus.classList.remove('hidden');
+                contactStatus.classList.add('border-emerald-500/30', 'text-emerald-400', 'bg-emerald-950/20');
+                contactStatus.innerHTML = `✅ ¡Mensaje enviado con éxito! Ignacio te responderá lo antes posible.`;
+                contactForm.reset();
+            } else {
+                throw new Error('Form submission response not ok');
+            }
+        } catch (error) {
+            console.error(error);
+            contactStatus.classList.remove('hidden');
+            contactStatus.classList.add('border-rose-500/30', 'text-rose-400', 'bg-rose-950/20');
+            contactStatus.innerHTML = `❌ Ocurrió un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a <a href="mailto:trkmicignacio@gmail.com" class="underline">trkmicignacio@gmail.com</a>.`;
+        } finally {
+            contactSubmitBtn.disabled = false;
+            contactSubmitBtn.innerHTML = originalBtnHTML;
+        }
+    });
 </script>
 
 <style is:global>
