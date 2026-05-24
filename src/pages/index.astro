@@ -4,6 +4,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import AIChatbot from '../components/AIChatbot.astro';
 import AIJobMatcher from '../components/AIJobMatcher.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import TerminalConsole from '../components/TerminalConsole.astro';
 
 const nombreCompleto = "Ignacio Trkmic Torres";
 const edad = 20;
@@ -21,13 +22,12 @@ const stackTecnologico = [
     { nombre: "SQL", icono: "devicon-azuresqldatabase-plain" },
     { nombre: "MongoDB", icono: "devicon-mongodb-plain" },
     { nombre: "Astro", icono: "devicon-astro-plain" },
-    { nombre: "VSCode", icono: "devicon-vscode-plain" },
+    { fontName: "VSCode", icono: "devicon-vscode-plain", nombre: "VSCode" },
     { nombre: "NestJs", icono: "devicon-nestjs-original" },
     { nombre: "Supabase", icono: "devicon-supabase-plain" },
     { nombre: "Vercel", icono: "devicon-vercel-original" },
 ];
 
-// Duplicamos el stack para la animación continua de marquee sin cortes
 const doubleStack = [...stackTecnologico, ...stackTecnologico];
 
 const proyectos = [
@@ -77,7 +77,7 @@ const proyectos = [
 ---
 
 <Layout>
-    <!-- Selector de Temas -->
+    <!-- Selector de Temas y Barra de Mandos -->
     <ThemeSwitcher />
 
     <!-- Efecto de Fondo Neon/Malla dinámico -->
@@ -86,14 +86,14 @@ const proyectos = [
         <div class="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full bg-theme-secondary/5 blur-[150px] transition-all duration-700"></div>
     </div>
 
-    <main class="relative z-10 max-w-2xl mx-auto px-6 py-12 flex flex-col gap-12 min-h-screen text-slate-300">
+    <main class="relative z-10 max-w-2xl mx-auto px-6 py-12 flex flex-col gap-12 min-h-screen text-slate-300 font-sans">
         
         <!-- Header / Perfil -->
         <section class="flex flex-col items-center sm:items-start sm:flex-row gap-6">
             <div class="relative group">
                 <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-theme-primary to-theme-bg opacity-75 blur-md group-hover:opacity-100 transition-opacity duration-500"></div>
                 <img 
-                    src="/WhatsApp Image 2025-12-19 at 9.57.16 PM.jpeg" 
+                    src="foto_nueva.jpeg" 
                     alt="Avatar de Ignacio Torres" 
                     class="relative w-32 h-32 rounded-full border-4 border-theme-primary/80 shadow-[0_0_20px_var(--theme-glow)] object-cover transition-all duration-500"
                 />
@@ -207,63 +207,89 @@ const proyectos = [
             </div>
         </section>
 
-        <!-- Formación Académica -->
-        <section class="flex flex-col gap-6">
+        <!-- Formación Académica (Línea de Tiempo Neon) -->
+        <section class="flex flex-col gap-6 relative">
             <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider">
                 Formación Académica
             </h2>
             
-            <div class="flex flex-col gap-4">
-                <div class="p-4 rounded-xl bg-black border border-theme-secondary/40 flex justify-between items-center group hover:border-theme-primary/30 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
-                    <div class="flex gap-4 items-center">
-                        <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0">
-                            <i class="fa-solid fa-gears text-lg"></i>
+            <div class="relative pl-8 border-l-2 border-slate-900 ml-4 space-y-8 py-2" id="academic-timeline">
+                <!-- Barra de progreso neon interactiva por scroll -->
+                <div 
+                  id="timeline-progress-bar" 
+                  class="absolute top-0 left-[-2px] w-[2px] bg-theme-primary shadow-[0_0_12px_var(--theme-glow)] transition-all duration-500 ease-out origin-top scale-y-0 h-full"
+                ></div>
+
+                <!-- Punto 1: UTN Ing Mecánica -->
+                <div class="timeline-item relative group">
+                    <div class="timeline-node absolute left-[-41px] top-4 w-4.5 h-4.5 rounded-full bg-black border-2 border-slate-900 transition-all duration-500 z-10"></div>
+                    
+                    <div class="p-5 rounded-xl bg-black border border-theme-secondary/40 flex flex-col sm:flex-row justify-between sm:items-center gap-4 group hover:border-theme-primary/40 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 transition-all duration-300">
+                                <i class="fa-solid fa-gears text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">UTN Avellaneda</h3>
+                                <p class="text-theme-secondary text-sm italic">Ingeniería Mecánica</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">UTN Avellaneda</h3>
-                            <p class="text-theme-secondary text-sm italic">Ingeniería Mecánica</p>
-                        </div>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2026 - ACT</span>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase shrink-0">2026 - ACT</span>
                 </div>
 
-                <div class="p-4 rounded-xl bg-black border border-theme-secondary/40 flex justify-between items-center group hover:border-theme-primary/30 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
-                    <div class="flex gap-4 items-center">
-                        <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0">
-                            <i class="fa-solid fa-terminal text-lg"></i>
+                <!-- Punto 2: UTN Programación -->
+                <div class="timeline-item relative group">
+                    <div class="timeline-node absolute left-[-41px] top-4 w-4.5 h-4.5 rounded-full bg-black border-2 border-slate-900 transition-all duration-500 z-10"></div>
+                    
+                    <div class="p-5 rounded-xl bg-black border border-theme-secondary/40 flex flex-col sm:flex-row justify-between sm:items-center gap-4 group hover:border-theme-primary/40 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 transition-all duration-300">
+                                <i class="fa-solid fa-terminal text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">UTN Avellaneda</h3>
+                                <p class="text-theme-secondary text-sm italic">Tecnicatura Universitaria en Programación</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">UTN Avellaneda</h3>
-                            <p class="text-theme-secondary text-sm italic">Tecnicatura Universitaria en Programación</p>
-                        </div>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2024 - 2026</span>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase shrink-0">2024 - 2026</span>
                 </div>
 
-                <div class="p-4 rounded-xl bg-black border border-theme-secondary/40 flex justify-between items-center group hover:border-theme-primary/30 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
-                    <div class="flex gap-4 items-center">
-                        <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0">
-                            <i class="fa-solid fa-language text-lg"></i>
+                <!-- Punto 3: English Time -->
+                <div class="timeline-item relative group">
+                    <div class="timeline-node absolute left-[-41px] top-4 w-4.5 h-4.5 rounded-full bg-black border-2 border-slate-900 transition-all duration-500 z-10"></div>
+                    
+                    <div class="p-5 rounded-xl bg-black border border-theme-secondary/40 flex flex-col sm:flex-row justify-between sm:items-center gap-4 group hover:border-theme-primary/40 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 transition-all duration-300">
+                                <i class="fa-solid fa-language text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">English Time</h3>
+                                <p class="text-theme-secondary text-sm italic">Cultural de Inglés</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">English Time</h3>
-                            <p class="text-theme-secondary text-sm italic">Cultural de Inglés</p>
-                        </div>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2018 - 2024</span>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase shrink-0">2018 - 2024</span>
                 </div>
 
-                <div class="p-4 rounded-xl bg-black border border-theme-secondary/40 flex justify-between items-center group hover:border-theme-primary/30 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
-                    <div class="flex gap-4 items-center">
-                        <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0">
-                            <i class="fa-solid fa-school text-lg"></i>
+                <!-- Punto 4: Padre Marquez -->
+                <div class="timeline-item relative group">
+                    <div class="timeline-node absolute left-[-41px] top-4 w-4.5 h-4.5 rounded-full bg-black border-2 border-slate-900 transition-all duration-500 z-10"></div>
+                    
+                    <div class="p-5 rounded-xl bg-black border border-theme-secondary/40 flex flex-col sm:flex-row justify-between sm:items-center gap-4 group hover:border-theme-primary/40 hover:shadow-[0_0_15px_var(--theme-glow)] transition-all duration-300">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-10 h-10 rounded-lg bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 transition-all duration-300">
+                                <i class="fa-solid fa-school text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">Instituto Padre Marquez</h3>
+                                <p class="text-theme-secondary text-sm italic">Educación Secundaria</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">Instituto Padre Marquez</h3>
-                            <p class="text-theme-secondary text-sm italic">Educación Secundaria</p>
-                        </div>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2018 - 2023</span>
                     </div>
-                    <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase shrink-0">2018 - 2023</span>
                 </div>
             </div>
         </section>
@@ -323,6 +349,9 @@ const proyectos = [
 
     <!-- Chatbot Flotante -->
     <AIChatbot />
+
+    <!-- Consola Hacker Terminal Modal -->
+    <TerminalConsole />
 </Layout>
 
 <script>
@@ -352,7 +381,6 @@ const proyectos = [
             // Especiales (ej. NestJs vs nestjs)
             const isMatch = cardTags.some(tag => {
                 const cleanTag = tag.trim().toLowerCase();
-                // Manejar alias común: ej. "nestjs" en tag vs "nestjs" en data-tech, o "sql" en tag
                 return cleanTag === tech || 
                        (tech === 'nestjs' && cleanTag === 'nest') || 
                        (tech === 'sql' && (cleanTag === 'mysql' || cleanTag === 'postgres' || cleanTag === 'sqlite'));
@@ -410,16 +438,11 @@ const proyectos = [
             if (!repoName) continue;
 
             try {
-                // Hacemos el fetch a la API de GitHub
                 const response = await fetch(`https://api.github.com/repos/Trkmic/${repoName}`);
-                if (!response.ok) {
-                    // Si falla (ej: 404, rate limit), mantenemos el contenedor oculto de forma segura
-                    continue;
-                }
+                if (!response.ok) continue;
 
                 const data = await response.json();
 
-                // Actualizar los elementos de la tarjeta
                 const starsCountEl = container.querySelector('.stars-count');
                 const forksCountEl = container.querySelector('.forks-count');
                 const commitDateEl = container.querySelector('.commit-date');
@@ -429,12 +452,10 @@ const proyectos = [
                 
                 if (commitDateEl && data.pushed_at) {
                     const date = new Date(data.pushed_at);
-                    // Formatear a DD/MM
                     const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}`;
                     commitDateEl.textContent = formattedDate;
                 }
 
-                // Mostrar el contenedor animándolo suavemente
                 container.classList.remove('hidden');
                 container.classList.add('flex');
             } catch (err) {
@@ -443,8 +464,68 @@ const proyectos = [
         }
     }
 
-    // Ejecutar la petición al cargar la página
     fetchGitHubStats();
+
+    // ==========================================
+    // Línea de Tiempo Académica Neon Interactiva
+    // ==========================================
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const progressBar = document.getElementById('timeline-progress-bar');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -15% 0px',
+        threshold: 0.25
+    };
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+        let maxActiveIndex = -1;
+
+        // Evaluar visibilidad
+        timelineItems.forEach((item, index) => {
+            const rect = item.getBoundingClientRect();
+            // Si el elemento ha entrado más allá de un tercio del viewport
+            if (rect.top < window.innerHeight * 0.85) {
+                item.classList.add('timeline-active');
+                const node = item.querySelector('.timeline-node');
+                if (node) {
+                    node.classList.remove('border-slate-900');
+                    node.classList.add('border-theme-primary', 'bg-theme-primary', 'shadow-[0_0_10px_var(--theme-glow)]');
+                }
+                if (index > maxActiveIndex) {
+                    maxActiveIndex = index;
+                }
+            } else {
+                item.classList.remove('timeline-active');
+                const node = item.querySelector('.timeline-node');
+                if (node) {
+                    node.classList.remove('border-theme-primary', 'bg-theme-primary', 'shadow-[0_0_10px_var(--theme-glow)]');
+                    node.classList.add('border-slate-900');
+                }
+            }
+        });
+
+        // Actualizar porcentaje de la barra de progreso
+        if (progressBar) {
+            if (maxActiveIndex !== -1) {
+                const percent = ((maxActiveIndex + 1) / timelineItems.length) * 100;
+                progressBar.style.scaleY = (percent / 100).toString();
+            } else {
+                progressBar.style.scaleY = '0';
+            }
+        }
+    }, observerOptions);
+
+    // Escuchar el evento de scroll en lugar de solo observar la entrada/salida para suavidad
+    window.addEventListener('scroll', () => {
+        // Ejecutar trigger simulado de la función del observador
+        timelineObserver.observe(timelineItems[0]);
+    });
+    
+    // Ejecutar una vez al inicio
+    setTimeout(() => {
+        timelineObserver.observe(timelineItems[0]);
+    }, 200);
 </script>
 
 <style is:global>

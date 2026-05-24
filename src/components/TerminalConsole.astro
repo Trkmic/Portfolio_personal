@@ -1,0 +1,346 @@
+---
+// TerminalConsole.astro
+---
+
+<div 
+  id="terminal-overlay" 
+  class="fixed inset-0 z-50 bg-black/95 flex flex-col font-mono text-theme-primary hidden selection:bg-theme-primary/30 selection:text-white"
+>
+  <!-- Canvas para la lluvia de código de Matrix -->
+  <canvas id="matrix-canvas" class="absolute inset-0 opacity-15 pointer-events-none z-0"></canvas>
+
+  <!-- Cabecera de la Ventana de la Consola -->
+  <div class="relative z-10 bg-slate-900 border-b border-theme-secondary/20 px-4 py-2.5 flex items-center justify-between shrink-0">
+    <div class="flex gap-2">
+      <!-- Botones de ventana simulados -->
+      <button 
+        id="terminal-close-top-btn" 
+        class="w-3 h-3 rounded-full bg-rose-500 hover:bg-rose-600 cursor-pointer border-none outline-none" 
+        title="Cerrar terminal"
+      ></button>
+      <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+      <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+    </div>
+    
+    <div class="text-slate-400 text-xs font-mono select-none">
+      visitante@ignacio-system:~
+    </div>
+    
+    <div class="w-12"></div> <!-- Espaciador para centrar el título -->
+  </div>
+
+  <!-- Zona de Output e Input -->
+  <div 
+    id="terminal-body" 
+    class="relative z-10 flex-1 overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-theme-secondary scrollbar-track-transparent"
+  >
+    <!-- Historial de comandos impresos -->
+    <div id="terminal-history" class="space-y-3 leading-relaxed text-sm">
+      <!-- Mensaje de bienvenida inicial -->
+      <div class="text-slate-400">
+        IGNACIO_SYSTEM_OS [Version 2.5.0-Galactic]
+        <br />
+        (c) Ignacio Trkmic Torres. Todos los derechos reservados.
+        <br /><br />
+        * Base de datos del CV cargada correctamente.
+        <br />
+        * Escribe <strong class="text-theme-primary text-shadow">help</strong> para ver la lista de comandos disponibles.
+        <br /><br />
+      </div>
+    </div>
+
+    <!-- Línea de prompt activa -->
+    <div class="flex items-center gap-2 text-sm">
+      <span class="text-theme-secondary shrink-0 font-bold">visitante@ignacio-system:~$</span>
+      <input 
+        type="text" 
+        id="terminal-input" 
+        autocomplete="off" 
+        autocorrect="off" 
+        autocapitalize="off" 
+        spellcheck="false"
+        class="flex-1 bg-transparent border-none outline-none text-theme-primary font-mono text-sm focus:ring-0 p-0"
+      />
+    </div>
+  </div>
+</div>
+
+<script>
+  import { playBoot, playKeypress, playBeep } from '../utils/audioHelper';
+
+  // Configuración de la terminal
+  const terminalOverlay = document.getElementById('terminal-overlay');
+  const terminalInput = document.getElementById('terminal-input') as HTMLInputElement;
+  const terminalHistory = document.getElementById('terminal-history');
+  const terminalBody = document.getElementById('terminal-body');
+  const closeTopBtn = document.getElementById('terminal-close-top-btn');
+
+  // Datos estructurados para imprimir
+  const CV_RAW = {
+    nombre: "Ignacio Trkmic Torres",
+    edad: "20 años",
+    ubicacion: "Buenos Aires, Argentina",
+    estudios: "UTN Avellaneda (Prog. Tecnicatura / Ing. Mecanica)",
+    ingles: "B2 First Certificate (English Time)",
+    skills: ["Python", "Java", "JavaScript", "TypeScript", "Angular", "NestJS", "Supabase", "MongoDB", "SQL", "Astro", "Vercel"],
+    proyectos: [
+      { id: 1, titulo: "Red social (NestJS / Angular)", url: "https://github.com/Trkmic/red-social" },
+      { id: 2, titulo: "Sala de juegos (Supabase / Angular)", url: "https://github.com/Trkmic/sala-de-juegos" },
+      { id: 3, titulo: "Tienda Online (SQL / JS)", url: "https://github.com/Trkmic/tienda_online" },
+      { id: 4, titulo: "Servicios de Hospedaje (Java POO)", url: "https://github.com/Trkmic/servicio_hospedaje_gatronomia" },
+      { id: 5, titulo: "Adivina el pokemon (Python Pygame)", url: "https://github.com/Trkmic/pygame_adivina_pokemon" },
+      { id: 6, titulo: "Gestion de peliculas (Python CSV)", url: "https://github.com/Trkmic/Gestion_peliculas" }
+    ],
+    contacto: {
+      email: "trkmicignacio@gmail.com",
+      linkedin: "https://linkedin.com/in/ignacio-trkmic-5a797827a/",
+      github: "https://github.com/Trkmic"
+    }
+  };
+
+  // Matrix canvas variables
+  const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
+  let ctx = canvas?.getContext('2d');
+  let animationFrameId: number;
+  let matrixActive = true;
+
+  // Lógica del canvas Matrix
+  function resizeCanvas() {
+    if (canvas) {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+  }
+
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#@&%*+-/<>[]".split("");
+  const fontSize = 14;
+  let columns = 0;
+  let rainDrops: number[] = [];
+
+  function initMatrix() {
+    resizeCanvas();
+    columns = Math.floor(window.innerWidth / fontSize);
+    rainDrops = [];
+    for (let x = 0; x < columns; x++) {
+      rainDrops[x] = Math.random() * -100; // Iniciar fuera de la pantalla
+    }
+  }
+
+  function drawMatrix() {
+    if (!ctx || !canvas) return;
+
+    // Pintar fondo negro semitransparente para efecto estela
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Obtener color primario del tema dinámico
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-primary').trim() || '#10b981';
+    ctx.fillStyle = primaryColor;
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < rainDrops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+      if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        rainDrops[i] = 0;
+      }
+      rainDrops[i]++;
+    }
+  }
+
+  function runMatrixLoop() {
+    if (!matrixActive) return;
+    drawMatrix();
+    animationFrameId = requestAnimationFrame(runMatrixLoop);
+  }
+
+  // Escuchar eventos globales para redimensionar el canvas
+  window.addEventListener('resize', initMatrix);
+
+  // Abrir Terminal
+  window.addEventListener('open-terminal', () => {
+    terminalOverlay?.classList.remove('hidden');
+    terminalInput?.focus();
+    playBoot();
+    
+    // Iniciar Matrix
+    matrixActive = true;
+    initMatrix();
+    runMatrixLoop();
+  });
+
+  // Cerrar Terminal
+  function closeTerminal() {
+    terminalOverlay?.classList.add('hidden');
+    playBeep();
+    matrixActive = false;
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  closeTopBtn?.addEventListener('click', closeTerminal);
+
+  // Auto-enfocar input de terminal al hacer click en el cuerpo
+  terminalBody?.addEventListener('click', () => {
+    terminalInput?.focus();
+  });
+
+  // Sonido de tipeo en teclado
+  terminalInput?.addEventListener('input', () => {
+    playKeypress();
+  });
+
+  // Procesar comandos de la terminal
+  terminalInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const fullCommand = terminalInput.value.trim();
+      const args = fullCommand.split(' ');
+      const command = args[0].toLowerCase();
+      
+      // Imprimir el prompt con el comando ingresado
+      printLine(`<span class="text-theme-secondary font-bold">visitante@ignacio-system:~$</span> <span class="text-white">${escapeHTML(fullCommand)}</span>`);
+
+      if (command) {
+        executeCommand(command, args.slice(1));
+      }
+
+      // Limpiar input y scroll abajo
+      terminalInput.value = '';
+      if (terminalBody) {
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
+    }
+  });
+
+  function printLine(htmlContent: string) {
+    if (terminalHistory) {
+      const div = document.createElement('div');
+      div.innerHTML = htmlContent;
+      terminalHistory.appendChild(div);
+    }
+  }
+
+  function escapeHTML(str: string) {
+    return str.replace(/[&<>'"]/g, 
+      tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+    );
+  }
+
+  function executeCommand(cmd: string, args: string[]) {
+    switch (cmd) {
+      case 'help':
+        printLine(`
+          <div class="space-y-1 text-slate-400">
+            <div>Lista de comandos galácticos:</div>
+            <div>• <strong class="text-theme-primary">neofetch</strong> - Imprime el perfil del desarrollador con arte ASCII.</div>
+            <div>• <strong class="text-theme-primary">skills</strong> - Lista completa del stack tecnológico.</div>
+            <div>• <strong class="text-theme-primary">projects</strong> - Listado numerado de proyectos interactivos.</div>
+            <div>• <strong class="text-theme-primary">open [num]</strong> - Abre el repositorio de GitHub del proyecto indicado (ej: open 1).</div>
+            <div>• <strong class="text-theme-primary">contact</strong> - Enlaces y correo de contacto directo.</div>
+            <div>• <strong class="text-theme-primary">matrix</strong> - Activa/desactiva la lluvia digital de fondo.</div>
+            <div>• <strong class="text-theme-primary">clear</strong> - Limpia el historial de la pantalla.</div>
+            <div>• <strong class="text-theme-primary">exit</strong> - Cierra la consola y vuelve al portfolio.</div>
+          </div>
+        `);
+        break;
+
+      case 'neofetch':
+        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-primary').trim() || '#10b981';
+        printLine(`
+          <div class="flex flex-col sm:flex-row gap-6 items-start font-mono text-sm">
+            <pre class="text-theme-primary/90 font-mono select-none" style="text-shadow: 0 0 10px var(--theme-glow)">
+       ,---.
+      /     \\
+      | () () |
+      \\  ^  /
+       |||||
+       |||||
+            </pre>
+            <div class="space-y-1 text-slate-300">
+              <div class="text-theme-primary font-bold">visitante@ignacio-system</div>
+              <div class="text-slate-500">---------------------------</div>
+              <div>OS: <span class="text-slate-400">Ignacio System OS v2.5.0-Galactic</span></div>
+              <div>Host: <span class="text-slate-400">UTN Avellaneda (Argentina)</span></div>
+              <div>Kernel: <span class="text-slate-400">${CV_RAW.estudios}</span></div>
+              <div>Uptime: <span class="text-slate-400">${CV_RAW.edad}</span></div>
+              <div>Shell: <span class="text-slate-400">${CV_RAW.ingles}</span></div>
+              <div>Theme: <span class="text-slate-400 uppercase" style="color:${primaryColor}">${document.documentElement.className.replace('theme-', '')}</span></div>
+              <div>IDE: <span class="text-slate-400">VS Code / Angular / NestJS / Pygame</span></div>
+            </div>
+          </div>
+        `);
+        break;
+
+      case 'skills':
+        printLine(`
+          <div class="space-y-1 text-slate-300">
+            <div class="text-theme-primary font-bold">Stack Tecnológico de Ignacio:</div>
+            <div>${CV_RAW.skills.join(', ')}</div>
+          </div>
+        `);
+        break;
+
+      case 'projects':
+        let proysText = `<div class="space-y-1 text-slate-300"><div class="text-theme-primary font-bold">Proyectos públicos:</div>`;
+        CV_RAW.proyectos.forEach(p => {
+          proysText += `<div>[${p.id}] <strong class="text-white">${p.titulo}</strong> - Escribe 'open ${p.id}' para ver el código.</div>`;
+        });
+        proysText += `</div>`;
+        printLine(proysText);
+        break;
+
+      case 'open':
+        const targetId = parseInt(args[0]);
+        if (isNaN(targetId) || targetId < 1 || targetId > CV_RAW.proyectos.length) {
+          printLine(`<span class="text-rose-500">Error: Especifica un número de proyecto válido (ej: open 1). Escribe 'projects' para listar.</span>`);
+        } else {
+          const selectedProj = CV_RAW.proyectos.find(p => p.id === targetId);
+          if (selectedProj) {
+            printLine(`<span class="text-slate-500">Abriendo ${selectedProj.titulo}...</span>`);
+            window.open(selectedProj.url, '_blank');
+          }
+        }
+        break;
+
+      case 'contact':
+        printLine(`
+          <div class="space-y-1 text-slate-300">
+            <div class="text-theme-primary font-bold">Vías de contacto:</div>
+            <div>📧 Email: <a href="mailto:${CV_RAW.contacto.email}" class="text-white underline hover:text-theme-primary">${CV_RAW.contacto.email}</a></div>
+            <div>💼 LinkedIn: <a href="${CV_RAW.contacto.linkedin}" target="_blank" class="text-white underline hover:text-theme-primary">${CV_RAW.contacto.linkedin}</a></div>
+            <div>🐙 GitHub: <a href="${CV_RAW.contacto.github}" target="_blank" class="text-white underline hover:text-theme-primary">${CV_RAW.contacto.github}</a></div>
+          </div>
+        `);
+        break;
+
+      case 'matrix':
+        matrixActive = !matrixActive;
+        if (matrixActive) {
+          initMatrix();
+          runMatrixLoop();
+          printLine(`<span class="text-theme-primary">Lluvia digital Matrix: ACTIVADA.</span>`);
+        } else {
+          cancelAnimationFrame(animationFrameId);
+          if (ctx && canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          }
+          printLine(`<span class="text-slate-500">Lluvia digital Matrix: DESACTIVADA.</span>`);
+        }
+        break;
+
+      case 'clear':
+        if (terminalHistory) {
+          terminalHistory.innerHTML = '';
+        }
+        break;
+
+      case 'exit':
+        closeTerminal();
+        break;
+
+      default:
+        printLine(`<span class="text-rose-500">Comando no reconocido: '${escapeHTML(cmd)}'. Escribe 'help' para ver la lista de comandos.</span>`);
+        break;
+    }
+  }
+</script>

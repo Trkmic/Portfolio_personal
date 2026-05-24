@@ -3,9 +3,9 @@
 ---
 
 <div class="fixed top-6 right-6 z-50 flex items-center gap-2">
-  <div class="bg-slate-950/80 backdrop-blur-md border border-slate-900 px-3 py-2 rounded-full flex gap-3 items-center shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+  <div class="bg-slate-950/85 backdrop-blur-md border border-slate-900 px-3.5 py-2 rounded-full flex gap-3.5 items-center shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
     <!-- Icono de paleta -->
-    <span class="text-slate-500 text-xs font-mono"><i class="fa-solid fa-palette"></i></span>
+    <span class="text-slate-500 text-xs font-mono select-none"><i class="fa-solid fa-palette"></i></span>
     
     <!-- Botón Emerald -->
     <button 
@@ -27,6 +27,27 @@
       data-theme="theme-dracula"
       title="Tema Dracula"
     ></button>
+
+    <!-- Separador -->
+    <span class="w-[1px] h-4 bg-slate-800 select-none"></span>
+
+    <!-- Botón de Abrir Terminal Hacker -->
+    <button 
+      id="terminal-toggle" 
+      class="text-slate-500 hover:text-theme-primary hover:scale-115 transition-all cursor-pointer font-bold text-[13px] active:scale-95" 
+      title="Abrir terminal hacker (>_)"
+    >
+      <i class="fa-solid fa-terminal"></i>
+    </button>
+
+    <!-- Botón de Mute/Volumen -->
+    <button 
+      id="volume-toggle" 
+      class="text-slate-500 hover:scale-115 transition-all cursor-pointer text-[13px] active:scale-95 w-4 flex justify-center" 
+      title="Silenciar / Activar sonidos de la web"
+    >
+      <i class="fa-solid fa-volume-xmark" id="volume-icon"></i>
+    </button>
   </div>
 </div>
 
@@ -39,17 +60,25 @@
 </script>
 
 <script>
+  import { playChirp, playBeep } from '../utils/audioHelper';
+
   const themeButtons = document.querySelectorAll('.theme-btn');
+  const termBtn = document.getElementById('terminal-toggle');
+  const volBtn = document.getElementById('volume-toggle');
+  const volIcon = document.getElementById('volume-icon');
+
+  // Inicializar Mute en true por defecto si no existe
+  if (localStorage.getItem('muted') === null) {
+    localStorage.setItem('muted', 'true');
+  }
 
   function applyTheme(themeName: string) {
-    // Quitar clases previas de tema
     document.documentElement.classList.remove('theme-emerald', 'theme-cyberpunk', 'theme-dracula');
-    
-    // Aplicar el nuevo tema
     document.documentElement.classList.add(themeName);
-    
-    // Guardar preferencia
     localStorage.setItem('theme', themeName);
+    
+    // Sonido al cambiar de tema
+    playChirp();
   }
 
   themeButtons.forEach(btn => {
@@ -59,5 +88,36 @@
         applyTheme(theme);
       }
     });
+  });
+
+  // Evento para abrir la terminal modal
+  termBtn?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('open-terminal'));
+  });
+
+  // Actualizar UI del altavoz
+  function updateVolumeUI() {
+    const isMuted = localStorage.getItem('muted') === 'true';
+    if (isMuted) {
+      volIcon?.classList.remove('fa-volume-high', 'text-theme-primary');
+      volIcon?.classList.add('fa-volume-xmark', 'text-slate-500');
+    } else {
+      volIcon?.classList.remove('fa-volume-xmark', 'text-slate-500');
+      volIcon?.classList.add('fa-volume-high', 'text-theme-primary');
+    }
+  }
+
+  updateVolumeUI();
+
+  // Escuchar clics de volumen
+  volBtn?.addEventListener('click', () => {
+    const isMuted = localStorage.getItem('muted') === 'true';
+    localStorage.setItem('muted', isMuted ? 'false' : 'true');
+    updateVolumeUI();
+    
+    if (isMuted) {
+      // Si estaba silenciado y ahora se activó, reproducir sonido de confirmación
+      setTimeout(playBeep, 50);
+    }
   });
 </script>
