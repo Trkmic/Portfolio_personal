@@ -297,7 +297,13 @@
           const selectedProj = CV_RAW.proyectos.find(p => p.id === targetId);
           if (selectedProj) {
             printLine(`<span class="text-slate-500">Abriendo ${selectedProj.titulo}...</span>`);
-            window.open(selectedProj.url, '_blank');
+            const link = document.createElement('a');
+            link.href = selectedProj.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
           }
         }
         break;
