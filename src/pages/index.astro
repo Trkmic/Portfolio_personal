@@ -121,9 +121,11 @@ const proyectos = [
                        title="GitHub">
                         <i class="fa-brands fa-github"></i>
                     </a>
-                    <a href="mailto:trkmicignacio@gmail.com" 
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com" 
+                       target="_blank"
+                       rel="noopener noreferrer"
                        class="text-theme-primary hover:text-theme-primary/80 hover:scale-125 transition-all duration-300"
-                       title="Enviar Email">
+                       title="Enviar Email (Gmail)">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
                 </div>
@@ -377,7 +379,9 @@ const proyectos = [
 
                 <div class="border-t border-theme-secondary/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <a 
-                        href="mailto:trkmicignacio@gmail.com" 
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com" 
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="inline-flex items-center gap-2 text-slate-400 hover:text-theme-primary transition-colors text-sm font-mono"
                     >
                         <i class="fa-solid fa-envelope"></i>
@@ -674,7 +678,7 @@ const proyectos = [
             console.error(error);
             contactStatus.classList.remove('hidden');
             contactStatus.classList.add('border-rose-500/30', 'text-rose-400', 'bg-rose-950/20');
-            contactStatus.innerHTML = `❌ Ocurrió un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a <a href="mailto:trkmicignacio@gmail.com" class="underline">trkmicignacio@gmail.com</a>.`;
+            contactStatus.innerHTML = `❌ Ocurrió un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a <a href="https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com" target="_blank" rel="noopener noreferrer" class="underline font-bold text-white hover:text-theme-primary">trkmicignacio@gmail.com</a>.`;
         } finally {
             contactSubmitBtn.disabled = false;
             contactSubmitBtn.innerHTML = originalBtnHTML;
