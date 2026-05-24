@@ -1,0 +1,422 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import AIChatbot from '../components/AIChatbot.astro';
+import AIJobMatcher from '../components/AIJobMatcher.astro';
+
+const nombreCompleto = "Ignacio Trkmic Torres";
+const edad = 20;
+const estudios = "Estudiante de la Tecnicatura Universitaria en Programación (a 2 materias del título) e Ingeniería Mecánica";
+const ingles = "Nivel B2 de inglés (First Certificate aprobado)";
+
+const stackTecnologico = [
+    { nombre: "Python", icono: "devicon-python-plain" },
+    { nombre: "Java", icono: "devicon-java-plain" },
+    { nombre: "JavaScript", icono: "devicon-javascript-plain" },
+    { nombre: "TypeScript", icono: "devicon-typescript-plain" },
+    { nombre: "HTML", icono: "devicon-html5-plain" },
+    { nombre: "CSS", icono: "devicon-css3-plain" },
+    { nombre: "Angular", icono: "devicon-angular-plain" },
+    { nombre: "SQL", icono: "devicon-azuresqldatabase-plain" },
+    { nombre: "MongoDB", icono: "devicon-mongodb-plain" },
+    { nombre: "Astro", icono: "devicon-astro-plain" },
+    { nombre: "VSCode", icono: "devicon-vscode-plain" },
+    { nombre: "NestJs", icono: "devicon-nestjs-original" },
+    { nombre: "Supabase", icono: "devicon-supabase-plain" },
+    { nombre: "Vercel", icono: "devicon-vercel-original" },
+];
+
+// Duplicamos el stack para la animación continua de marquee sin cortes
+const doubleStack = [...stackTecnologico, ...stackTecnologico];
+
+const proyectos = [
+	{
+		titulo: "Red social",
+		descripcion: "Plataforma social con NestJS y Angular. Incluye autenticación JWT, dashboards de estadísticas con Chart.js y gestión de medios en Cloudinary.",
+		tags: ["Angular", "Bootstrap", "NestJS", "MongoDB", "TypeScript", "CSS", "HTML"],
+		linkGithub: "https://github.com/Trkmic/red-social",
+        linkWeb: "https://red-social-sage.vercel.app/",
+	},
+	{
+		titulo: "Sala de juegos",
+		descripcion: "Suite de juegos con sistema de usuarios y chat en tiempo real. Utiliza Supabase para la base de datos y Vercel para el despliegue.",
+		tags: ["TypeScript", "CSS", "HTML", "Angular","Supabase", "Express"],
+		linkGithub: "https://github.com/Trkmic/sala-de-juegos",
+        linkWeb: "https://sala-de-juegos-tau.vercel.app/home",
+	},
+	{
+		titulo: "Tienda Online",
+		descripcion: "E-commerce con panel de administración. Gestión de inventario, carrito de compras y registro de ventas vinculado a una base de datos SQL.",
+		tags: ["JavaScript", "CSS", "HTML", "SQL"],
+		linkGithub: "https://github.com/Trkmic/tienda_online",
+        linkWeb: "#",
+	},
+	{
+		titulo: "Servicio de hospedaje y gastronomia",
+		descripcion: "Sistema en Java enfocado en POO para la administración de servicios turísticos, cálculos dinámicos de costos y gestión de inventario.",
+		tags: ["Java", "POO"],
+		linkGithub: "https://github.com/Trkmic/servicio_hospedaje_gatronomia",
+        linkWeb: "#",
+	},
+	{
+		titulo: "Adivina el pokemon",
+		descripcion: "Juego de trivia con Pygame. Soporte multi-idioma, manejo de archivos JSON/CSV para puntajes y base de datos, y lógica de estados.",
+		tags: ["Python", "Pygame"],
+		linkGithub: "https://github.com/Trkmic/pygame_adivina_pokemon",
+        linkWeb: "#",
+	},
+	{
+		titulo: "Gestion de peliculas",
+		descripcion: "Sistema de procesamiento de datos con Python. Manejo de catálogos en CSV/JSON, algoritmos de ordenamiento y generación de reportes estadísticos.",
+		tags: ["Python"],
+		linkGithub: "https://github.com/Trkmic/Gestion_peliculas",
+        linkWeb: "#",
+	}
+];
+---
+
+<Layout>
+    <!-- Efecto de Fondo Neon/Malla en CSS puro -->
+    <div class="fixed inset-0 z-0 bg-black overflow-hidden pointer-events-none">
+        <div class="absolute top-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-emerald-500/5 blur-[120px]"></div>
+        <div class="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full bg-emerald-600/5 blur-[150px]"></div>
+    </div>
+
+    <main class="relative z-10 max-w-2xl mx-auto px-6 py-12 flex flex-col gap-12 min-h-screen text-slate-300">
+        
+        <!-- Header / Perfil -->
+        <section class="flex flex-col items-center sm:items-start sm:flex-row gap-6">
+            <div class="relative group">
+                <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-950 opacity-75 blur-md group-hover:opacity-100 transition-opacity duration-500"></div>
+                <img 
+                    src="/WhatsApp Image 2025-12-19 at 9.57.16 PM.jpeg" 
+                    alt="Avatar de Ignacio Torres" 
+                    class="relative w-32 h-32 rounded-full border-4 border-emerald-500/80 shadow-[0_0_20px_rgba(16,185,129,0.3)] object-cover"
+                />
+            </div>
+            <div class="flex flex-col text-center sm:text-left justify-center">
+                <h1 class="text-4xl font-bold text-white mb-1 tracking-tight">{nombreCompleto}</h1>
+                
+                <p class="text-emerald-400 font-mono text-lg font-semibold uppercase tracking-wider flex items-center justify-center sm:justify-start gap-2">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Buenos Aires, Argentina
+                </p>
+                
+                <div class="flex justify-center sm:justify-start gap-5 text-2xl mt-3">
+                    <a href="https://linkedin.com/in/ignacio-trkmic-5a797827a/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="text-emerald-600 hover:text-emerald-400 hover:scale-125 transition-all duration-300"
+                       title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Trkmic" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="text-white hover:text-emerald-400 hover:scale-125 transition-all duration-300"
+                       title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="mailto:trkmicignacio@gmail.com" 
+                       class="text-emerald-500 hover:text-emerald-300 hover:scale-125 transition-all duration-300"
+                       title="Enviar Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Mí -->
+        <section class="bg-emerald-950/10 p-6 rounded-2xl border border-emerald-900/50 shadow-[inset_0_0_15px_rgba(16,185,129,0.05)] hover:border-emerald-500/30 transition-all duration-300">
+            <h2 class="text-xl font-bold mb-4 text-emerald-400 font-mono tracking-wide uppercase">Sobre Mí</h2>
+            <div class="space-y-4 text-slate-300">
+                <div class="flex gap-4 items-start">
+                    <i class="fa-solid fa-graduation-cap mt-1 text-emerald-500 text-lg"></i>
+                    <p>{estudios}.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <i class="fa-solid fa-language mt-1 text-emerald-500 text-lg"></i>
+                    <p>{ingles}.</p>
+                </div>
+                <div class="flex gap-4 items-start">
+                    <i class="fa-solid fa-code mt-1 text-emerald-500 text-lg"></i>
+                    <p>Apasionado por resolver problemas complejos y construir soluciones backend sólidas y frontend altamente interactivas.</p>
+                </div>
+                <a 
+                    href="/CV_Trkmic.pdf" 
+                    download="CV_Ignacio_Trkmic.pdf"
+                    class="mt-4 w-full bg-emerald-600 hover:bg-emerald-500 text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] uppercase tracking-tight flex justify-center items-center text-center decoration-none cursor-pointer"
+                >
+                    <i class="fa-solid fa-download mr-2"></i> Descargar CV
+                </a>
+            </div>
+        </section>
+
+        <!-- Stack Tecnológico -->
+        <section class="space-y-4">
+            <h2 class="text-sm font-bold text-center text-emerald-400 uppercase tracking-[0.3em] font-mono">Stack Tecnológico</h2>
+            <p class="text-[11px] text-center text-slate-500 font-mono italic">Haz clic en una tecnología para filtrar los proyectos</p>
+            
+            <div class="relative flex overflow-hidden group border-y border-emerald-950/20 py-2">
+                <!-- Capas de sombra laterales para el carrusel -->
+                <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none"></div>
+                
+                <div class="flex gap-8 animate-marquee whitespace-nowrap py-4">
+                    {doubleStack.map((tech) => (
+                        <button 
+                            class="tech-filter-btn flex flex-col items-center gap-2 group/btn hover:scale-115 transition-all duration-300 cursor-pointer bg-transparent border-none outline-none"
+                            data-tech={tech.nombre.toLowerCase()}
+                        >
+                            <i class={`${tech.icono} text-4xl text-emerald-500/80 group-hover/btn:text-emerald-300 transition-colors duration-300`}></i> 
+                            <span class="text-[10px] text-emerald-900 group-hover/btn:text-emerald-600 uppercase font-bold font-mono tracking-tight">{tech.nombre}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyectos Realizados -->
+        <section class="flex flex-col gap-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-emerald-900/50 pb-2 gap-2">
+                <h2 class="text-xl font-bold text-emerald-400 font-mono uppercase tracking-wider">Proyectos Realizados</h2>
+                
+                <!-- Estado del filtro activo -->
+                <div id="filter-status" class="hidden items-center gap-2.5 text-xs font-mono text-emerald-400 bg-emerald-950/20 px-3 py-1.5 rounded-lg border border-emerald-900/30">
+                    <span>Filtrando: <strong id="current-filter-name" class="uppercase text-white"></strong></span>
+                    <button id="clear-filter-btn" class="text-rose-400 hover:text-rose-300 font-bold ml-1 cursor-pointer transition-colors" title="Quitar filtro">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid sm:grid-cols-1 gap-6" id="projects-grid">
+                {proyectos.map((proy) => (
+                    <ProjectCard 
+                        titulo={proy.titulo}
+                        descripcion={proy.descripcion}
+                        tags={proy.tags}
+                        linkGithub={proy.linkGithub}
+                        linkWeb={proy.linkWeb}
+                    />
+                ))}
+            </div>
+        </section>
+
+        <!-- Formación Académica -->
+        <section class="flex flex-col gap-6">
+            <h2 class="text-xl font-bold text-emerald-400 border-b border-emerald-900/50 pb-2 font-mono uppercase tracking-wider">
+                Formación Académica
+            </h2>
+            
+            <div class="flex flex-col gap-4">
+                <div class="p-4 rounded-xl bg-black border border-emerald-900/40 flex justify-between items-center group hover:border-emerald-500/30 hover:shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                            <i class="fa-solid fa-gears text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold group-hover:text-emerald-400 transition-colors">UTN Avellaneda</h3>
+                            <p class="text-emerald-700 text-sm italic">Ingeniería Mecánica</p>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-md uppercase shrink-0">2026 - ACT</span>
+                </div>
+
+                <div class="p-4 rounded-xl bg-black border border-emerald-900/40 flex justify-between items-center group hover:border-emerald-500/30 hover:shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                            <i class="fa-solid fa-terminal text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold group-hover:text-emerald-400 transition-colors">UTN Avellaneda</h3>
+                            <p class="text-emerald-700 text-sm italic">Tecnicatura Universitaria en Programación</p>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-md uppercase shrink-0">2024 - 2026</span>
+                </div>
+
+                <div class="p-4 rounded-xl bg-black border border-emerald-900/40 flex justify-between items-center group hover:border-emerald-500/30 hover:shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                            <i class="fa-solid fa-language text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold group-hover:text-emerald-400 transition-colors">English Time</h3>
+                            <p class="text-emerald-700 text-sm italic">Cultural de Inglés</p>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-md uppercase shrink-0">2018 - 2024</span>
+                </div>
+
+                <div class="p-4 rounded-xl bg-black border border-emerald-900/40 flex justify-between items-center group hover:border-emerald-500/30 hover:shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                            <i class="fa-solid fa-school text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold group-hover:text-emerald-400 transition-colors">Instituto Padre Marquez</h3>
+                            <p class="text-emerald-700 text-sm italic">Educación Secundaria</p>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-md uppercase shrink-0">2018 - 2023</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparador Inteligente de Puestos -->
+        <AIJobMatcher />
+
+        <!-- Contacto -->
+        <section class="flex flex-col gap-6 mb-6">
+            <h2 class="text-xl font-bold text-emerald-400 border-b border-emerald-900/50 pb-2 font-mono uppercase tracking-wider">
+                Contacto
+            </h2>
+            
+            <div class="bg-emerald-950/5 p-8 rounded-2xl border border-emerald-900/30 text-center space-y-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-white">{nombreCompleto}</h3>
+                    <p class="text-emerald-500 font-mono mt-1 uppercase italic tracking-wider text-xs">Desarrollador Backend / Fullstack</p>
+                </div>
+
+                <a 
+                    href="mailto:trkmicignacio@gmail.com" 
+                    class="inline-flex items-center gap-3 bg-emerald-900/10 hover:bg-emerald-900/30 text-emerald-400 hover:text-emerald-300 px-6 py-3 rounded-xl border border-emerald-900/50 hover:border-emerald-500/30 transition-all duration-300 font-mono text-sm group"
+                >
+                    <i class="fa-solid fa-envelope group-hover:-translate-y-0.5 transition-transform"></i>
+                    trkmicignacio@gmail.com
+                </a>
+
+                <div class="flex justify-center gap-8 text-4xl pt-4">
+                    <a href="https://linkedin.com/in/ignacio-trkmic-5a797827a/" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="hover:scale-125 transition-transform text-emerald-600 hover:text-emerald-400"
+                       title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+
+                    <a href="https://github.com/Trkmic" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="hover:scale-125 transition-transform text-white hover:text-emerald-400"
+                       title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+                
+                <p class="text-emerald-900 text-xs italic pt-4 font-mono">
+                    Abierto a pasantías, posiciones junior y proyectos freelance.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-emerald-900/50 text-[12px] font-mono border-t border-emerald-950/10">
+            <p>© {new Date().getFullYear()} - Creado con Astro, Tailwind CSS v4 & Inteligencia Artificial </p>
+        </footer>
+    </main>
+
+    <!-- Chatbot Flotante -->
+    <AIChatbot />
+</Layout>
+
+<script>
+    // Lógica para filtrar proyectos al hacer clic en el stack
+    const filterButtons = document.querySelectorAll('.tech-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    const filterStatus = document.getElementById('filter-status');
+    const filterNameLabel = document.getElementById('current-filter-name');
+    const clearFilterBtn = document.getElementById('clear-filter-btn');
+
+    let currentFilter: string | null = null;
+
+    function applyFilter(tech: string) {
+        currentFilter = tech;
+        
+        // Mostrar estado del filtro
+        if (filterStatus && filterNameLabel) {
+            filterStatus.classList.remove('hidden');
+            filterStatus.classList.add('flex');
+            filterNameLabel.textContent = tech;
+        }
+
+        // Resaltar u ocultar tarjetas de proyectos
+        projectCards.forEach(card => {
+            const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+            
+            // Especiales (ej. NestJs vs nestjs)
+            const isMatch = cardTags.some(tag => {
+                const cleanTag = tag.trim().toLowerCase();
+                // Manejar alias común: ej. "nestjs" en tag vs "nestjs" en data-tech, o "sql" en tag
+                return cleanTag === tech || 
+                       (tech === 'nestjs' && cleanTag === 'nest') || 
+                       (tech === 'sql' && (cleanTag === 'mysql' || cleanTag === 'postgres' || cleanTag === 'sqlite'));
+            });
+
+            if (isMatch) {
+                card.classList.remove('opacity-30', 'scale-95', 'pointer-events-none', 'border-emerald-900/30');
+                card.classList.add('opacity-100', 'scale-100', 'border-emerald-500/40', 'shadow-[0_0_15px_rgba(16,185,129,0.08)]');
+            } else {
+                card.classList.remove('opacity-100', 'scale-100', 'border-emerald-500/40', 'shadow-[0_0_15px_rgba(16,185,129,0.08)]');
+                card.classList.add('opacity-30', 'scale-95', 'pointer-events-none', 'border-emerald-900/10');
+            }
+        });
+    }
+
+    function clearFilter() {
+        currentFilter = null;
+
+        // Ocultar estado del filtro
+        if (filterStatus) {
+            filterStatus.classList.remove('flex');
+            filterStatus.classList.add('hidden');
+        }
+
+        // Restablecer todas las tarjetas a su estado normal
+        projectCards.forEach(card => {
+            card.classList.remove('opacity-30', 'scale-95', 'pointer-events-none', 'border-emerald-900/10', 'border-emerald-500/40', 'shadow-[0_0_15px_rgba(16,185,129,0.08)]');
+            card.classList.add('opacity-100', 'scale-100', 'border-emerald-900/30');
+        });
+    }
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tech = btn.getAttribute('data-tech');
+            if (tech) {
+                if (currentFilter === tech) {
+                    clearFilter();
+                } else {
+                    applyFilter(tech);
+                }
+            }
+        });
+    });
+
+    clearFilterBtn?.addEventListener('click', clearFilter);
+</script>
+
+<style is:global>
+    :root { color-scheme: dark; }
+    body { background-color: black; margin: 0; }
+    
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    
+    .animate-marquee {
+        display: flex;
+        width: max-content;
+        animation: marquee 35s linear infinite;
+    }
+    
+    .animate-marquee:hover {
+        animation-play-state: paused;
+    }
+    
+    /* Efecto de brillo de texto suave */
+    .text-emerald-400, .text-emerald-500 {
+        text-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+    }
+</style>

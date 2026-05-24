@@ -1,0 +1,373 @@
+<section class="bg-slate-950/40 p-6 sm:p-8 rounded-2xl border border-emerald-950/50 shadow-[inset_0_0_20px_rgba(16,185,129,0.02)] space-y-6">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+      <i class="fa-solid fa-sparkles text-lg"></i>
+    </div>
+    <div>
+      <h2 class="text-xl font-bold text-white font-mono">AI Job Matcher</h2>
+      <p class="text-xs text-emerald-500 font-mono uppercase tracking-wider">Analizador de compatibilidad con ofertas de empleo</p>
+    </div>
+  </div>
+
+  <p class="text-sm text-slate-400 leading-relaxed">
+    ¿Eres reclutador? Pega aquí la descripción del puesto de trabajo o los requisitos tecnológicos y nuestro analizador inteligente evaluará qué tan bien se adapta Ignacio al puesto, destacando sus fortalezas y proyectos clave.
+  </p>
+
+  <div class="space-y-4">
+    <textarea 
+      id="job-description-input" 
+      rows="4" 
+      placeholder="Ej: Buscamos un desarrollador Fullstack con conocimientos en NestJS, Angular y TypeScript para integrar APIs y bases de datos..." 
+      class="w-full bg-black border border-emerald-900/40 rounded-xl p-3.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 font-sans resize-none transition-colors"
+    ></textarea>
+
+    <button 
+      id="analyze-job-btn"
+      class="w-full bg-emerald-600 hover:bg-emerald-500 text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)] hover:shadow-[0_0_25px_rgba(16,185,129,0.4)] uppercase tracking-tight flex justify-center items-center gap-2 cursor-pointer"
+    >
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Analizar Compatibilidad
+    </button>
+  </div>
+
+  <!-- Contenedor de Resultados (Oculto por defecto) -->
+  <div id="matcher-results" class="hidden border-t border-emerald-900/30 pt-6 space-y-6 animate-fadeIn">
+    <div class="flex flex-col sm:flex-row items-center gap-6 bg-black/40 p-5 rounded-2xl border border-emerald-950/40">
+      <!-- Círculo de porcentaje -->
+      <div class="relative w-28 h-28 flex items-center justify-center shrink-0">
+        <svg class="w-full h-full transform -rotate-90">
+          <circle 
+            cx="56" 
+            cy="56" 
+            r="48" 
+            class="stroke-slate-900 fill-none" 
+            stroke-width="8"
+          />
+          <circle 
+            id="matcher-progress-circle" 
+            cx="56" 
+            cy="56" 
+            r="48" 
+            class="stroke-emerald-500 fill-none transition-all duration-1000 ease-out" 
+            stroke-width="8"
+            stroke-dasharray="301.6"
+            stroke-dashoffset="301.6"
+          />
+        </svg>
+        <span id="matcher-percentage" class="absolute text-2xl font-black text-white font-mono">0%</span>
+      </div>
+
+      <div class="space-y-2 text-center sm:text-left">
+        <h3 id="match-verdict" class="text-lg font-bold text-emerald-400 font-mono"></h3>
+        <p id="match-summary-text" class="text-sm text-slate-300 leading-relaxed"></p>
+      </div>
+    </div>
+
+    <!-- Fortalezas y proyectos clave -->
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="bg-black/20 p-5 rounded-xl border border-emerald-900/20">
+        <h4 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-wider mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-list-check"></i> Tecnologías Coincidentes
+        </h4>
+        <div id="matched-skills-tags" class="flex flex-wrap gap-1.5">
+          <!-- Tags dinámicos -->
+        </div>
+      </div>
+
+      <div class="bg-black/20 p-5 rounded-xl border border-emerald-900/20">
+        <h4 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-wider mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-folder-open"></i> Proyectos Sugeridos
+        </h4>
+        <ul id="suggested-projects-list" class="space-y-2 text-xs text-slate-300">
+          <!-- Items dinámicos -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Carta de Pitch de IA -->
+    <div id="ai-pitch-card" class="bg-emerald-950/5 border border-emerald-900/30 rounded-xl p-5 space-y-2 hidden">
+      <div class="flex items-center gap-2 text-xs text-emerald-400 font-mono font-bold uppercase tracking-wider">
+        <i class="fa-solid fa-robot"></i> Análisis de Ajuste de IA
+      </div>
+      <p id="ai-pitch-content" class="text-sm text-slate-300 leading-relaxed whitespace-pre-line italic">
+        <!-- Generado dinámicamente -->
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Estructura de tecnologías de Ignacio para match local
+  const SKILLS_MAP: Record<string, string[]> = {
+    'python': ['python', 'pygame', 'movies', 'película', 'backend'],
+    'java': ['java', 'poo', 'hospedaje', 'gastronomia', 'objetos'],
+    'javascript': ['javascript', 'js', 'node', 'express', 'web', 'frontend'],
+    'typescript': ['typescript', 'ts', 'angular', 'nestjs'],
+    'angular': ['angular', 'frontend', 'spa', 'componentes'],
+    'nestjs': ['nestjs', 'nest', 'backend', 'api', 'jwt', 'auth'],
+    'supabase': ['supabase', 'base de datos', 'realtime', 'chat'],
+    'mongodb': ['mongodb', 'mongo', 'nosql'],
+    'sql': ['sql', 'base de datos', 'relacional', 'postgres', 'mysql'],
+    'astro': ['astro', 'portfolio', 'estatico', 'html', 'css']
+  };
+
+  const PROJECTS = [
+    {
+      titulo: "Red social (NestJS / Angular)",
+      tags: ["NestJS", "Angular", "MongoDB", "TypeScript"],
+      description: "Plataforma social completa, APIs backend, autenticación JWT, Cloudinary, Chart.js."
+    },
+    {
+      titulo: "Sala de juegos (Supabase / Express)",
+      tags: ["Supabase", "TypeScript", "Express", "Angular"],
+      description: "Juegos, chats en tiempo real, base de datos integrada y auth."
+    },
+    {
+      titulo: "Tienda Online (SQL / JavaScript)",
+      tags: ["JavaScript", "HTML", "CSS"],
+      description: "Administración de stock, lógica de carrito, guardado de transacciones."
+    },
+    {
+      titulo: "Servicio de hospedaje y gastronomia (Java POO)",
+      tags: ["Java"],
+      description: "Lógica avanzada orientada a objetos en Java, algoritmos de cálculo de tarifas."
+    },
+    {
+      titulo: "Adivina el pokemon (Python Pygame)",
+      tags: ["Python"],
+      description: "Desarrollo de scripts interactivos, manejo de archivos JSON/CSV."
+    },
+    {
+      titulo: "Gestion de peliculas (Python CSV)",
+      tags: ["Python"],
+      description: "Análisis y ordenamiento de estructuras de datos masivas."
+    }
+  ];
+
+  const analyzeBtn = document.getElementById('analyze-job-btn');
+  const resultsContainer = document.getElementById('matcher-results');
+  const jobInput = document.getElementById('job-description-input') as HTMLTextAreaElement;
+  const progressCircle = document.getElementById('matcher-progress-circle') as unknown as SVGCircleElement;
+  const percentageLabel = document.getElementById('matcher-percentage');
+  const verdictLabel = document.getElementById('match-verdict');
+  const summaryLabel = document.getElementById('match-summary-text');
+  const skillsContainer = document.getElementById('matched-skills-tags');
+  const projectsList = document.getElementById('suggested-projects-list');
+  const aiPitchCard = document.getElementById('ai-pitch-card');
+  const aiPitchContent = document.getElementById('ai-pitch-content');
+
+  analyzeBtn?.addEventListener('click', async () => {
+    const text = jobInput.value.trim();
+    if (!text) {
+      alert('Por favor, ingresa una descripción de empleo para analizar.');
+      return;
+    }
+
+    // Efecto de carga en botón
+    const originalText = analyzeBtn.innerHTML;
+    analyzeBtn.disabled = true;
+    analyzeBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Analizando oferta...`;
+
+    // Procesar localmente primero
+    const matchedSkills = new Set<string>();
+    const lowercaseText = text.toLowerCase();
+
+    // Buscar coincidencias de palabras clave
+    Object.entries(SKILLS_MAP).forEach(([skill, keywords]) => {
+      keywords.forEach(kw => {
+        if (lowercaseText.includes(kw)) {
+          matchedSkills.add(skill);
+        }
+      });
+    });
+
+    // Calcular score base
+    let score = 20; // Puntaje base por educación/general
+    if (matchedSkills.size > 0) {
+      score += matchedSkills.size * 12; // 12% por tecnología coincidente
+    }
+    // Si contiene "backend" o "fullstack", Ignacio se adapta muy bien
+    if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador')) {
+      score += 15;
+    }
+    if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
+      score += 10;
+    }
+    
+    // Cap a 98% (nadie es 100% perfecto, da más realismo técnico)
+    if (score > 98) score = 98;
+    if (score < 25) score = 25; // Mínimo match lógico
+
+    // Determinar veredicto
+    let verdict = "";
+    let summary = "";
+    if (score >= 80) {
+      verdict = "¡Excelente Compatibilidad! 🚀";
+      summary = "Ignacio cubre la gran mayoría de las tecnologías requeridas. Sus proyectos principales demuestran capacidad inmediata para incorporarse al rol.";
+    } else if (score >= 60) {
+      verdict = "Compatibilidad Sólida 👍";
+      summary = "Ignacio cuenta con una base de programación sólida y varias tecnologías coincidentes. Puede adaptarse rápidamente con una breve curva de aprendizaje.";
+    } else {
+      verdict = "Compatibilidad Parcial 🔎";
+      summary = "El puesto pide algunas tecnologías fuera del stack principal de Ignacio, pero su sólida formación en la UTN y sus bases de POO y lógica le permiten migrar rápido a nuevos stacks.";
+    }
+
+    // Generar tags coincidentes en UI
+    if (skillsContainer) {
+      skillsContainer.innerHTML = '';
+      if (matchedSkills.size > 0) {
+        matchedSkills.forEach(skill => {
+          const capitalized = skill.charAt(0).toUpperCase() + skill.slice(1);
+          skillsContainer.innerHTML += `
+            <span class="text-[10px] px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold font-mono uppercase">
+              ${capitalized}
+            </span>
+          `;
+        });
+      } else {
+        skillsContainer.innerHTML = `<span class="text-slate-600 text-xs italic">Ninguna coincidencia explícita detectada, pero aplica para lógica general de desarrollo.</span>`;
+      }
+    }
+
+    // Sugerir proyectos en UI
+    if (projectsList) {
+      projectsList.innerHTML = '';
+      let suggestedCount = 0;
+      PROJECTS.forEach(proj => {
+        const matchesProject = proj.tags.some(tag => matchedSkills.has(tag.toLowerCase()));
+        if (matchesProject || (suggestedCount < 2 && matchedSkills.size === 0)) {
+          suggestedCount++;
+          projectsList.innerHTML += `
+            <li class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-lg border border-emerald-950/30">
+              <span class="text-emerald-500 mt-0.5"><i class="fa-solid fa-circle-check"></i></span>
+              <div>
+                <strong class="text-white block">${proj.titulo}</strong>
+                <span class="text-[11px] text-slate-500">${proj.description}</span>
+              </div>
+            </li>
+          `;
+        }
+      });
+      if (suggestedCount === 0) {
+        projectsList.innerHTML = `<li class="text-slate-600 italic">No hay proyectos específicos, pero se recomienda revisar su Red Social.</li>`;
+      }
+    }
+
+    // Comprobar si hay clave de Gemini API para análisis con IA avanzado
+    const apiKey = localStorage.getItem('gemini_api_key');
+    if (apiKey && aiPitchCard && aiPitchContent) {
+      aiPitchCard.classList.remove('hidden');
+      aiPitchContent.innerHTML = `<span class="text-slate-500"><i class="fa-solid fa-spinner animate-spin"></i> Generando pitch personalizado con Gemini...</span>`;
+
+      try {
+        const geminiPitch = await queryGeminiForJobFit(text, apiKey, score);
+        aiPitchContent.innerHTML = geminiPitch;
+      } catch (err) {
+        console.error(err);
+        aiPitchContent.innerHTML = `No se pudo conectar con Gemini API para el análisis avanzado. Sin embargo, su compatibilidad general calculada es de ${score}%.`;
+      }
+    } else {
+      // Ocultar sección de pitch avanzado si no hay API key
+      aiPitchCard?.classList.add('hidden');
+    }
+
+    // Mostrar contenedor de resultados
+    resultsContainer?.classList.remove('hidden');
+
+    // Animación de círculo de progreso
+    setTimeout(() => {
+      if (progressCircle) {
+        const radius = progressCircle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius; // ~301.6
+        const offset = circumference - (score / 100) * circumference;
+        progressCircle.style.strokeDashoffset = offset.toString();
+      }
+      
+      // Animar etiqueta de número
+      let currentVal = 0;
+      const interval = setInterval(() => {
+        if (currentVal >= score) {
+          clearInterval(interval);
+        } else {
+          currentVal++;
+          if (percentageLabel) percentageLabel.textContent = `${currentVal}%`;
+        }
+      }, 10);
+    }, 100);
+
+    // Actualizar veredicto y texto descriptivo
+    if (verdictLabel) verdictLabel.textContent = verdict;
+    if (summaryLabel) summaryLabel.textContent = summary;
+
+    // Scroll suave hasta los resultados
+    resultsContainer?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Restablecer botón
+    analyzeBtn.disabled = false;
+    analyzeBtn.innerHTML = originalText;
+  });
+
+  // Llamada a Gemini para el Fit Checker
+  async function queryGeminiForJobFit(jobText: string, key: string, calculatedScore: number): Promise<string> {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
+    const cvInfo = `
+      Nombre: Ignacio Trkmic Torres
+      Estudios: UTN Avellaneda (Tecnicatura Universitaria en Programación a 2 materias de recibirse, Ingeniería Mecánica comenzando en 2026).
+      Idiomas: Inglés B2 First Certificate.
+      Stack: Python, Java, JavaScript, TypeScript, Angular, NestJS, Supabase, MongoDB, SQL, Astro.
+      Proyectos:
+      - Red social (NestJS, Angular, JWT, MongoDB): Dashboard, multimedia con Cloudinary, charts.
+      - Sala de juegos (Supabase, Angular, Express): Chat tiempo real, auth, hosting Vercel.
+      - Tienda Online (JS, HTML, CSS, SQL): Panel de ventas y stock.
+      - Servicio de hospedaje y gastronomia (Java POO): Sistema de gestión de tarifas de turismo.
+      - Adivina el pokemon (Python Pygame): Trivia interactiva con persistencia JSON/CSV.
+      - Gestion de peliculas (Python CSV): Estructuras de datos, ordenamientos, reportes.
+    `;
+
+    const requestBody = {
+      contents: [{
+        parts: [{
+          text: `Eres un consultor experto en reclutamiento de tecnología. 
+          
+          Dado el perfil del candidato Ignacio Torres:
+          ${cvInfo}
+
+          Y la siguiente oferta laboral:
+          "${jobText}"
+
+          Porcentaje de compatibilidad calculado: ${calculatedScore}%.
+
+          Escribe un análisis corto y persuasivo (máximo 3 párrafos cortos) en español dirigido al reclutador que explica:
+          1. Por qué Ignacio se adaptaría bien al puesto basado en sus proyectos específicos (cita explícitamente qué proyectos de él demuestran el conocimiento requerido).
+          2. Sus puntos fuertes clave (formación técnica en UTN y nivel de inglés FCE).
+          3. Una recomendación final breve y amigable.
+
+          Usa emojis para estructurar las ideas de forma agradable y moderna.`
+        }]
+      }],
+      generationConfig: {
+        maxOutputTokens: 400,
+        temperature: 0.6
+      }
+    };
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (!response.ok) throw new Error('Gemini API Error');
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text;
+  }
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+</style>

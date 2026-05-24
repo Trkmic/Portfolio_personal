@@ -1,0 +1,57 @@
+interface Props {
+  titulo: string;
+  descripcion: string;
+  tags: string[];
+  linkGithub: string;
+  linkWeb?: string;
+}
+
+const { titulo, descripcion, tags, linkGithub, linkWeb } = Astro.props;
+---
+
+<div 
+  class="project-card group p-6 rounded-2xl bg-black border border-emerald-900/30 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)] flex flex-col justify-between"
+  data-tags={tags.map(t => t.toLowerCase()).join(',')}
+>
+  <div>
+    <div class="flex justify-between items-start mb-3">
+      <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors font-mono">
+        {titulo}
+      </h3>
+      
+      <div class="flex gap-4 text-xl shrink-0">
+        {linkWeb && linkWeb !== "#" && (
+          <a 
+            href={linkWeb} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-emerald-500 hover:text-white transition-all transform hover:scale-125"
+            title="Ver sitio en vivo"
+          >
+            <i class="fa-solid fa-link"></i>
+          </a>
+        )}
+        
+        <a 
+          href={linkGithub} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-emerald-800 hover:text-emerald-400 transition-all transform hover:scale-125"
+          title="Ver repositorio en GitHub"
+        >
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </div>
+    
+    <p class="text-slate-500 text-sm leading-relaxed mb-4">{descripcion}</p>
+  </div>
+  
+  <div class="flex flex-wrap gap-2 mt-auto">
+    {tags.map(tag => (
+      <span class="text-[10px] px-2.5 py-1 rounded-md bg-emerald-500/5 text-emerald-500 border border-emerald-500/20 font-bold uppercase tracking-tight">
+        {tag}
+      </span>
+    ))}
+  </div>
+</div>
