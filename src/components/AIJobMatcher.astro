@@ -184,35 +184,48 @@
       });
     });
 
-    // Calcular score base
-    let score = 20; // Puntaje base por educación/general
+    // Calcular score dinámico
+    let score = 0;
     if (matchedSkills.size > 0) {
-      score += matchedSkills.size * 12; // 12% por tecnología coincidente
+      // Si hay tecnologías coincidentes, el porcentaje tiende a ser alto (iniciando en 75%)
+      score = 75 + (matchedSkills.size * 6);
+      
+      // Bonus por tipo de rol o palabras clave generales
+      if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
+        score += 8;
+      }
+      if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
+        score += 5;
+      }
+      
+      if (score > 98) score = 98; // Cap máximo realista
+    } else {
+      // Si no hay ninguna coincidencia de tecnología, asignamos compatibilidad medio/bajo (ej. 45% - 55%)
+      score = 45;
+      if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
+        score += 6;
+      }
+      if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
+        score += 4;
+      }
     }
-    // Si contiene "backend" o "fullstack", Ignacio se adapta muy bien
-    if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador')) {
-      score += 15;
-    }
-    if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
-      score += 10;
-    }
-    
-    // Cap a 98% (nadie es 100% perfecto, da más realismo técnico)
-    if (score > 98) score = 98;
-    if (score < 25) score = 25; // Mínimo match lógico
 
     // Determinar veredicto
     let verdict = "";
     let summary = "";
-    if (score >= 80) {
-      verdict = "¡Excelente Compatibilidad! 🚀";
-      summary = "Ignacio cubre la gran mayoría de las tecnologías requeridas. Sus proyectos principales demuestran capacidad inmediata para incorporarse al rol.";
-    } else if (score >= 60) {
-      verdict = "Compatibilidad Sólida 👍";
-      summary = "Ignacio cuenta con una base de programación sólida y varias tecnologías coincidentes. Puede adaptarse rápidamente con una breve curva de aprendizaje.";
+    if (matchedSkills.size > 0) {
+      if (score >= 85) {
+        verdict = "¡Excelente Compatibilidad! 🚀";
+        const skillsList = Array.from(matchedSkills).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
+        summary = `Ignacio cubre tecnologías clave requeridas para este puesto (como ${skillsList}). Sus proyectos demuestran dominio e implementación práctica inmediata en estas áreas.`;
+      } else {
+        verdict = "Compatibilidad Sólida 👍";
+        const skillsList = Array.from(matchedSkills).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
+        summary = `Ignacio cuenta con coincidencia y experiencia práctica en herramientas del puesto como ${skillsList}. Su sólida formación y versatilidad facilitarán una integración rápida.`;
+      }
     } else {
-      verdict = "Compatibilidad Parcial 🔎";
-      summary = "El puesto pide algunas tecnologías fuera del stack principal de Ignacio, pero su sólida formación en la UTN y sus bases de POO y lógica le permiten migrar rápido a nuevos stacks.";
+      verdict = "Potencial de Adaptación 🌱";
+      summary = "Aunque la oferta se orienta a tecnologías fuera de su stack habitual, la sólida preparación universitaria de Ignacio en la UTN, junto con sus firmes bases en Programación Orientada a Objetos (POO), diseño lógico y un nivel de inglés B2 (FCE), garantizan una rápida adaptabilidad y capacidad de migración hacia el nuevo stack requerido.";
     }
 
     // Generar tags coincidentes en UI
