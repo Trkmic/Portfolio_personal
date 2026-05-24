@@ -327,42 +327,47 @@
 
   // Procesador Local NLP
   function getLocalResponse(query: string): string {
-    const q = query.toLowerCase();
+    // Normalizar texto: minúsculas, sin acentos/diacríticos y sin signos de interrogación
+    const q = query.toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[¿?¡!]/g, "")
+      .trim();
 
-    // 1. Proyectos
-    if (q.includes('proyecto') || q.includes('portafolio') || q.includes('creado') || q.includes('hecho') || q.includes('hizo') || q.includes('desarrollado')) {
+    // 1. Proyectos (Coincide con "¿Qué proyectos tiene?")
+    if (q.includes('proyec') || q.includes('portafolio') || q.includes('creado') || q.includes('hecho') || q.includes('hizo') || q.includes('desarrollado')) {
       let response = `Ignacio ha desarrollado varios proyectos de gran nivel en NestJS, Angular, Supabase, Python y Java. Aquí tienes los principales:\n\n`;
       CV_DATA.proyectos.forEach(p => {
         response += `🌐 **${p.titulo}**: ${p.descripcion}\n`;
-        response += `   *Enlace:* [GitHub](${p.url})`;
+        response += `   *Enlaces:* [GitHub](${p.url})`;
         if (p.web) response += ` | [Web en Vivo](${p.web})`;
         response += `\n\n`;
       });
       return response;
     }
 
-    // 2. Estudios / Universidad
-    if (q.includes('estudio') || q.includes('utn') || q.includes('universidad') || q.includes('estudia') || q.includes('educacion') || q.includes('ingenieria') || q.includes('programador') || q.includes('tecnicatura')) {
+    // 2. Estudios / Universidad (Coincide con "¿Cuáles son sus estudios?")
+    if (q.includes('estud') || q.includes('utn') || q.includes('universi') || q.includes('educa') || q.includes('ingenieria') || q.includes('programador') || q.includes('tecnicatura') || q.includes('titulo')) {
       return `Ignacio se está formando en la **Universidad Tecnológica Nacional (UTN) Regional Avellaneda**:\n\n• 💻 **Tecnicatura Universitaria en Programación**: Actualmente se encuentra cursando y le faltan únicamente 2 materias para obtener el título intermedio (2024-2026).\n• ⚙️ **Ingeniería Mecánica**: Iniciando su cursada en 2026.\n\nPosee una excelente combinación de lógica de sistemas y fundamentos físicos/mecánicos.`;
     }
 
-    // 3. Inglés / Idiomas
-    if (q.includes('ingles') || q.includes('idioma') || q.includes('first') || q.includes('b2') || q.includes('english')) {
+    // 3. Inglés / Idiomas (Coincide con "¿Nivel de inglés?")
+    if (q.includes('ingles') || q.includes('idioma') || q.includes('first') || q.includes('b2') || q.includes('english') || q.includes('fce')) {
       return `Ignacio posee un nivel de inglés **B2 (FCE - First Certificate in English aprobado)**.\n\nSe formó durante 6 años (2018-2024) en el prestigioso instituto cultural *English Time*, lo cual le capacita para trabajar de manera fluida en equipos multiculturales y leer documentación técnica avanzada sin problemas.`;
     }
 
-    // 4. Contacto / Mail
-    if (q.includes('contacto') || q.includes('email') || q.includes('correo') || q.includes('escribir') || q.includes('redes') || q.includes('linkedin') || q.includes('telefono') || q.includes('github')) {
+    // 4. Contacto / Mail (Coincide con "¿Cómo contactarlo?")
+    if (q.includes('contact') || q.includes('email') || q.includes('correo') || q.includes('escrib') || q.includes('redes') || q.includes('linkedin') || q.includes('telefono') || q.includes('github') || q.includes('mail')) {
       return `Puedes contactar a Ignacio fácilmente a través de los siguientes canales:\n\n• 📧 **Correo Electrónico**: [trkmicignacio@gmail.com](mailto:trkmicignacio@gmail.com)\n• 💼 **LinkedIn**: [linkedin.com/in/ignacio-trkmic-5a797827a](${CV_DATA.contacto.linkedin})\n• 🐙 **GitHub**: [github.com/Trkmic](${CV_DATA.contacto.github})\n\n¡Escríbele! Está abierto a nuevas oportunidades laborales y pasantías.`;
     }
 
-    // 5. Stack / Tecnologías
-    if (q.includes('habilidad') || q.includes('stack') || q.includes('tecnologia') || q.includes('sabe') || q.includes('programar') || q.includes('lenguaje') || q.includes('angular') || q.includes('nestjs') || q.includes('python') || q.includes('java')) {
+    // 5. Stack / Habilidades
+    if (q.includes('habilidad') || q.includes('stack') || q.includes('tecnolo') || q.includes('sabe') || q.includes('programar') || q.includes('lenguaje') || q.includes('angular') || q.includes('nestjs') || q.includes('python') || q.includes('java')) {
       return `El stack tecnológico de Ignacio incluye:\n\n• **Lenguajes**: Python, Java, JavaScript, TypeScript, HTML y CSS.\n• **Frameworks & Libs**: Angular, NestJS, Astro, Express, Pygame.\n• **Bases de Datos & Cloud**: SQL, MongoDB, Supabase, Cloudinary, Vercel.\n\n*Consejo*: Puedes hacer clic en cualquiera de estos iconos en la sección de 'Stack Tecnológico' de la página para filtrar automáticamente los proyectos relacionados.`;
     }
 
     // 6. Mensaje de bienvenida / Saludos
-    if (q.includes('hola') || q.includes('buenas') || q.includes('saludos') || q.includes('que tal') || q.includes('buenos dias')) {
+    if (q.includes('hola') || q.includes('buenas') || q.includes('saludo') || q.includes('que tal') || q.includes('buenos dias')) {
       return `¡Hola! Soy IgnacIA, un bot conversacional programado para responder preguntas sobre la trayectoria de Ignacio Trkmic Torres. ¿Qué te gustaría saber sobre él?\n\n- Sus **proyectos** más recientes.\n- Sus **estudios** en la UTN.\n- Su nivel de **inglés**.\n- Formas de **contacto**.`;
     }
 
