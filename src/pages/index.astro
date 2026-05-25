@@ -602,9 +602,6 @@ const proyectos = [
     // ==========================================
     // Formulario de Contacto (Formspree / Web3Forms)
     // ==========================================
-    // REEMPLAZA ESTE KEY con tu ID de Formspree (crealo gratis en https://formspree.io)
-    // o con tu Access Key de Web3Forms (crealo gratis en https://web3forms.com)
-    // Si dejas 'YOUR_KEY_HERE', el formulario te guiará con instrucciones para activarlo.
     const CONTACT_SERVICE = 'formspree'; // 'formspree' o 'web3forms'
     const SERVICE_KEY = 'xkoevzyq'; // Reemplazar con el ID/Key correspondiente
     
@@ -617,15 +614,13 @@ const proyectos = [
         
         if (!contactStatus || !contactSubmitBtn) return;
         
-        // Limpiar estado anterior
         contactStatus.className = "hidden text-xs p-3.5 rounded-xl border font-mono";
         contactStatus.innerHTML = "";
         
-        // Verificar si no se configuró la clave aún
         if (SERVICE_KEY === 'YOUR_KEY_HERE') {
             contactStatus.classList.remove('hidden');
             contactStatus.classList.add('border-amber-500/30', 'text-amber-400', 'bg-amber-950/20');
-            contactStatus.innerHTML = `⚠️ <strong>¡El formulario está maquetado!</strong><br/>Para empezar a recibir correos reales en tu email:
+            contactStatus.innerHTML = `⚠️ <sstrong>¡El formulario está maquetado!</strong><br/>Para empezar a recibir correos reales en tu email:
             <ol class="list-decimal pl-4 mt-2 space-y-1">
                 <li>Registrate gratis en <a href="https://formspree.io" target="_blank" class="underline hover:text-white font-bold">Formspree.io</a>.</li>
                 <li>Crea un formulario nuevo y copia el <strong>Form ID</strong> (ej: <code>xqkrpeoz</code>).</li>
