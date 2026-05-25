@@ -12,6 +12,7 @@
       class="theme-btn w-4 h-4 rounded-full bg-emerald-500 hover:scale-125 transition-transform cursor-pointer border border-white/20 active:scale-95" 
       data-theme="theme-emerald"
       title="Tema Emerald (Matrix)"
+      data-i18n-title="theme_emerald"
     ></button>
 
     <!-- Botón Cyberpunk -->
@@ -19,6 +20,7 @@
       class="theme-btn w-4 h-4 rounded-full bg-rose-500 hover:scale-125 transition-transform cursor-pointer border border-white/20 active:scale-95" 
       data-theme="theme-cyberpunk"
       title="Tema Cyberpunk"
+      data-i18n-title="theme_cyberpunk"
     ></button>
 
     <!-- Botón Dracula -->
@@ -26,6 +28,7 @@
       class="theme-btn w-4 h-4 rounded-full bg-purple-500 hover:scale-125 transition-transform cursor-pointer border border-white/20 active:scale-95" 
       data-theme="theme-dracula"
       title="Tema Dracula"
+      data-i18n-title="theme_dracula"
     ></button>
 
     <!-- Separador -->
@@ -36,6 +39,7 @@
       id="terminal-toggle" 
       class="text-slate-500 hover:text-theme-primary hover:scale-115 transition-all cursor-pointer font-bold text-[13px] active:scale-95" 
       title="Abrir terminal hacker (>_)"
+      data-i18n-title="theme_terminal"
     >
       <i class="fa-solid fa-terminal"></i>
     </button>
@@ -45,8 +49,22 @@
       id="volume-toggle" 
       class="text-slate-500 hover:scale-115 transition-all cursor-pointer text-[13px] active:scale-95 w-4 flex justify-center" 
       title="Silenciar / Activar sonidos de la web"
+      data-i18n-title="theme_mute"
     >
       <i class="fa-solid fa-volume-xmark" id="volume-icon"></i>
+    </button>
+
+    <!-- Separador -->
+    <span class="w-[1px] h-4 bg-slate-800 select-none"></span>
+
+    <!-- Botón de Idioma -->
+    <button 
+      id="lang-toggle" 
+      class="text-slate-500 hover:text-theme-primary hover:scale-115 transition-all cursor-pointer font-extrabold text-[10px] font-mono active:scale-95 w-6 h-6 rounded-full flex items-center justify-center border border-slate-900 bg-slate-950/40"
+      title="Cambiar idioma / Switch language"
+      data-i18n-title="theme_lang"
+    >
+      EN
     </button>
   </div>
 </div>
@@ -56,6 +74,11 @@
   (function () {
     const savedTheme = localStorage.getItem('theme') || 'theme-emerald';
     document.documentElement.className = savedTheme;
+    const savedLang = localStorage.getItem('language') || 'es';
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+      langBtn.textContent = savedLang === 'es' ? 'EN' : 'ES';
+    }
   })();
 </script>
 
@@ -66,11 +89,41 @@
   const termBtn = document.getElementById('terminal-toggle');
   const volBtn = document.getElementById('volume-toggle');
   const volIcon = document.getElementById('volume-icon');
+  const langBtn = document.getElementById('lang-toggle');
 
   // Inicializar Mute en true por defecto si no existe
   if (localStorage.getItem('muted') === null) {
     localStorage.setItem('muted', 'true');
   }
+
+  // Inicializar Idioma en es por defecto si no existe
+  if (localStorage.getItem('language') === null) {
+    localStorage.setItem('language', 'es');
+  }
+
+  function updateLangUI() {
+    const currentLang = localStorage.getItem('language') || 'es';
+    if (langBtn) {
+      langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+    }
+    document.documentElement.lang = currentLang;
+  }
+
+  updateLangUI();
+
+  langBtn?.addEventListener('click', () => {
+    const currentLang = localStorage.getItem('language') || 'es';
+    const newLang = currentLang === 'es' ? 'en' : 'es';
+    localStorage.setItem('language', newLang);
+    updateLangUI();
+    
+    // Despachar evento global
+    window.dispatchEvent(new CustomEvent('language-changed', {
+      detail: { language: newLang }
+    }));
+    
+    playChirp();
+  });
 
   function applyTheme(themeName: string) {
     document.documentElement.classList.remove('theme-emerald', 'theme-cyberpunk', 'theme-dracula');

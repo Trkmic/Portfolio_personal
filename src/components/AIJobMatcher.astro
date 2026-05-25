@@ -9,11 +9,11 @@
     </div>
     <div>
       <h2 class="text-xl font-bold text-white font-mono">AI Job Matcher</h2>
-      <p class="text-xs text-theme-primary font-mono uppercase tracking-wider">Analizador de compatibilidad con ofertas de empleo</p>
+      <p class="text-xs text-theme-primary font-mono uppercase tracking-wider" data-i18n="matcher_subtitle">Analizador de compatibilidad con ofertas de empleo</p>
     </div>
   </div>
 
-  <p class="text-sm text-slate-400 leading-relaxed">
+  <p class="text-sm text-slate-400 leading-relaxed" data-i18n="matcher_desc">
     ¿Eres reclutador? Pega aquí la descripción del puesto de trabajo o los requisitos tecnológicos y nuestro analizador inteligente evaluará qué tan bien se adapta Ignacio al puesto, destacando sus fortalezas y proyectos clave.
   </p>
 
@@ -23,13 +23,14 @@
       rows="4" 
       placeholder="Ej: Buscamos un desarrollador Fullstack con conocimientos en NestJS, Angular y TypeScript para integrar APIs y bases de datos..." 
       class="w-full bg-black border border-theme-secondary/40 rounded-xl p-3.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 font-sans resize-none transition-colors"
+      data-i18n-placeholder="matcher_placeholder"
     ></textarea>
 
     <button 
       id="analyze-job-btn"
       class="w-full bg-theme-primary hover:bg-theme-primary/90 text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_var(--theme-glow)] hover:shadow-[0_0_25px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center gap-2 cursor-pointer"
     >
-      <i class="fa-solid fa-wand-magic-sparkles"></i> Analizar Compatibilidad
+      <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="matcher_btn">Analizar Compatibilidad</span>
     </button>
   </div>
 
@@ -69,7 +70,7 @@
     <!-- Fortalezas y proyectos clave -->
     <div class="grid sm:grid-cols-2 gap-4">
       <div class="bg-black/20 p-5 rounded-xl border border-theme-secondary/20">
-        <h4 class="text-xs font-bold text-theme-primary font-mono uppercase tracking-wider mb-3 flex items-center gap-2">
+        <h4 class="text-xs font-bold text-theme-primary font-mono uppercase tracking-wider mb-3 flex items-center gap-2" data-i18n="matcher_title_matching">
           <i class="fa-solid fa-list-check"></i> Tecnologías Coincidentes
         </h4>
         <div id="matched-skills-tags" class="flex flex-wrap gap-1.5">
@@ -78,7 +79,7 @@
       </div>
 
       <div class="bg-black/20 p-5 rounded-xl border border-theme-secondary/20">
-        <h4 class="text-xs font-bold text-theme-primary font-mono uppercase tracking-wider mb-3 flex items-center gap-2">
+        <h4 class="text-xs font-bold text-theme-primary font-mono uppercase tracking-wider mb-3 flex items-center gap-2" data-i18n="matcher_title_projects">
           <i class="fa-solid fa-folder-open"></i> Proyectos Sugeridos
         </h4>
         <ul id="suggested-projects-list" class="space-y-2 text-xs text-slate-300">
@@ -89,7 +90,7 @@
 
     <!-- Carta de Pitch de IA -->
     <div id="ai-pitch-card" class="bg-theme-bg-accent border border-theme-secondary/30 rounded-xl p-5 space-y-2 hidden">
-      <div class="flex items-center gap-2 text-xs text-theme-primary font-mono font-bold uppercase tracking-wider">
+      <div class="flex items-center gap-2 text-xs text-theme-primary font-mono font-bold uppercase tracking-wider" data-i18n="matcher_title_pitch">
         <i class="fa-solid fa-robot"></i> Análisis de Ajuste de IA
       </div>
       <p id="ai-pitch-content" class="text-sm text-slate-300 leading-relaxed whitespace-pre-line italic">
@@ -114,40 +115,26 @@
     'astro': ['astro', 'portfolio', 'estatico', 'html', 'css']
   };
 
-  const PROJECTS = [
-    {
-      titulo: "Red social (NestJS / Angular)",
-      tags: ["NestJS", "Angular", "MongoDB", "TypeScript"],
-      description: "Plataforma social completa, APIs backend, autenticación JWT, Cloudinary, Chart.js."
-    },
-    {
-      titulo: "Sala de juegos (Supabase / Express)",
-      tags: ["Supabase", "TypeScript", "Express", "Angular"],
-      description: "Juegos, chats en tiempo real, base de datos integrada y auth."
-    },
-    {
-      titulo: "Tienda Online (SQL / JavaScript)",
-      tags: ["JavaScript", "HTML", "CSS"],
-      description: "Administración de stock, lógica de carrito, guardado de transacciones."
-    },
-    {
-      titulo: "Servicio de hospedaje y gastronomia (Java POO)",
-      tags: ["Java"],
-      description: "Lógica avanzada orientada a objetos en Java, algoritmos de cálculo de tarifas."
-    },
-    {
-      titulo: "Adivina el pokemon (Python Pygame)",
-      tags: ["Python"],
-      description: "Desarrollo de scripts interactivos, manejo de archivos JSON/CSV."
-    },
-    {
-      titulo: "Gestion de peliculas (Python CSV)",
-      tags: ["Python"],
-      description: "Análisis y ordenamiento de estructuras de datos masivas."
-    }
-  ];
+  const PROJECTS_DATA = {
+    es: [
+      { titulo: "Red social (NestJS / Angular)", tags: ["NestJS", "Angular", "MongoDB", "TypeScript"], description: "Plataforma social completa, APIs backend, autenticación JWT, Cloudinary, Chart.js." },
+      { titulo: "Sala de juegos (Supabase / Express)", tags: ["Supabase", "TypeScript", "Express", "Angular"], description: "Juegos, chats en tiempo real, base de datos integrada y auth." },
+      { titulo: "Tienda Online (SQL / JavaScript)", tags: ["JavaScript", "HTML", "CSS"], description: "Administración de stock, lógica de carrito, guardado de transacciones." },
+      { titulo: "Servicio de hospedaje y gastronomia (Java POO)", tags: ["Java"], description: "Lógica avanzada orientada a objetos en Java, algoritmos de cálculo de tarifas." },
+      { titulo: "Adivina el pokemon (Python Pygame)", tags: ["Python"], description: "Desarrollo de scripts interactivos, manejo de archivos JSON/CSV." },
+      { titulo: "Gestion de peliculas (Python CSV)", tags: ["Python"], description: "Análisis y ordenamiento de estructuras de datos masivas." }
+    ],
+    en: [
+      { titulo: "Social Network (NestJS / Angular)", tags: ["NestJS", "Angular", "MongoDB", "TypeScript"], description: "Complete social platform, backend APIs, JWT authentication, Cloudinary, Chart.js." },
+      { titulo: "Game Room (Supabase / Express)", tags: ["Supabase", "TypeScript", "Express", "Angular"], description: "Games, real-time chats, integrated database, and auth." },
+      { titulo: "Online Store (SQL / JavaScript)", tags: ["JavaScript", "HTML", "CSS"], description: "Stock administration, shopping cart logic, transaction recording." },
+      { titulo: "Hosting & Gastronomy Service (Java OOP)", tags: ["Java"], description: "Advanced object-oriented logic in Java, rate calculation algorithms." },
+      { titulo: "Guess the Pokemon (Python Pygame)", tags: ["Python"], description: "Interactive script development, JSON/CSV file management." },
+      { titulo: "Movie Management (Python CSV)", tags: ["Python"], description: "Analysis and sorting of massive data structures." }
+    ]
+  };
 
-  const analyzeBtn = document.getElementById('analyze-job-btn');
+  const analyzeBtn = document.getElementById('analyze-job-btn') as HTMLButtonElement;
   const resultsContainer = document.getElementById('matcher-results');
   const jobInput = document.getElementById('job-description-input') as HTMLTextAreaElement;
   const progressCircle = document.getElementById('matcher-progress-circle') as unknown as SVGCircleElement;
@@ -159,17 +146,25 @@
   const aiPitchCard = document.getElementById('ai-pitch-card');
   const aiPitchContent = document.getElementById('ai-pitch-content');
 
+  // Idioma activo
+  let currentLang = localStorage.getItem('language') || 'es';
+
+  // Escuchar cambio de idioma
+  window.addEventListener('language-changed', (e: any) => {
+    currentLang = e.detail.language;
+  });
+
   analyzeBtn?.addEventListener('click', async () => {
     const text = jobInput.value.trim();
     if (!text) {
-      alert('Por favor, ingresa una descripción de empleo para analizar.');
+      alert(currentLang === 'en' ? 'Please enter a job description to analyze.' : 'Por favor, ingresa una descripción de empleo para analizar.');
       return;
     }
 
     // Efecto de carga en botón
     const originalText = analyzeBtn.innerHTML;
     analyzeBtn.disabled = true;
-    analyzeBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Analizando oferta...`;
+    analyzeBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> ${currentLang === 'en' ? 'Analyzing offer...' : 'Analizando oferta...'}`;
 
     // Procesar localmente primero
     const matchedSkills = new Set<string>();
@@ -187,20 +182,15 @@
     // Calcular score dinámico
     let score = 0;
     if (matchedSkills.size > 0) {
-      // Si hay tecnologías coincidentes, el porcentaje tiende a ser alto (iniciando en 75%)
       score = 75 + (matchedSkills.size * 6);
-      
-      // Bonus por tipo de rol o palabras clave generales
       if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
         score += 8;
       }
       if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
         score += 5;
       }
-      
-      if (score > 98) score = 98; // Cap máximo realista
+      if (score > 98) score = 98;
     } else {
-      // Si no hay ninguna coincidencia de tecnología, asignamos compatibilidad medio/bajo (ej. 45% - 55%)
       score = 45;
       if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
         score += 6;
@@ -210,22 +200,30 @@
       }
     }
 
-    // Determinar veredicto
+    // Determinar veredicto e idioma
     let verdict = "";
     let summary = "";
+    const isEn = currentLang === 'en';
+
     if (matchedSkills.size > 0) {
       if (score >= 85) {
-        verdict = "¡Excelente Compatibilidad! 🚀";
+        verdict = isEn ? "Excellent Compatibility! 🚀" : "¡Excelente Compatibilidad! 🚀";
         const skillsList = Array.from(matchedSkills).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
-        summary = `Ignacio cubre tecnologías clave requeridas para este puesto (como ${skillsList}). Sus proyectos demuestran dominio e implementación práctica inmediata en estas áreas.`;
+        summary = isEn
+          ? `Ignacio covers key technologies required for this role (such as ${skillsList}). His projects demonstrate mastery and immediate practical implementation in these areas.`
+          : `Ignacio cubre tecnologías clave requeridas para este puesto (como ${skillsList}). Sus proyectos demuestran dominio e implementación práctica inmediata en estas áreas.`;
       } else {
-        verdict = "Compatibilidad Sólida 👍";
+        verdict = isEn ? "Solid Compatibility 👍" : "Compatibilidad Sólida 👍";
         const skillsList = Array.from(matchedSkills).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
-        summary = `Ignacio cuenta con coincidencia y experiencia práctica en herramientas del puesto como ${skillsList}. Su sólida formación y versatilidad facilitarán una integración rápida.`;
+        summary = isEn
+          ? `Ignacio has matching experience and practical skills in role-related tools like ${skillsList}. His solid academic background and versatility will facilitate quick integration.`
+          : `Ignacio cuenta con coincidencia y experiencia práctica en herramientas del puesto como ${skillsList}. Su sólida formación y versatilidad facilitarán una integración rápida.`;
       }
     } else {
-      verdict = "Potencial de Adaptación 🌱";
-      summary = "Aunque la oferta se orienta a tecnologías fuera de su stack habitual, la sólida preparación universitaria de Ignacio en la UTN, junto con sus firmes bases en Programación Orientada a Objetos (POO), diseño lógico y un nivel de inglés B2 (FCE), garantizan una rápida adaptabilidad y capacidad de migración hacia el nuevo stack requerido.";
+      verdict = isEn ? "Adaptability Potential 🌱" : "Potencial de Adaptación 🌱";
+      summary = isEn
+        ? "Although the offer targets technologies outside his usual stack, Ignacio's solid university training at UTN, combined with his strong foundations in Object-Oriented Programming (OOP), logical design, and a B2 English level (FCE), guarantee rapid adaptability and capacity to transition to the new required stack."
+        : "Aunque la oferta se orienta a tecnologías fuera de su stack habitual, la sólida preparación universitaria de Ignacio en la UTN, junto con sus firmes bases en Programación Orientada a Objetos (POO), diseño lógico y un nivel de inglés B2 (FCE), garantizan una rápida adaptabilidad y capacidad de migración hacia el nuevo stack requerido.";
     }
 
     // Generar tags coincidentes en UI
@@ -241,7 +239,9 @@
           `;
         });
       } else {
-        skillsContainer.innerHTML = `<span class="text-slate-600 text-xs italic">Ninguna coincidencia explícita detectada, pero aplica para lógica general de desarrollo.</span>`;
+        skillsContainer.innerHTML = isEn
+          ? `<span class="text-slate-600 text-xs italic">No explicit technology matches detected, but applies to general development logic.</span>`
+          : `<span class="text-slate-600 text-xs italic">Ninguna coincidencia explícita detectada, pero aplica para lógica general de desarrollo.</span>`;
       }
     }
 
@@ -249,8 +249,12 @@
     if (projectsList) {
       projectsList.innerHTML = '';
       let suggestedCount = 0;
-      PROJECTS.forEach(proj => {
-        const matchesProject = proj.tags.some(tag => matchedSkills.has(tag.toLowerCase()));
+      const currentProjects = isEn ? PROJECTS_DATA.en : PROJECTS_DATA.es;
+
+      currentProjects.forEach((proj, idx) => {
+        // Enlazar usando los tags originales en minúscula
+        const originalProj = PROJECTS_DATA.es[idx];
+        const matchesProject = originalProj.tags.some(tag => matchedSkills.has(tag.toLowerCase()));
         if (matchesProject || (suggestedCount < 2 && matchedSkills.size === 0)) {
           suggestedCount++;
           projectsList.innerHTML += `
@@ -265,7 +269,9 @@
         }
       });
       if (suggestedCount === 0) {
-        projectsList.innerHTML = `<li class="text-slate-600 italic">No hay proyectos específicos, pero se recomienda revisar su Red Social.</li>`;
+        projectsList.innerHTML = isEn
+          ? `<li class="text-slate-600 italic">No specific projects, but it is recommended to review his Social Network.</li>`
+          : `<li class="text-slate-600 italic">No hay proyectos específicos, pero se recomienda revisar su Red Social.</li>`;
       }
     }
 
@@ -273,17 +279,18 @@
     const apiKey = localStorage.getItem('gemini_api_key');
     if (apiKey && aiPitchCard && aiPitchContent) {
       aiPitchCard.classList.remove('hidden');
-      aiPitchContent.innerHTML = `<span class="text-slate-500"><i class="fa-solid fa-spinner animate-spin"></i> Generando pitch personalizado con Gemini...</span>`;
+      aiPitchContent.innerHTML = `<span class="text-slate-500"><i class="fa-solid fa-spinner animate-spin"></i> ${isEn ? 'Generating custom pitch with Gemini...' : 'Generando pitch personalizado con Gemini...'}</span>`;
 
       try {
         const geminiPitch = await queryGeminiForJobFit(text, apiKey, score);
         aiPitchContent.innerHTML = geminiPitch;
       } catch (err) {
         console.error(err);
-        aiPitchContent.innerHTML = `No se pudo conectar con Gemini API para el análisis avanzado. Sin embargo, su compatibilidad general calculada es de ${score}%.`;
+        aiPitchContent.innerHTML = isEn
+          ? `Could not connect to the Gemini API for advanced analysis. However, his calculated general compatibility is ${score}%.`
+          : `No se pudo conectar con Gemini API para el análisis avanzado. Sin embargo, su compatibilidad general calculada es de ${score}%.`;
       }
     } else {
-      // Ocultar sección de pitch avanzado si no hay API key
       aiPitchCard?.classList.add('hidden');
     }
 
@@ -294,12 +301,11 @@
     setTimeout(() => {
       if (progressCircle) {
         const radius = progressCircle.r.baseVal.value;
-        const circumference = 2 * Math.PI * radius; // ~301.6
+        const circumference = 2 * Math.PI * radius;
         const offset = circumference - (score / 100) * circumference;
         progressCircle.style.strokeDashoffset = offset.toString();
       }
       
-      // Animar etiqueta de número
       let currentVal = 0;
       const interval = setInterval(() => {
         if (currentVal >= score) {
@@ -326,7 +332,8 @@
   // Llamada a Gemini para el Fit Checker
   async function queryGeminiForJobFit(jobText: string, key: string, calculatedScore: number): Promise<string> {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
-    const cvInfo = `
+    
+    const cvInfoEs = `
       Nombre: Ignacio Trkmic Torres
       Estudios: UTN Avellaneda (Tecnicatura Universitaria en Programación a 2 materias de recibirse, Ingeniería Mecánica comenzando en 2026).
       Idiomas: Inglés B2 First Certificate.
@@ -340,25 +347,61 @@
       - Gestion de peliculas (Python CSV): Estructuras de datos, ordenamientos, reportes.
     `;
 
+    const cvInfoEn = `
+      Name: Ignacio Trkmic Torres
+      Education: UTN Avellaneda (Assoc. Degree in Programming, 2 subjects away from graduation; Mechanical Engineering starting in 2026).
+      Languages: B2 English level, First Certificate passed.
+      Stack: Python, Java, JavaScript, TypeScript, Angular, NestJS, Supabase, MongoDB, SQL, Astro.
+      Projects:
+      - Social Network (NestJS, Angular, JWT, MongoDB): Dashboard, multimedia with Cloudinary, charts.
+      - Game Room (Supabase, Angular, Express): Real-time chat, auth, hosting on Vercel.
+      - Online Store (JS, HTML, CSS, SQL): Sales and stock admin panel.
+      - Hosting & Gastronomy Service (Java OOP): Tourism rate management system.
+      - Guess the Pokemon (Python Pygame): Interactive trivia with JSON/CSV scores.
+      - Movie Management (Python CSV): Data structures, sorting, and reporting.
+    `;
+
+    const isEn = currentLang === 'en';
+    const cvInfo = isEn ? cvInfoEn : cvInfoEs;
+
+    const requestPrompt = isEn
+      ? `You are an expert IT recruitment consultant.
+          
+         Given the candidate's profile:
+         ${cvInfo}
+
+         And the job offer description:
+         "${jobText}"
+
+         Calculated compatibility percentage: ${calculatedScore}%.
+
+         Write a short and persuasive analysis (maximum 3 short paragraphs) in English addressed to the recruiter explaining:
+         1. Why Ignacio would fit the role well based on his specific projects (explicitly cite which of his projects demonstrate the required knowledge).
+         2. His key strengths (UTN technical education and B2 English FCE).
+         3. A brief and friendly final recommendation.
+
+         Use emojis to structure ideas in an appealing and modern way.`
+      : `Eres un consultor experto en reclutamiento de tecnología. 
+          
+         Dado el perfil del candidato Ignacio Torres:
+         ${cvInfo}
+
+         Y la siguiente oferta laboral:
+         "${jobText}"
+
+         Porcentaje de compatibilidad calculado: ${calculatedScore}%.
+
+         Escribe un análisis corto y persuasivo (máximo 3 párrafos cortos) en español dirigido al reclutador que explica:
+         1. Por qué Ignacio se adaptaría bien al puesto basado en sus proyectos específicos (cita explícitamente qué proyectos de él demuestran el conocimiento requerido).
+         2. Sus puntos fuertes clave (formación técnica en UTN y nivel de inglés FCE).
+         3. Una recomendación final breve y amigable.
+
+         Usa emojis para estructurar las ideas de forma agradable y moderna.`;
+
     const requestBody = {
       contents: [{
         parts: [{
-          text: `Eres un consultor experto en reclutamiento de tecnología. 
-          
-          Dado el perfil del candidato Ignacio Torres:
-          ${cvInfo}
-
-          Y la siguiente oferta laboral:
-          "${jobText}"
-
-          Porcentaje de compatibilidad calculado: ${calculatedScore}%.
-
-          Escribe un análisis corto y persuasivo (máximo 3 párrafos cortos) en español dirigido al reclutador que explica:
-          1. Por qué Ignacio se adaptaría bien al puesto basado en sus proyectos específicos (cita explícitamente qué proyectos de él demuestran el conocimiento requerido).
-          2. Sus puntos fuertes clave (formación técnica en UTN y nivel de inglés FCE).
-          3. Una recomendación final breve y amigable.
-
-          Usa emojis para estructurar las ideas de forma agradable y moderna.`
+          text: requestPrompt
         }]
       }],
       generationConfig: {

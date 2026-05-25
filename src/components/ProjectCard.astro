@@ -6,9 +6,10 @@ interface Props {
   tags: string[];
   linkGithub: string;
   linkWeb?: string;
+  slug: string;
 }
 
-const { titulo, descripcion, tags, linkGithub, linkWeb } = Astro.props;
+const { titulo, descripcion, tags, linkGithub, linkWeb, slug } = Astro.props;
 
 // Extraer el nombre del repositorio de la URL de GitHub de Ignacio (Trkmic)
 const repoName = linkGithub.includes('github.com/Trkmic/') 
@@ -22,7 +23,10 @@ const repoName = linkGithub.includes('github.com/Trkmic/')
 >
   <div>
     <div class="flex justify-between items-start mb-3">
-      <h3 class="text-xl font-bold text-white group-hover:text-theme-primary transition-colors font-mono">
+      <h3 
+        class="text-xl font-bold text-white group-hover:text-theme-primary transition-colors font-mono"
+        data-i18n={`project_${slug}_title`}
+      >
         {titulo}
       </h3>
       
@@ -34,6 +38,7 @@ const repoName = linkGithub.includes('github.com/Trkmic/')
             rel="noopener noreferrer" 
             class="text-theme-primary hover:text-white transition-all transform hover:scale-125"
             title="Ver sitio en vivo"
+            data-i18n-title="project_view_live"
           >
             <i class="fa-solid fa-link"></i>
           </a>
@@ -45,13 +50,19 @@ const repoName = linkGithub.includes('github.com/Trkmic/')
           rel="noopener noreferrer" 
           class="text-slate-600 hover:text-theme-primary transition-all transform hover:scale-125"
           title="Ver repositorio en GitHub"
+          data-i18n-title="project_view_github"
         >
           <i class="fa-brands fa-github"></i>
         </a>
       </div>
     </div>
     
-    <p class="text-slate-500 text-sm leading-relaxed mb-4">{descripcion}</p>
+    <p 
+      class="text-slate-500 text-sm leading-relaxed mb-4"
+      data-i18n={`project_${slug}_desc`}
+    >
+      {descripcion}
+    </p>
   </div>
   
   <div class="space-y-4 mt-auto">

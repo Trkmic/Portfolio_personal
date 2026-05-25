@@ -32,6 +32,7 @@ const doubleStack = [...stackTecnologico, ...stackTecnologico];
 
 const proyectos = [
 	{
+		slug: "red-social",
 		titulo: "Red social",
 		descripcion: "Plataforma social con NestJS y Angular. Incluye autenticación JWT, dashboards de estadísticas con Chart.js y gestión de medios en Cloudinary.",
 		tags: ["Angular", "Bootstrap", "NestJS", "MongoDB", "TypeScript", "CSS", "HTML"],
@@ -39,6 +40,7 @@ const proyectos = [
         linkWeb: "https://red-social-sage.vercel.app/",
 	},
 	{
+		slug: "sala-de-juegos",
 		titulo: "Sala de juegos",
 		descripcion: "Suite de juegos con sistema de usuarios y chat en tiempo real. Utiliza Supabase para la base de datos y Vercel para el despliegue.",
 		tags: ["TypeScript", "CSS", "HTML", "Angular","Supabase", "Express"],
@@ -46,6 +48,7 @@ const proyectos = [
         linkWeb: "https://sala-de-juegos-tau.vercel.app/home",
 	},
 	{
+		slug: "tienda_online",
 		titulo: "Tienda Online",
 		descripcion: "E-commerce con panel de administración. Gestión de inventario, carrito de compras y registro de ventas vinculado a una base de datos SQL.",
 		tags: ["JavaScript", "CSS", "HTML", "SQL"],
@@ -53,6 +56,7 @@ const proyectos = [
         linkWeb: "#",
 	},
 	{
+		slug: "servicio_hospedaje_gatronomia",
 		titulo: "Servicio de hospedaje y gastronomia",
 		descripcion: "Sistema en Java enfocado en POO para la administración de servicios turísticos, cálculos dinámicos de costos y gestión de inventario.",
 		tags: ["Java", "POO"],
@@ -60,6 +64,7 @@ const proyectos = [
         linkWeb: "#",
 	},
 	{
+		slug: "pygame_adivina_pokemon",
 		titulo: "Adivina el pokemon",
 		descripcion: "Juego de trivia con Pygame. Soporte multi-idioma, manejo de archivos JSON/CSV para puntajes y base de datos, y lógica de estados.",
 		tags: ["Python", "Pygame"],
@@ -67,6 +72,7 @@ const proyectos = [
         linkWeb: "#",
 	},
 	{
+		slug: "Gestion_peliculas",
 		titulo: "Gestion de peliculas",
 		descripcion: "Sistema de procesamiento de datos con Python. Manejo de catálogos en CSV/JSON, algoritmos de ordenamiento y generación de reportes estadísticos.",
 		tags: ["Python"],
@@ -103,7 +109,7 @@ const proyectos = [
                 
                 <p class="text-theme-primary font-mono text-lg font-semibold uppercase tracking-wider flex items-center justify-center sm:justify-start gap-2">
                     <span class="inline-block w-2.5 h-2.5 rounded-full bg-theme-primary animate-pulse"></span>
-                    Buenos Aires, Argentina
+                    <span data-i18n="profile_location">Buenos Aires, Argentina</span>
                 </p>
                 
                 <div class="flex justify-center sm:justify-start gap-5 text-2xl mt-3">
@@ -111,21 +117,24 @@ const proyectos = [
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="text-slate-600 hover:text-theme-primary hover:scale-125 transition-all duration-300"
-                       title="LinkedIn">
+                       title="LinkedIn"
+                       data-i18n-title="profile_linkedin_title">
                         <i class="fa-brands fa-linkedin"></i>
                     </a>
                     <a href="https://github.com/Trkmic" 
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="text-white hover:text-theme-primary hover:scale-125 transition-all duration-300"
-                       title="GitHub">
+                       title="GitHub"
+                       data-i18n-title="profile_github_title">
                         <i class="fa-brands fa-github"></i>
                     </a>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com" 
                        target="_blank"
                        rel="noopener noreferrer"
                        class="text-theme-primary hover:text-theme-primary/80 hover:scale-125 transition-all duration-300"
-                       title="Enviar Email (Gmail)">
+                       title="Enviar Email (Gmail)"
+                       data-i18n-title="profile_email_title">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
                 </div>
@@ -134,34 +143,34 @@ const proyectos = [
 
         <!-- Sobre Mí -->
         <section class="bg-slate-950/40 p-6 rounded-2xl border border-theme-secondary/35 shadow-[inset_0_0_15px_var(--theme-glow)] hover:border-theme-primary/30 transition-all duration-300">
-            <h2 class="text-xl font-bold mb-4 text-theme-primary font-mono tracking-wide uppercase">Sobre Mí</h2>
+            <h2 class="text-xl font-bold mb-4 text-theme-primary font-mono tracking-wide uppercase" data-i18n="about_title">Sobre Mí</h2>
             <div class="space-y-4 text-slate-300">
                 <div class="flex gap-4 items-start">
                     <i class="fa-solid fa-graduation-cap mt-1 text-theme-primary text-lg"></i>
-                    <p>{estudios}.</p>
+                    <p data-i18n="about_studies">{estudios}.</p>
                 </div>
                 <div class="flex gap-4 items-start">
                     <i class="fa-solid fa-language mt-1 text-theme-primary text-lg"></i>
-                    <p>{ingles}.</p>
+                    <p data-i18n="about_english">{ingles}.</p>
                 </div>
                 <div class="flex gap-4 items-start">
                     <i class="fa-solid fa-code mt-1 text-theme-primary text-lg"></i>
-                    <p>Apasionado por resolver problemas complejos y construir soluciones backend sólidas y frontend altamente interactivas.</p>
+                    <p data-i18n="about_passion">Apasionado por resolver problemas complejos y construir soluciones backend sólidas y frontend altamente interactivas.</p>
                 </div>
                 <a 
                     href="/CV_Trkmic (2) copy.pdf" 
                     download="CV_Ignacio_Trkmic.pdf"
                     class="mt-4 w-full bg-theme-primary hover:scale-[1.02] text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_var(--theme-glow)] hover:shadow-[0_0_25px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center text-center decoration-none cursor-pointer"
                 >
-                    <i class="fa-solid fa-download mr-2"></i> Descargar CV
+                    <i class="fa-solid fa-download mr-2"></i> <span data-i18n="about_download_cv">Descargar CV</span>
                 </a>
             </div>
         </section>
 
         <!-- Stack Tecnológico -->
         <section class="space-y-4">
-            <h2 class="text-sm font-bold text-center text-theme-primary uppercase tracking-[0.3em] font-mono">Stack Tecnológico</h2>
-            <p class="text-[11px] text-center text-slate-500 font-mono italic">Haz clic en una tecnología para filtrar los proyectos</p>
+            <h2 class="text-sm font-bold text-center text-theme-primary uppercase tracking-[0.3em] font-mono" data-i18n="stack_title">Stack Tecnológico</h2>
+            <p class="text-[11px] text-center text-slate-500 font-mono italic" data-i18n="stack_subtitle">Haz clic en una tecnología para filtrar los proyectos</p>
             
             <div class="relative flex overflow-hidden group border-y border-theme-secondary/20 py-2">
                 <!-- Capas de sombra laterales para el carrusel -->
@@ -185,12 +194,12 @@ const proyectos = [
         <!-- Proyectos Realizados -->
         <section class="flex flex-col gap-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-theme-secondary/50 pb-2 gap-2">
-                <h2 class="text-xl font-bold text-theme-primary font-mono uppercase tracking-wider">Proyectos Realizados</h2>
+                <h2 class="text-xl font-bold text-theme-primary font-mono uppercase tracking-wider" data-i18n="projects_title">Proyectos Realizados</h2>
                 
                 <!-- Estado del filtro activo -->
                 <div id="filter-status" class="hidden items-center gap-2.5 text-xs font-mono text-theme-primary bg-theme-bg/20 px-3 py-1.5 rounded-lg border border-theme-secondary/30">
-                    <span>Filtrando: <strong id="current-filter-name" class="uppercase text-white"></strong></span>
-                    <button id="clear-filter-btn" class="text-rose-400 hover:text-rose-300 font-bold ml-1 cursor-pointer transition-colors" title="Quitar filtro">
+                    <span><span data-i18n="projects_filtering">Filtrando:</span> <strong id="current-filter-name" class="uppercase text-white"></strong></span>
+                    <button id="clear-filter-btn" class="text-rose-400 hover:text-rose-300 font-bold ml-1 cursor-pointer transition-colors" title="Quitar filtro" data-i18n-title="projects_clear_filter">
                         <i class="fa-solid fa-circle-xmark"></i>
                     </button>
                 </div>
@@ -199,6 +208,7 @@ const proyectos = [
             <div class="grid sm:grid-cols-1 gap-6" id="projects-grid">
                 {proyectos.map((proy) => (
                     <ProjectCard 
+                        slug={proy.slug}
                         titulo={proy.titulo}
                         descripcion={proy.descripcion}
                         tags={proy.tags}
@@ -211,7 +221,7 @@ const proyectos = [
 
         <!-- Formación Académica (Línea de Tiempo Neon) -->
         <section class="flex flex-col gap-6 relative">
-            <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider">
+            <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider" data-i18n="academic_title">
                 Formación Académica
             </h2>
             
@@ -233,10 +243,10 @@ const proyectos = [
                             </div>
                             <div>
                                 <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">UTN Avellaneda</h3>
-                                <p class="text-theme-secondary text-sm italic">Ingeniería Mecánica</p>
+                                <p class="text-theme-secondary text-sm italic" data-i18n="academic_timeline_mec_title">Ingeniería Mecánica</p>
                             </div>
                         </div>
-                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2026 - ACT</span>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0" data-i18n="academic_timeline_mec_date">2026 - ACT</span>
                     </div>
                 </div>
 
@@ -251,10 +261,10 @@ const proyectos = [
                             </div>
                             <div>
                                 <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">UTN Avellaneda</h3>
-                                <p class="text-theme-secondary text-sm italic">Tecnicatura Universitaria en Programación</p>
+                                <p class="text-theme-secondary text-sm italic" data-i18n="academic_timeline_prog_title">Tecnicatura Universitaria en Programación</p>
                             </div>
                         </div>
-                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2024 - 2026</span>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0" data-i18n="academic_timeline_prog_date">2024 - 2026</span>
                     </div>
                 </div>
 
@@ -269,10 +279,10 @@ const proyectos = [
                             </div>
                             <div>
                                 <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">English Time</h3>
-                                <p class="text-theme-secondary text-sm italic">Cultural de Inglés</p>
+                                <p class="text-theme-secondary text-sm italic" data-i18n="academic_timeline_english_title">Cultural de Inglés</p>
                             </div>
                         </div>
-                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2018 - 2024</span>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0" data-i18n="academic_timeline_english_date">2018 - 2024</span>
                     </div>
                 </div>
 
@@ -287,10 +297,10 @@ const proyectos = [
                             </div>
                             <div>
                                 <h3 class="text-white font-bold group-hover:text-theme-primary transition-colors">Instituto Padre Marquez</h3>
-                                <p class="text-theme-secondary text-sm italic">Educación Secundaria</p>
+                                <p class="text-theme-secondary text-sm italic" data-i18n="academic_timeline_marquez_title">Educación Secundaria</p>
                             </div>
                         </div>
-                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0">2018 - 2023</span>
+                        <span class="text-[10px] font-mono font-bold text-theme-primary bg-theme-primary/10 px-2.5 py-1 rounded-md uppercase self-start sm:self-auto shrink-0" data-i18n="academic_timeline_marquez_date">2018 - 2023</span>
                     </div>
                 </div>
             </div>
@@ -301,15 +311,15 @@ const proyectos = [
 
         <!-- Contacto -->
         <section class="flex flex-col gap-6 mb-6">
-            <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider">
+            <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider" data-i18n="contact_title">
                 Contacto
             </h2>
             
             <div class="bg-slate-950/40 p-6 sm:p-8 rounded-2xl border border-theme-secondary/35 space-y-6 hover:border-theme-primary/30 transition-all duration-300">
                 <div class="text-center sm:text-left">
                     <h3 class="text-2xl font-bold text-white">{nombreCompleto}</h3>
-                    <p class="text-theme-primary font-mono mt-1 uppercase italic tracking-wider text-xs">Desarrollador Backend / Fullstack</p>
-                    <p class="text-slate-400 text-sm mt-3">
+                    <p class="text-theme-primary font-mono mt-1 uppercase italic tracking-wider text-xs" data-i18n="contact_subtitle">Desarrollador Backend / Fullstack</p>
+                    <p class="text-slate-400 text-sm mt-3" data-i18n="contact_desc">
                         ¿Tienes una propuesta laboral, proyecto o consulta? Escríbeme directamente desde el formulario.
                     </p>
                 </div>
@@ -318,7 +328,7 @@ const proyectos = [
                 <form id="contact-form" class="space-y-4">
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div class="space-y-1.5">
-                            <label for="contact-name" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Nombre</label>
+                            <label for="contact-name" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider" data-i18n="contact_label_name">Nombre</label>
                             <input 
                                 type="text" 
                                 id="contact-name" 
@@ -326,10 +336,11 @@ const proyectos = [
                                 required
                                 placeholder="Tu nombre" 
                                 class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors"
+                                data-i18n-placeholder="contact_placeholder_name"
                             />
                         </div>
                         <div class="space-y-1.5">
-                            <label for="contact-email" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Correo Electrónico</label>
+                            <label for="contact-email" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider" data-i18n="contact_label_email">Correo Electrónico</label>
                             <input 
                                 type="email" 
                                 id="contact-email" 
@@ -337,12 +348,13 @@ const proyectos = [
                                 required
                                 placeholder="tu@correo.com" 
                                 class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors"
+                                data-i18n-placeholder="contact_placeholder_email"
                             />
                         </div>
                     </div>
 
                     <div class="space-y-1.5">
-                        <label for="contact-subject" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Asunto</label>
+                        <label for="contact-subject" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider" data-i18n="contact_label_subject">Asunto</label>
                         <input 
                             type="text" 
                             id="contact-subject" 
@@ -350,11 +362,12 @@ const proyectos = [
                             required
                             placeholder="Motivo del mensaje" 
                             class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors"
+                            data-i18n-placeholder="contact_placeholder_subject"
                         />
                     </div>
 
                     <div class="space-y-1.5">
-                        <label for="contact-message" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">Mensaje</label>
+                        <label for="contact-message" class="text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider" data-i18n="contact_label_message">Mensaje</label>
                         <textarea 
                             id="contact-message" 
                             name="message" 
@@ -362,6 +375,7 @@ const proyectos = [
                             required
                             placeholder="Escribe tu mensaje aquí..." 
                             class="w-full bg-black border border-theme-secondary/30 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors resize-none"
+                            data-i18n-placeholder="contact_placeholder_message"
                         ></textarea>
                     </div>
 
@@ -373,7 +387,7 @@ const proyectos = [
                         id="contact-submit-btn"
                         class="w-full bg-theme-primary hover:bg-theme-primary/90 text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_var(--theme-glow)] hover:shadow-[0_0_25px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center gap-2 cursor-pointer"
                     >
-                        <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="contact_btn">Enviar Mensaje</span>
                     </button>
                 </form>
 
@@ -393,7 +407,8 @@ const proyectos = [
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="hover:scale-125 transition-transform text-slate-600 hover:text-theme-primary"
-                           title="LinkedIn">
+                           title="LinkedIn"
+                           data-i18n-title="profile_linkedin_title">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
 
@@ -401,13 +416,14 @@ const proyectos = [
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="hover:scale-125 transition-transform text-white hover:text-theme-primary"
-                           title="GitHub">
+                           title="GitHub"
+                           data-i18n-title="profile_github_title">
                             <i class="fa-brands fa-github"></i>
                         </a>
                     </div>
                 </div>
                 
-                <p class="text-slate-600 text-[11px] italic font-mono text-center">
+                <p class="text-slate-600 text-[11px] italic font-mono text-center" data-i18n="contact_footnote">
                     Abierto a pasantías, posiciones junior y proyectos freelance.
                 </p>
             </div>
@@ -415,7 +431,7 @@ const proyectos = [
 
         <!-- Footer -->
         <footer class="text-center py-8 text-slate-600 text-[12px] font-mono border-t border-theme-secondary/10">
-            <p>© {new Date().getFullYear()} - Creado con Astro, Tailwind CSS v4 & Inteligencia Artificial </p>
+            <p data-i18n="footer_text">© {new Date().getFullYear()} - Creado con Astro, Tailwind CSS v4 & Inteligencia Artificial </p>
         </footer>
     </main>
 
@@ -427,6 +443,65 @@ const proyectos = [
 </Layout>
 
 <script>
+    import { translations } from '../utils/translations';
+
+    // Idioma activo de la página
+    let currentLang = (localStorage.getItem('language') || 'es') as 'es' | 'en';
+
+    // Función para traducir elementos del DOM
+    function translatePage(lang: 'es' | 'en') {
+        const dict = translations[lang];
+        if (!dict) return;
+
+        // 1. Traducir textos (data-i18n)
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            if (key && (dict as any)[key]) {
+                el.innerHTML = (dict as any)[key];
+            }
+        });
+
+        // 2. Traducir placeholders (data-i18n-placeholder)
+        const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholders.forEach((el) => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (key && (dict as any)[key]) {
+                (el as HTMLInputElement | HTMLTextAreaElement).placeholder = (dict as any)[key];
+            }
+        });
+
+        // 3. Traducir titles/tooltips (data-i18n-title)
+        const titles = document.querySelectorAll('[data-i18n-title]');
+        titles.forEach((el) => {
+            const key = el.getAttribute('data-i18n-title');
+            if (key && (dict as any)[key]) {
+                (el as HTMLElement).title = (dict as any)[key];
+            }
+        });
+
+        // 4. Traducir metadatos del documento
+        if (dict.meta_title) document.title = dict.meta_title;
+        
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && dict.meta_description) {
+            metaDesc.setAttribute('content', dict.meta_description);
+        }
+        const metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (metaKeywords && dict.meta_keywords) {
+            metaKeywords.setAttribute('content', dict.meta_keywords);
+        }
+    }
+
+    // Traducir al iniciar
+    translatePage(currentLang);
+
+    // Escuchar el evento global de cambio de idioma
+    window.addEventListener('language-changed', (e: any) => {
+        currentLang = e.detail.language;
+        translatePage(currentLang);
+    });
+
     // Lógica para filtrar proyectos al hacer clic en el stack
     const filterButtons = document.querySelectorAll('.tech-filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -620,7 +695,7 @@ const proyectos = [
         if (SERVICE_KEY === 'YOUR_KEY_HERE') {
             contactStatus.classList.remove('hidden');
             contactStatus.classList.add('border-amber-500/30', 'text-amber-400', 'bg-amber-950/20');
-            contactStatus.innerHTML = `⚠️ <sstrong>¡El formulario está maquetado!</strong><br/>Para empezar a recibir correos reales en tu email:
+            contactStatus.innerHTML = `⚠️ <strong>¡El formulario está maquetado!</strong><br/>Para empezar a recibir correos reales en tu email:
             <ol class="list-decimal pl-4 mt-2 space-y-1">
                 <li>Registrate gratis en <a href="https://formspree.io" target="_blank" class="underline hover:text-white font-bold">Formspree.io</a>.</li>
                 <li>Crea un formulario nuevo y copia el <strong>Form ID</strong> (ej: <code>xqkrpeoz</code>).</li>
@@ -632,7 +707,7 @@ const proyectos = [
         // Efecto de carga en botón
         const originalBtnHTML = contactSubmitBtn.innerHTML;
         contactSubmitBtn.disabled = true;
-        contactSubmitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Enviando mensaje...`;
+        contactSubmitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> ${currentLang === 'en' ? 'Sending message...' : 'Enviando mensaje...'}`;
 
         // Recolectar datos
         const formData = new FormData(contactForm);
@@ -664,7 +739,9 @@ const proyectos = [
             if (response.ok) {
                 contactStatus.classList.remove('hidden');
                 contactStatus.classList.add('border-emerald-500/30', 'text-emerald-400', 'bg-emerald-950/20');
-                contactStatus.innerHTML = `✅ ¡Mensaje enviado con éxito! Ignacio te responderá lo antes posible.`;
+                contactStatus.innerHTML = currentLang === 'en' 
+                    ? `✅ Message sent successfully! Ignacio will respond as soon as possible.` 
+                    : `✅ ¡Mensaje enviado con éxito! Ignacio te responderá lo antes posible.`;
                 contactForm.reset();
             } else {
                 throw new Error('Form submission response not ok');
@@ -673,7 +750,9 @@ const proyectos = [
             console.error(error);
             contactStatus.classList.remove('hidden');
             contactStatus.classList.add('border-rose-500/30', 'text-rose-400', 'bg-rose-950/20');
-            contactStatus.innerHTML = `❌ Ocurrió un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a <a href="https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com" target="_blank" rel="noopener noreferrer" class="underline font-bold text-white hover:text-theme-primary">trkmicignacio@gmail.com</a>.`;
+            contactStatus.innerHTML = currentLang === 'en'
+                ? `❌ An error occurred while sending the message. Please try again or write directly to <a href="mailto:trkmicignacio@gmail.com" class="underline font-bold text-white hover:text-theme-primary">trkmicignacio@gmail.com</a>.`
+                : `❌ Ocurrió un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a <a href="https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com" target="_blank" rel="noopener noreferrer" class="underline font-bold text-white hover:text-theme-primary">trkmicignacio@gmail.com</a>.`;
         } finally {
             contactSubmitBtn.disabled = false;
             contactSubmitBtn.innerHTML = originalBtnHTML;

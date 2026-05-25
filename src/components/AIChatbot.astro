@@ -8,6 +8,7 @@
     id="chat-toggle-btn"
     class="w-14 h-14 rounded-full bg-theme-primary hover:scale-110 text-black flex items-center justify-center shadow-[0_0_20px_var(--theme-glow)] hover:shadow-[0_0_30px_var(--theme-glow)] transition-all duration-300 cursor-pointer group"
     aria-label="Abrir chat con IA"
+    data-i18n-title="chatbot_toggle_title"
   >
     <span class="relative flex h-3 w-3 absolute -top-1 -right-1">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-theme-primary opacity-75"></span>
@@ -32,7 +33,7 @@
             IgnacIA
             <span class="w-2 h-2 rounded-full bg-theme-primary animate-pulse"></span>
           </h3>
-          <span class="text-[10px] text-theme-secondary font-medium">Asistente de Ignacio</span>
+          <span class="text-[10px] text-theme-secondary font-medium" data-i18n="chatbot_status">Asistente de Ignacio</span>
         </div>
       </div>
       
@@ -42,6 +43,7 @@
           id="chat-settings-btn"
           class="text-slate-500 hover:text-theme-primary transition-colors p-1.5 rounded-lg hover:bg-slate-900 cursor-pointer"
           title="Configurar Gemini API Key"
+          data-i18n-title="chatbot_settings_title"
         >
           <i class="fa-solid fa-gear"></i>
         </button>
@@ -50,6 +52,7 @@
           id="chat-close-btn"
           class="text-slate-500 hover:text-rose-400 transition-colors p-1.5 rounded-lg hover:bg-slate-900 cursor-pointer"
           title="Cerrar Chat"
+          data-i18n-title="chatbot_close_title"
         >
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -58,7 +61,7 @@
 
     <!-- Panel de Configuración (Oculto por defecto) -->
     <div id="chat-settings-panel" class="hidden bg-slate-900/90 border-b border-theme-secondary/20 p-4 text-xs space-y-3">
-      <p class="text-slate-400">
+      <p class="text-slate-400" data-i18n="chatbot_settings_panel_desc">
         Por defecto, utilizo un <strong>procesador local inteligente</strong>. Para hablar de forma libre e ilimitada conmigo, ingresa una clave de API de Gemini:
       </p>
       <div class="flex gap-2">
@@ -71,13 +74,14 @@
         <button 
           id="save-key-btn" 
           class="bg-theme-primary hover:bg-theme-primary/95 text-black font-bold px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+          data-i18n="chatbot_settings_panel_save"
         >
           Guardar
         </button>
       </div>
       <div class="flex justify-between items-center text-[10px] text-slate-500">
-        <span>Tu clave se guarda localmente en tu navegador.</span>
-        <button id="clear-key-btn" class="text-rose-500 hover:underline hidden cursor-pointer">Borrar clave</button>
+        <span data-i18n="chatbot_settings_panel_footer">Tu clave se guarda localmente en tu navegador.</span>
+        <button id="clear-key-btn" class="text-rose-500 hover:underline hidden cursor-pointer" data-i18n="chatbot_settings_panel_clear">Borrar clave</button>
       </div>
     </div>
 
@@ -92,28 +96,28 @@
           <i class="fa-solid fa-robot text-xs"></i>
         </div>
         <div class="flex flex-col gap-1 max-w-[85%]">
-          <div class="bg-theme-bg-accent border border-theme-secondary/30 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed">
+          <div class="bg-theme-bg-accent border border-theme-secondary/30 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed" data-i18n="chatbot_greeting">
             ¡Hola! Soy <strong>IgnacIA</strong>, la asistente virtual de Ignacio Trkmic Torres. 
             <br/><br/>
             ¿En qué te puedo ayudar hoy? Puedes preguntarme sobre su experiencia, estudios, tecnologías o formas de contacto.
           </div>
-          <span class="text-[9px] text-slate-600 self-start font-mono">IgnacIA • Ahora</span>
+          <span class="text-[9px] text-slate-600 self-start font-mono">IgnacIA • <span data-i18n="chatbot_local_now">Ahora</span></span>
         </div>
       </div>
     </div>
 
     <!-- Sugerencias Rápidas -->
     <div id="chat-suggestions" class="px-4 py-2 flex flex-wrap gap-1.5 border-t border-theme-secondary/10 bg-slate-950">
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer" data-i18n="chatbot_suggest_projects">
         ¿Qué proyectos tiene?
       </button>
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer" data-i18n="chatbot_suggest_studies">
         ¿Cuáles son sus estudios?
       </button>
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer" data-i18n="chatbot_suggest_english">
         ¿Nivel de inglés?
       </button>
-      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer">
+      <button class="suggestion-btn text-[11px] px-2.5 py-1 rounded-full bg-slate-900 hover:bg-theme-bg/30 text-theme-primary hover:text-theme-primary border border-theme-secondary/30 hover:border-theme-primary/30 transition-all cursor-pointer" data-i18n="chatbot_suggest_contact">
         ¿Cómo contactarlo?
       </button>
     </div>
@@ -129,11 +133,13 @@
         placeholder="Pregúntame algo..." 
         autocomplete="off"
         class="flex-1 bg-slate-950 border border-theme-secondary/50 rounded-xl px-3.5 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-theme-primary/50"
+        data-i18n-placeholder="chatbot_input_placeholder"
       />
       <button 
         type="submit" 
         class="w-9 h-9 rounded-xl bg-theme-primary hover:bg-theme-primary/90 text-black flex items-center justify-center transition-colors cursor-pointer"
         aria-label="Enviar mensaje"
+        data-i18n-title="chatbot_send_title"
       >
         <i class="fa-solid fa-paper-plane text-sm"></i>
       </button>
@@ -208,12 +214,20 @@
   const clearKeyBtn = document.getElementById('clear-key-btn');
   const suggestionBtns = document.querySelectorAll('.suggestion-btn');
 
+  // Idioma activo del chatbot
+  let currentLang = localStorage.getItem('language') || 'es';
+
   // Cargar clave de API guardada
   let apiKey = localStorage.getItem('gemini_api_key') || '';
   if (apiKey) {
     geminiKeyInput.value = apiKey.substring(0, 6) + '...';
     clearKeyBtn?.classList.remove('hidden');
   }
+
+  // Escuchar cambio de idioma
+  window.addEventListener('language-changed', (e: any) => {
+    currentLang = e.detail.language;
+  });
 
   // Toggle Ventana Chat
   chatToggleBtn?.addEventListener('click', () => {
@@ -246,7 +260,7 @@
       }
       localStorage.setItem('gemini_api_key', key);
       apiKey = key;
-      alert('Clave de Gemini API guardada con éxito.');
+      alert(currentLang === 'en' ? 'Gemini API Key saved successfully.' : 'Clave de Gemini API guardada con éxito.');
       chatSettingsPanel?.classList.add('hidden');
       clearKeyBtn?.classList.remove('hidden');
     }
@@ -258,7 +272,7 @@
     apiKey = '';
     geminiKeyInput.value = '';
     clearKeyBtn?.classList.add('hidden');
-    alert('Clave borrada. Usando procesador local.');
+    alert(currentLang === 'en' ? 'API Key deleted. Using local processor.' : 'Clave borrada. Usando procesador local.');
   });
 
   // Función para añadir mensaje a la UI
@@ -271,15 +285,18 @@
     const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     if (sender === 'user') {
+      const youText = currentLang === 'en' ? 'You' : 'Tú';
       messageDiv.innerHTML = `
         <div class="flex flex-col gap-1 max-w-[85%] items-end">
           <div class="bg-theme-primary text-black font-semibold rounded-2xl px-3.5 py-2 text-sm leading-relaxed">
             ${escapeHTML(text)}
           </div>
-          <span class="text-[9px] text-slate-600 font-mono">Tú • ${timestamp}</span>
+          <span class="text-[9px] text-slate-600 font-mono">${youText} • ${timestamp}</span>
         </div>
       `;
     } else {
+      const botName = 'IgnacIA';
+      const nowLabel = currentLang === 'en' ? 'Now' : 'Ahora';
       messageDiv.innerHTML = `
         <div class="w-7 h-7 rounded-full bg-theme-primary/10 flex items-center justify-center text-theme-primary shrink-0 border border-theme-primary/20">
           <i class="fa-solid fa-robot text-xs"></i>
@@ -288,7 +305,7 @@
           <div class="bg-slate-900/40 border border-theme-secondary/20 text-slate-300 rounded-2xl px-3.5 py-2 text-sm leading-relaxed whitespace-pre-line">
             ${text}
           </div>
-          <span class="text-[9px] text-slate-600 font-mono">IgnacIA • ${timestamp}</span>
+          <span class="text-[9px] text-slate-600 font-mono">${botName} • ${nowLabel}</span>
         </div>
       `;
     }
@@ -334,52 +351,102 @@
       .replace(/[¿?¡!]/g, "")
       .trim();
 
-    // 1. Proyectos (Coincide con "¿Qué proyectos tiene?")
-    if (q.includes('proyec') || q.includes('portafolio') || q.includes('creado') || q.includes('hecho') || q.includes('hizo') || q.includes('desarrollado')) {
-      let response = `Ignacio ha desarrollado varios proyectos de gran nivel en NestJS, Angular, Supabase, Python y Java. Aquí tienes los principales:\n\n`;
-      CV_DATA.proyectos.forEach(p => {
-        response += `🌐 **${p.titulo}**: ${p.descripcion}\n`;
-        response += `   *Enlaces:* [GitHub](${p.url})`;
-        if (p.web) response += ` | [Web en Vivo](${p.web})`;
-        response += `\n\n`;
-      });
-      return response;
-    }
+    const isEn = currentLang === 'en';
 
-    // 2. Estudios / Universidad (Coincide con "¿Cuáles son sus estudios?")
-    if (q.includes('estud') || q.includes('utn') || q.includes('universi') || q.includes('educa') || q.includes('ingenieria') || q.includes('programador') || q.includes('tecnicatura') || q.includes('titulo')) {
-      return `Ignacio se está formando en la **Universidad Tecnológica Nacional (UTN) Regional Avellaneda**:\n\n• 💻 **Tecnicatura Universitaria en Programación**: Actualmente se encuentra cursando y le faltan únicamente 2 materias para obtener el título (2024-2026).\n• ⚙️ **Ingeniería Mecánica**: Iniciando su cursada en 2026.\n\nPosee una excelente combinación de lógica de sistemas y fundamentos físicos/mecánicos.`;
-    }
+    if (isEn) {
+      // English Local NLP
+      if (q.includes('project') || q.includes('portfolio') || q.includes('creat') || q.includes('make') || q.includes('built') || q.includes('done') || q.includes('develop')) {
+        let response = `Ignacio has developed several high-quality projects in NestJS, Angular, Supabase, Python, and Java. Here are the main ones:\n\n`;
+        
+        const enProjDesc: Record<string, string> = {
+          "Red social": "Complete social platform with NestJS and Angular. Features JWT authentication, stats charts with Chart.js, and photo management with Cloudinary.",
+          "Sala de juegos": "Online gaming suite with user profiles and real-time group chat. Uses Supabase and Express.",
+          "Tienda Online": "E-commerce platform with an admin panel for stock control, shopping cart, and sales logging to a SQL database.",
+          "Servicio de hospedaje y gastronomia": "Java system based on OOP principles, designed for tourism and hotel service administration.",
+          "Adivina el pokemon": "Trivia game developed in Python using the Pygame library. Features local scoreboards using JSON/CSV.",
+          "Gestion de peliculas": "Python console application to process large datasets using CSV/JSON files and advanced sorting algorithms."
+        };
+        const enTitle: Record<string, string> = {
+          "Red social": "Social Network",
+          "Sala de juegos": "Game Room",
+          "Tienda Online": "Online Store",
+          "Servicio de hospedaje y gastronomia": "Hosting & Gastronomy Service",
+          "Adivina el pokemon": "Guess the Pokemon",
+          "Gestion de peliculas": "Movie Management"
+        };
+        
+        CV_DATA.proyectos.forEach(p => {
+          response += `🌐 **${enTitle[p.titulo] || p.titulo}**: ${enProjDesc[p.titulo] || p.descripcion}\n`;
+          response += `   *Links:* [GitHub](${p.url})`;
+          if (p.web) response += ` | [Live Web](${p.web})`;
+          response += `\n\n`;
+        });
+        return response;
+      }
 
-    // 3. Inglés / Idiomas (Coincide con "¿Nivel de inglés?")
-    if (q.includes('ingles') || q.includes('idioma') || q.includes('first') || q.includes('b2') || q.includes('english') || q.includes('fce')) {
-      return `Ignacio posee un nivel de inglés **B2 (FCE - First Certificate in English aprobado)**.\n\nSe formó durante 6 años (2018-2024) en el prestigioso instituto cultural *English Time*, lo cual le capacita para trabajar de manera fluida en equipos multiculturales y leer documentación técnica avanzada sin problemas.`;
-    }
+      if (q.includes('stud') || q.includes('utn') || q.includes('universi') || q.includes('educa') || q.includes('engineer') || q.includes('programer') || q.includes('degree') || q.includes('title')) {
+        return `Ignacio is studying at the **National Technological University (UTN) Regional Avellaneda**:\n\n• 💻 **University Higher Technical Degree in Programming**: Currently enrolled, only 2 subjects away from graduation (2024-2026).\n• ⚙️ **Mechanical Engineering**: Starting his studies in 2026.\n\nHe has an excellent blend of systems logic and physical/mechanical fundamentals.`;
+      }
 
-    // 4. Contacto / Mail (Coincide con "¿Cómo contactarlo?")
-    if (q.includes('contact') || q.includes('email') || q.includes('correo') || q.includes('escrib') || q.includes('redes') || q.includes('linkedin') || q.includes('telefono') || q.includes('github') || q.includes('mail')) {
-      return `Puedes contactar a Ignacio fácilmente a través de los siguientes canales:\n\n• 📧 **Correo Electrónico**: [trkmicignacio@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com)\n• 💼 **LinkedIn**: [linkedin.com/in/ignacio-trkmic-5a797827a](${CV_DATA.contacto.linkedin})\n• 🐙 **GitHub**: [github.com/Trkmic](${CV_DATA.contacto.github})\n\n¡Escríbele! Está abierto a nuevas oportunidades laborales y pasantías.`;
-    }
+      if (q.includes('english') || q.includes('language') || q.includes('first') || q.includes('b2') || q.includes('fce')) {
+        return `Ignacio has a certified **B2 English level (passed First Certificate in English)**.\n\nHe studied for 6 years (2018-2024) at the prestigious cultural institute *English Time*, enabling him to work fluently in multicultural teams and read advanced technical documentation without issues.`;
+      }
 
-    // 5. Stack / Habilidades
-    if (q.includes('habilidad') || q.includes('stack') || q.includes('tecnolo') || q.includes('sabe') || q.includes('programar') || q.includes('lenguaje') || q.includes('angular') || q.includes('nestjs') || q.includes('python') || q.includes('java')) {
-      return `El stack tecnológico de Ignacio incluye:\n\n• **Lenguajes**: Python, Java, JavaScript, TypeScript, HTML y CSS.\n• **Frameworks & Libs**: Angular, NestJS, Astro, Express, Pygame.\n• **Bases de Datos & Cloud**: SQL, MongoDB, Supabase, Cloudinary, Vercel.\n\n*Consejo*: Puedes hacer clic en cualquiera de estos iconos en la sección de 'Stack Tecnológico' de la página para filtrar automáticamente los proyectos relacionados.`;
-    }
+      if (q.includes('contact') || q.includes('email') || q.includes('mail') || q.includes('write') || q.includes('social') || q.includes('linkedin') || q.includes('phone') || q.includes('github')) {
+        return `You can easily reach Ignacio through the following channels:\n\n• 📧 **Email**: [trkmicignacio@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com)\n• 💼 **LinkedIn**: [linkedin.com/in/ignacio-trkmic-5a797827a](${CV_DATA.contacto.linkedin})\n• 🐙 **GitHub**: [github.com/Trkmic](${CV_DATA.contacto.github})\n\nFeel free to write! He is open to new career opportunities and internships.`;
+      }
 
-    // 6. Mensaje de bienvenida / Saludos
-    if (q.includes('hola') || q.includes('buenas') || q.includes('saludo') || q.includes('que tal') || q.includes('buenos dias')) {
-      return `¡Hola! Soy IgnacIA, un bot conversacional programado para responder preguntas sobre la trayectoria de Ignacio Trkmic Torres. ¿Qué te gustaría saber sobre él?\n\n- Sus **proyectos** más recientes.\n- Sus **estudios** en la UTN.\n- Su nivel de **inglés**.\n- Formas de **contacto**.`;
-    }
+      if (q.includes('skill') || q.includes('stack') || q.includes('techno') || q.includes('know') || q.includes('program') || q.includes('language') || q.includes('angular') || q.includes('nestjs') || q.includes('python') || q.includes('java')) {
+        return `Ignacio's tech stack includes:\n\n• **Languages**: Python, Java, JavaScript, TypeScript, HTML, and CSS.\n• **Frameworks & Libraries**: Angular, NestJS, Astro, Express, Pygame.\n• **Database & Cloud**: SQL, MongoDB, Supabase, Cloudinary, Vercel.\n\n*Tip*: You can click on any of these icons in the 'Tech Stack' section of the page to automatically filter related projects.`;
+      }
 
-    // 7. Default fallback
-    return `He entendido tu pregunta de manera limitada con mi módulo de NLP local. \n\nIgnacio tiene experiencia sólida en backend (NestJS, Java, Python) y frontend (Angular, Astro, Tailwind CSS). \n\n*Tip*: Para poder hablar de forma libre e inteligente conmigo sobre cualquier tema, puedes ingresar una clave de **Gemini API** haciendo clic en el icono de engranaje ⚙️ de la cabecera del chat.`;
+      if (q.includes('hello') || q.includes('hi') || q.includes('greet') || q.includes('hey') || q.includes('morning') || q.includes('afternoon') || q.includes('evening')) {
+        return `Hi! I am IgnacIA, a chatbot programmed to answer questions about Ignacio Trkmic Torres's career path. What would you like to know about him?\n\n- His latest **projects**.\n- His **studies** at UTN.\n- His **English** level.\n- **Contact** info.`;
+      }
+
+      return `I understood your question in a limited way with my local NLP module. \n\nIgnacio has solid experience in backend (NestJS, Java, Python) and frontend (Angular, Astro, Tailwind CSS). \n\n*Tip*: To chat with me freely and intelligently about any topic, you can enter a **Gemini API** key by clicking on the gear icon ⚙️ in the chat header.`;
+    } else {
+      // Spanish Local NLP
+      if (q.includes('proyec') || q.includes('portafolio') || q.includes('creado') || q.includes('hecho') || q.includes('hizo') || q.includes('desarrollado')) {
+        let response = `Ignacio ha desarrollado varios proyectos de gran nivel en NestJS, Angular, Supabase, Python y Java. Aquí tienes los principales:\n\n`;
+        CV_DATA.proyectos.forEach(p => {
+          response += `🌐 **${p.titulo}**: ${p.descripcion}\n`;
+          response += `   *Enlaces:* [GitHub](${p.url})`;
+          if (p.web) response += ` | [Web en Vivo](${p.web})`;
+          response += `\n\n`;
+        });
+        return response;
+      }
+
+      if (q.includes('estud') || q.includes('utn') || q.includes('universi') || q.includes('educa') || q.includes('ingenieria') || q.includes('programador') || q.includes('tecnicatura') || q.includes('titulo')) {
+        return `Ignacio se está formando en la **Universidad Tecnológica Nacional (UTN) Regional Avellaneda**:\n\n• 💻 **Tecnicatura Universitaria en Programación**: Actualmente se encuentra cursando y le faltan únicamente 2 materias para obtener el título (2024-2026).\n• ⚙️ **Ingeniería Mecánica**: Iniciando su cursada en 2026.\n\nPosee una excelente combinación de lógica de sistemas y fundamentos físicos/mecánicos.`;
+      }
+
+      if (q.includes('ingles') || q.includes('idioma') || q.includes('first') || q.includes('b2') || q.includes('english') || q.includes('fce')) {
+        return `Ignacio posee un nivel de inglés **B2 (FCE - First Certificate in English aprobado)**.\n\nSe formó durante 6 años (2018-2024) en el prestigioso instituto cultural *English Time*, lo cual le capacita para trabajar de manera fluida en equipos multiculturales y leer documentación técnica avanzada sin problemas.`;
+      }
+
+      if (q.includes('contact') || q.includes('email') || q.includes('correo') || q.includes('escrib') || q.includes('redes') || q.includes('linkedin') || q.includes('telefono') || q.includes('github') || q.includes('mail')) {
+        return `Puedes contactar a Ignacio fácilmente a través de los siguientes canales:\n\n• 📧 **Correo Electrónico**: [trkmicignacio@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=trkmicignacio@gmail.com)\n• 💼 **LinkedIn**: [linkedin.com/in/ignacio-trkmic-5a797827a](${CV_DATA.contacto.linkedin})\n• 🐙 **GitHub**: [github.com/Trkmic](${CV_DATA.contacto.github})\n\n¡Escríbele! Está abierto a nuevas oportunidades laborales y pasantías.`;
+      }
+
+      if (q.includes('habilidad') || q.includes('stack') || q.includes('tecnolo') || q.includes('sabe') || q.includes('programar') || q.includes('lenguaje') || q.includes('angular') || q.includes('nestjs') || q.includes('python') || q.includes('java')) {
+        return `El stack tecnológico de Ignacio incluye:\n\n• **Lenguajes**: Python, Java, JavaScript, TypeScript, HTML y CSS.\n• **Frameworks & Libs**: Angular, NestJS, Astro, Express, Pygame.\n• **Bases de Datos & Cloud**: SQL, MongoDB, Supabase, Cloudinary, Vercel.\n\n*Consejo*: Puedes hacer clic en cualquiera de estos iconos en la sección de 'Stack Tecnológico' de la página para filtrar automáticamente los proyectos relacionados.`;
+      }
+
+      if (q.includes('hola') || q.includes('buenas') || q.includes('saludo') || q.includes('que tal') || q.includes('buenos dias')) {
+        return `¡Hola! Soy IgnacIA, un bot conversacional programado para responder preguntas sobre la trayectoria de Ignacio Trkmic Torres. ¿Qué te gustaría saber sobre él?\n\n- Sus **proyectos** más recientes.\n- Sus **estudios** en la UTN.\n- Su nivel de **inglés**.\n- Formas de **contacto**.`;
+      }
+
+      return `He entendido tu pregunta de manera limitada con mi módulo de NLP local. \n\nIgnacio tiene experiencia sólida en backend (NestJS, Java, Python) y frontend (Angular, Astro, Tailwind CSS). \n\n*Tip*: Para poder hablar de forma libre e inteligente conmigo sobre cualquier tema, puedes ingresar una clave de **Gemini API** haciendo clic en el icono de engranaje ⚙️ de la cabecera del chat.`;
+    }
   }
 
   // LLamada a Gemini API
   async function queryGemini(promptText: string): Promise<string> {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-    const cvContext = `
+    const cvContextEs = `
       Información del desarrollador:
       Nombre: Ignacio Trkmic Torres.
       Edad: 20 años.
@@ -404,10 +471,40 @@
       - Usa formato Markdown con emojis para que las respuestas sean visualmente estructuradas y fáciles de leer.
     `;
 
+    const cvContextEn = `
+      Developer information:
+      Name: Ignacio Trkmic Torres.
+      Age: 20 years old.
+      Location: Buenos Aires, Argentina.
+      Studies: Enrolled at UTN Avellaneda. University Higher Technical Degree in Programming (2 subjects away from graduation, 2024-2026) and Mechanical Engineering (starting in 2026).
+      English: Approved B2 level (First Certificate in English). Studied at English Time (2018-2024).
+      Contact: Email: trkmicignacio@gmail.com, LinkedIn: ${CV_DATA.contacto.linkedin}, GitHub: ${CV_DATA.contacto.github}.
+      Technologies: Python, Java, JavaScript, TypeScript, HTML, CSS, Angular, SQL, MongoDB, Astro, NestJS, Supabase, Vercel.
+      Projects:
+      1. "Social Network": NestJS backend, Angular frontend, JWT auth, stats graphs with Chart.js, multimedia with Cloudinary. GitHub: https://github.com/Trkmic/red-social, Web: https://red-social-sage.vercel.app/
+      2. "Game Room": Angular, Supabase, Express, real-time group chat, integrated DB & Auth, Vercel. GitHub: https://github.com/Trkmic/sala-de-juegos, Web: https://sala-de-juegos-tau.vercel.app/home
+      3. "Online Store": Pure e-commerce with JS, HTML, CSS, with inventory control and cart panel, connected to SQL database. GitHub: https://github.com/Trkmic/tienda_online
+      4. "Hosting & Gastronomy Service": Written in Java using OOP for tourism and hotel service administration. GitHub: https://github.com/Trkmic/servicio_hospedaje_gatronomia
+      5. "Guess the Pokemon": Python trivia using Pygame, JSON/CSV files to store scores. GitHub: https://github.com/Trkmic/pygame_adivina_pokemon
+      6. "Movie Management": Python data processor to sort catalogs in CSV and generate reports. GitHub: https://github.com/Trkmic/Gestion_peliculas
+
+      Personality Instructions:
+      - You are "IgnacIA", Ignacio Torres's personal assistant AI.
+      - Speak professionally, closely, enthusiastically, and convincingly for software development talent recruiters.
+      - Write in English in a concise manner. Do not give massive responses over 3 paragraphs.
+      - If they ask you about something unrelated to Ignacio or programming, politely tell them that you are trained to talk about Ignacio's technical profile, but try to connect it if possible.
+      - Use Markdown format with emojis to keep responses visually structured and easy to read.
+    `;
+
+    const cvContext = currentLang === 'en' ? cvContextEn : cvContextEs;
+    const requestText = currentLang === 'en'
+      ? `Context about Ignacio:\n${cvContext}\n\nUser Question:\n${promptText}`
+      : `Contexto sobre Ignacio:\n${cvContext}\n\nPregunta del usuario:\n${promptText}`;
+
     const requestBody = {
       contents: [{
         parts: [{
-          text: `Contexto sobre Ignacio:\n${cvContext}\n\nPregunta del usuario:\n${promptText}`
+          text: requestText
         }]
       }],
       generationConfig: {
@@ -460,7 +557,10 @@
     } catch (error) {
       console.error(error);
       typingIndicator?.remove();
-      addMessage('bot', `Lo siento, ocurrió un error al procesar tu solicitud con el servidor de IA de Gemini. ¿Podrías verificar tu API Key o intentar de nuevo en unos momentos?\n\n*Nota*: Puedes seguir chateando en Modo Local borrando la API Key de la configuración.`);
+      const errorMsg = currentLang === 'en'
+        ? `Sorry, an error occurred while processing your request with the Gemini AI server. Could you please check your API Key or try again in a few moments?\n\n*Note*: You can continue chatting in Local Mode by deleting the API Key from settings.`
+        : `Lo siento, ocurrió un error al procesar tu solicitud con el servidor de IA de Gemini. ¿Podrías verificar tu API Key o intentar de nuevo en unos momentos?\n\n*Nota*: Puedes seguir chateando en Modo Local borrando la API Key de la configuración.`;
+      addMessage('bot', errorMsg);
     }
   }
 
