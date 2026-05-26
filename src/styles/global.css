@@ -57,28 +57,37 @@ html.theme-dracula {
 
 /* Emerald Light Theme */
 html.light.theme-emerald {
-  --theme-primary: #059669; /* emerald-600 */
-  --theme-secondary: #047857; /* emerald-700 */
+  --theme-primary: #059669;
+  /* emerald-600 */
+  --theme-secondary: #047857;
+  /* emerald-700 */
   --theme-glow: rgba(5, 150, 105, 0.15);
-  --theme-bg: #f0fdf4; /* emerald-50 */
+  --theme-bg: #f0fdf4;
+  /* emerald-50 */
   --theme-bg-accent: rgba(5, 150, 105, 0.05);
 }
 
 /* Cyberpunk Light Theme */
 html.light.theme-cyberpunk {
-  --theme-primary: #db2777; /* pink-600 */
-  --theme-secondary: #0891b2; /* cyan-600 */
+  --theme-primary: #db2777;
+  /* pink-600 */
+  --theme-secondary: #0891b2;
+  /* cyan-600 */
   --theme-glow: rgba(219, 39, 119, 0.15);
-  --theme-bg: #fdf2f8; /* pink-50 */
+  --theme-bg: #fdf2f8;
+  /* pink-50 */
   --theme-bg-accent: rgba(219, 39, 119, 0.05);
 }
 
 /* Dracula Light Theme */
 html.light.theme-dracula {
-  --theme-primary: #7c3aed; /* violet-600 */
-  --theme-secondary: #db2777; /* pink-600 */
+  --theme-primary: #7c3aed;
+  /* violet-600 */
+  --theme-secondary: #db2777;
+  /* pink-600 */
   --theme-glow: rgba(124, 58, 237, 0.15);
-  --theme-bg: #faf5ff; /* purple-50 */
+  --theme-bg: #faf5ff;
+  /* purple-50 */
   --theme-bg-accent: rgba(124, 58, 237, 0.05);
 }
 
@@ -89,7 +98,8 @@ html.light {
 
 html.light body {
   background-color: var(--theme-bg) !important;
-  color: #334155 !important; /* slate-700 */
+  color: #334155 !important;
+  /* slate-700 */
 }
 
 /* Main background glow effect container override */
