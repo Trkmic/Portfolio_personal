@@ -1,0 +1,94 @@
+---
+// ThemeModeToggle.astro
+---
+
+<div class="fixed top-6 left-6 z-50">
+  <button 
+    id="mode-toggle" 
+    class="bg-slate-950/85 backdrop-blur-md border border-slate-900 w-10 h-10 rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(0,0,0,0.6)] text-slate-500 hover:text-theme-primary hover:scale-110 hover:shadow-[0_0_15px_var(--theme-glow)] active:scale-95 transition-all duration-300 cursor-pointer"
+    title="Cambiar a modo claro"
+    data-i18n-title="theme_mode_light"
+  >
+    <i class="fa-solid fa-moon text-[15px]" id="mode-toggle-icon"></i>
+  </button>
+</div>
+
+<!-- Inline script to prevent flashing and initialize icon/tooltip correctly before JS loads -->
+<script is:inline>
+  (function () {
+    const savedMode = localStorage.getItem('theme-mode') || 'dark';
+    const toggleBtn = document.getElementById('mode-toggle');
+    const icon = document.getElementById('mode-toggle-icon');
+    
+    if (toggleBtn && icon) {
+      if (savedMode === 'light') {
+        icon.className = 'fa-solid fa-sun text-[15px] text-amber-500';
+        toggleBtn.setAttribute('data-i18n-title', 'theme_mode_dark');
+      } else {
+        icon.className = 'fa-solid fa-moon text-[15px]';
+        toggleBtn.setAttribute('data-i18n-title', 'theme_mode_light');
+      }
+    }
+  })();
+</script>
+
+<script>
+  import { playChirp } from '../utils/audioHelper';
+  import { translations } from '../utils/translations';
+
+  const toggleBtn = document.getElementById('mode-toggle');
+  const icon = document.getElementById('mode-toggle-icon');
+
+  function updateTooltip(mode: string) {
+    if (!toggleBtn) return;
+    const currentLang = (localStorage.getItem('language') || 'es') as 'es' | 'en';
+    const titleKey = mode === 'light' ? 'theme_mode_dark' : 'theme_mode_light';
+    const dict = translations[currentLang];
+    if (dict && (dict as any)[titleKey]) {
+      toggleBtn.title = (dict as any)[titleKey];
+    }
+  }
+
+  // Handle mode toggling on click
+  toggleBtn?.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light');
+    const newMode = isLight ? 'dark' : 'light';
+
+    if (newMode === 'light') {
+      document.documentElement.classList.add('light');
+      if (icon) {
+        icon.className = 'fa-solid fa-sun text-[15px] text-amber-500 animate-spin-slow';
+      }
+      toggleBtn.setAttribute('data-i18n-title', 'theme_mode_dark');
+    } else {
+      document.documentElement.classList.remove('light');
+      if (icon) {
+        icon.className = 'fa-solid fa-moon text-[15px]';
+      }
+      toggleBtn.setAttribute('data-i18n-title', 'theme_mode_light');
+    }
+
+    localStorage.setItem('theme-mode', newMode);
+    updateTooltip(newMode);
+    
+    // Play custom chirp sound effect
+    playChirp();
+  });
+
+  // Listen for language changes to update the tooltip translations dynamically
+  window.addEventListener('language-changed', () => {
+    const currentMode = localStorage.getItem('theme-mode') || 'dark';
+    updateTooltip(currentMode);
+  });
+</script>
+
+<style>
+  /* Subtle animation for the sun icon when in light mode */
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+  }
+</style>

@@ -10,6 +10,8 @@ export const translations = {
     "theme_mute": "Silenciar / Activar sonidos de la web",
     "theme_lang": "Cambiar idioma / Switch language",
     "terminal_close_title": "Cerrar terminal",
+    "theme_mode_dark": "Cambiar a modo oscuro",
+    "theme_mode_light": "Cambiar a modo claro",
 
     // Layout Meta
     "meta_title": "Ignacio Trkmic Torres | Portfolio & AI Agent",
@@ -130,6 +132,8 @@ export const translations = {
     "theme_mute": "Mute / Unmute website sounds",
     "theme_lang": "Switch language / Cambiar idioma",
     "terminal_close_title": "Close terminal",
+    "theme_mode_dark": "Switch to dark mode",
+    "theme_mode_light": "Switch to light mode",
 
     // Layout Meta
     "meta_title": "Ignacio Trkmic Torres | Portfolio & AI Agent",

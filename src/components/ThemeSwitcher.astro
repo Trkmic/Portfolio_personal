@@ -73,7 +73,8 @@
 <script is:inline>
   (function () {
     const savedTheme = localStorage.getItem('theme') || 'theme-emerald';
-    document.documentElement.className = savedTheme;
+    const savedMode = localStorage.getItem('theme-mode') || 'dark';
+    document.documentElement.className = `${savedTheme} ${savedMode === 'light' ? 'light' : ''} scroll-smooth`;
     const savedLang = localStorage.getItem('language') || 'es';
     const langBtn = document.getElementById('lang-toggle');
     if (langBtn) {

@@ -11,7 +11,7 @@
 /* Variables de Temas */
 :root {
   --theme-primary: #10b981;
-  /* emerald-500 */
+  /* emerald-50 */
   --theme-secondary: #047857;
   /* emerald-700 */
   --theme-glow: rgba(16, 185, 129, 0.2);
@@ -51,4 +51,227 @@ html.theme-dracula {
   --theme-bg: #282a36;
   /* dracula-bg */
   --theme-bg-accent: rgba(189, 147, 249, 0.05);
+}
+
+/* --- Light Mode Adaptations --- */
+
+/* Emerald Light Theme */
+html.light.theme-emerald {
+  --theme-primary: #059669;
+  /* emerald-600 */
+  --theme-secondary: #047857;
+  /* emerald-700 */
+  --theme-glow: rgba(5, 150, 105, 0.15);
+  --theme-bg: #f0fdf4;
+  /* emerald-50 */
+  --theme-bg-accent: rgba(5, 150, 105, 0.05);
+}
+
+/* Cyberpunk Light Theme */
+html.light.theme-cyberpunk {
+  --theme-primary: #db2777;
+  /* pink-600 */
+  --theme-secondary: #0891b2;
+  /* cyan-600 */
+  --theme-glow: rgba(219, 39, 119, 0.15);
+  --theme-bg: #fdf2f8;
+  /* pink-50 */
+  --theme-bg-accent: rgba(219, 39, 119, 0.05);
+}
+
+/* Dracula Light Theme */
+html.light.theme-dracula {
+  --theme-primary: #7c3aed;
+  /* violet-600 */
+  --theme-secondary: #db2777;
+  /* pink-600 */
+  --theme-glow: rgba(124, 58, 237, 0.15);
+  --theme-bg: #faf5ff;
+  /* purple-50 */
+  --theme-bg-accent: rgba(124, 58, 237, 0.05);
+}
+
+/* Global Light Mode Overrides */
+html.light {
+  color-scheme: light !important;
+}
+
+html.light body {
+  background-color: var(--theme-bg) !important;
+  color: #334155 !important;
+  /* slate-700 */
+}
+
+/* Main background glow effect container override */
+html.light .fixed.inset-0.z-0.bg-black {
+  background-color: var(--theme-bg) !important;
+}
+
+/* Card components */
+html.light .project-card,
+html.light section.bg-slate-950\/40,
+html.light .bg-slate-950\/40,
+html.light .timeline-item>div,
+html.light #chat-window,
+html.light #ai-pitch-card {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Hover effects for light mode cards */
+html.light .project-card:hover,
+html.light section.bg-slate-950\/40:hover,
+html.light .timeline-item>div:hover {
+  border-color: var(--theme-primary) !important;
+  box-shadow: 0 15px 35px -10px var(--theme-glow) !important;
+}
+
+/* Scrollbar in light mode */
+html.light ::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: var(--theme-bg-accent);
+  border: 2px solid var(--theme-bg);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-primary);
+}
+
+/* Text elements */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.light .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+/* Input overrides */
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light input:focus,
+html.light textarea:focus {
+  border-color: var(--theme-primary) !important;
+}
+
+/* Theme Switcher panel in light mode */
+html.light .bg-slate-950\/85 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light #lang-toggle {
+  border-color: #cbd5e1 !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Chatbot Specifics */
+html.light #chat-messages .bg-slate-900\/40,
+html.light #chat-messages .bg-slate-900\/30 {
+  background-color: #f1f5f9 !important;
+  /* slate-100 */
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+html.light #chat-window>div.bg-gradient-to-r {
+  background: linear-gradient(to right, var(--theme-bg), #ffffff) !important;
+  border-bottom-color: #cbd5e1 !important;
+}
+
+html.light #chat-form {
+  background-color: #ffffff !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light #chat-input {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light #chat-settings-panel {
+  background-color: #f8fafc !important;
+  border-bottom-color: #cbd5e1 !important;
+}
+
+html.light .suggestion-btn {
+  background-color: #f1f5f9 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: var(--theme-primary) !important;
+}
+
+html.light .suggestion-btn:hover {
+  background-color: var(--theme-bg) !important;
+}
+
+/* Subtitles or highlights under cards in Matcher */
+html.light #matcher-results .bg-black\/40,
+html.light #matcher-results .bg-black\/20 {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light #matcher-progress-circle {
+  stroke: var(--theme-primary) !important;
+}
+
+html.light circle.stroke-slate-900 {
+  stroke: #e2e8f0 !important;
+}
+
+/* Dynamic Tech filter button in light mode */
+html.light .tech-filter-btn span {
+  color: #475569 !important;
+}
+
+html.light .tech-filter-btn:hover span {
+  color: var(--theme-primary) !important;
+}
+
+/* Academic nodes in light mode */
+html.light .timeline-node {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .timeline-active .timeline-node {
+  background-color: var(--theme-primary) !important;
+  border-color: var(--theme-primary) !important;
+}
+
+html.light .timeline-item p.text-theme-secondary {
+  color: var(--theme-secondary) !important;
 }

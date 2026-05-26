@@ -8,6 +8,16 @@ import '../styles/global.css';
 			(function () {
 				const savedLang = localStorage.getItem('language') || 'es';
 				document.documentElement.lang = savedLang;
+
+				const savedTheme = localStorage.getItem('theme') || 'theme-emerald';
+				const savedMode = localStorage.getItem('theme-mode') || 'dark';
+
+				document.documentElement.classList.add(savedTheme);
+				if (savedMode === 'light') {
+					document.documentElement.classList.add('light');
+				} else {
+					document.documentElement.classList.remove('light');
+				}
 			})();
 		</script>
 		<meta charset="UTF-8" />

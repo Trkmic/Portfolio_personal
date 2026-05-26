@@ -4,6 +4,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import AIChatbot from '../components/AIChatbot.astro';
 import AIJobMatcher from '../components/AIJobMatcher.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import ThemeModeToggle from '../components/ThemeModeToggle.astro';
 import TerminalConsole from '../components/TerminalConsole.astro';
 
 const nombreCompleto = "Ignacio Trkmic Torres";
@@ -85,6 +86,8 @@ const proyectos = [
 <Layout>
     <!-- Selector de Temas y Barra de Mandos -->
     <ThemeSwitcher />
+    <!-- Toggle de Modo Claro/Oscuro -->
+    <ThemeModeToggle />
 
     <!-- Efecto de Fondo Neon/Malla dinámico -->
     <div class="fixed inset-0 z-0 bg-black overflow-hidden pointer-events-none">
