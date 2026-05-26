@@ -172,8 +172,9 @@ const proyectos = [
                     <p data-i18n="about_passion">Apasionado por resolver problemas complejos y construir soluciones backend sólidas y frontend altamente interactivas.</p>
                 </div>
                 <a 
+                    id="download-cv-btn"
                     href="/CV_Trkmic (2) copy.pdf" 
-                    download="CV_Ignacio_Trkmic.pdf"
+                    download="Ignacio_Trkmic_Torres.pdf"
                     class="mt-4 w-full bg-theme-primary hover:scale-[1.02] text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_var(--theme-glow)] hover:shadow-[0_0_25px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center text-center decoration-none cursor-pointer"
                 >
                     <i class="fa-solid fa-download mr-2"></i> <span data-i18n="about_download_cv">Descargar CV</span>
@@ -506,6 +507,18 @@ const proyectos = [
         const metaKeywords = document.querySelector('meta[name="keywords"]');
         if (metaKeywords && dict.meta_keywords) {
             metaKeywords.setAttribute('content', dict.meta_keywords);
+        }
+
+        // 5. Actualizar el link de descarga de CV según el idioma
+        const downloadBtn = document.getElementById('download-cv-btn') as HTMLAnchorElement | null;
+        if (downloadBtn) {
+            if (lang === 'en') {
+                downloadBtn.href = '/CV_Trkmic_ingles.pdf';
+                downloadBtn.download = 'Ignacio_Trkmic_Torres.pdf';
+            } else {
+                downloadBtn.href = '/CV_Trkmic (2) copy.pdf';
+                downloadBtn.download = 'Ignacio_Trkmic_Torres.pdf';
+            }
         }
     }
 
