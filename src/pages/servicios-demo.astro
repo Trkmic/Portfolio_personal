@@ -1,0 +1,1218 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import ThemeModeToggle from '../components/ThemeModeToggle.astro';
+---
+
+<Layout>
+    <!-- Selector de Temas y Barra de Mandos -->
+    <ThemeSwitcher />
+    <!-- Toggle de Modo Claro/Oscuro -->
+    <ThemeModeToggle />
+
+    <!-- Efecto de Fondo Neon/Malla dinámico -->
+    <div class="fixed inset-0 z-0 bg-black overflow-hidden pointer-events-none">
+        <div class="absolute top-[10%] left-[20%] w-[400px] h-[400px] rounded-full bg-theme-primary/5 blur-[120px] transition-all duration-700"></div>
+        <div class="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full bg-theme-secondary/5 blur-[150px] transition-all duration-700"></div>
+    </div>
+
+    <main class="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-12 flex flex-col gap-8 min-h-screen text-slate-300 font-sans">
+        
+        <!-- Botón Volver y Header -->
+        <div class="flex flex-col gap-4">
+            <a href="/" class="self-start text-xs font-mono font-bold text-theme-primary hover:text-theme-primary/80 transition-colors uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span data-demo-i18n="back_btn">← Volver al inicio</span>
+            </a>
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-theme-secondary/30 pb-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white tracking-tight" data-demo-i18n="page_title">
+                        Simulador de Servicios de Hospedaje y Gastronomía
+                    </h1>
+                    <p class="text-theme-secondary text-sm font-mono mt-1" data-demo-i18n="page_subtitle">
+                        Portabilidad interactiva de la lógica de negocio POO Java a la Web
+                    </p>
+                </div>
+                <div class="flex gap-2 font-mono text-[10px]">
+                    <span class="bg-theme-primary/10 text-theme-primary border border-theme-primary/30 px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                        Java 21 POO
+                    </span>
+                    <span class="bg-slate-900 text-slate-400 border border-slate-800 px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                        Refactored & Verified
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de Clases y Estructura POO -->
+        <section class="bg-slate-950/40 p-6 rounded-2xl border border-theme-secondary/25 hover:border-theme-primary/25 transition-all duration-300 shadow-[inset_0_0_15px_var(--theme-glow)]">
+            <h2 class="text-lg font-bold mb-4 text-theme-primary font-mono tracking-wide uppercase flex items-center gap-2">
+                <i class="fa-solid fa-sitemap text-sm"></i>
+                <span data-demo-i18n="poo_struct">Estructura del Diagrama de Clases POO</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-400">
+                <div class="bg-black/50 p-4 rounded-xl border border-slate-900 flex flex-col gap-2 relative overflow-hidden group hover:border-theme-primary/30 transition-all duration-300">
+                    <div class="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-slate-900/50 flex items-center justify-center text-lg text-slate-700 font-bold group-hover:scale-125 transition-all">S</div>
+                    <h3 class="text-white font-bold border-b border-slate-800 pb-1 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                        Servicio <span class="text-[9px] text-slate-600 font-normal italic">(Abstracta)</span>
+                    </h3>
+                    <ul class="space-y-1 text-[11px]">
+                        <li>🔑 <span class="text-slate-500">codServicio:</span> String (6 char)</li>
+                        <li>🏷️ <span class="text-slate-500">porcentajeDescuento:</span> double</li>
+                        <li>📢 <span class="text-slate-500">enPromocion:</span> boolean</li>
+                        <li>📅 <span class="text-slate-500">dia:</span> LocalDate</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-black/50 p-4 rounded-xl border border-slate-900 flex flex-col gap-2 relative overflow-hidden group hover:border-theme-primary/30 transition-all duration-300">
+                    <div class="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-slate-900/50 flex items-center justify-center text-lg text-slate-700 font-bold group-hover:scale-125 transition-all">G</div>
+                    <h3 class="text-white font-bold border-b border-slate-800 pb-1 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-theme-primary"></span>
+                        Gastronomia <span class="text-[9px] text-slate-600 font-normal italic">extends Servicio</span>
+                    </h3>
+                    <ul class="space-y-1 text-[11px]">
+                        <li>🍽️ <span class="text-slate-500">gastronomia:</span> String</li>
+                        <li>💵 <span class="text-slate-500">precio:</span> double</li>
+                        <li>📆 <span class="text-slate-500">diaSemDesc:</span> int (1..7)</li>
+                        <li class="text-theme-primary/80 font-bold mt-1">⚙️ calcularPrecioFinal()</li>
+                    </ul>
+                </div>
+
+                <div class="bg-black/50 p-4 rounded-xl border border-slate-900 flex flex-col gap-2 relative overflow-hidden group hover:border-theme-primary/30 transition-all duration-300">
+                    <div class="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-slate-900/50 flex items-center justify-center text-lg text-slate-700 font-bold group-hover:scale-125 transition-all">H</div>
+                    <h3 class="text-white font-bold border-b border-slate-800 pb-1 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-theme-secondary"></span>
+                        Hospedaje <span class="text-[9px] text-slate-600 font-normal italic">extends Servicio</span>
+                    </h3>
+                    <ul class="space-y-1 text-[11px]">
+                        <li>🏨 <span class="text-slate-500">hospedaje:</span> String</li>
+                        <li>💵 <span class="text-slate-500">precioPorNoche:</span> double</li>
+                        <li>🌙 <span class="text-slate-500">diasDeHospedaje:</span> int (>=1)</li>
+                        <li class="text-theme-secondary/80 font-bold mt-1">⚙️ calcularPrecioFinal()</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenedor Principal de la App Interactiva -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Columna Izquierda (8 cols): Aplicación interactiva -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                
+                <!-- Pestañas de Navegación -->
+                <div class="flex border-b border-slate-900 gap-2 font-mono text-xs">
+                    <button id="tab-list" class="px-4 py-2 border-b-2 border-theme-primary text-white font-bold transition-all bg-theme-primary/5 rounded-t-lg cursor-pointer">
+                        🗂️ <span data-demo-i18n="tab_services">Servicios</span>
+                    </button>
+                    <button id="tab-add" class="px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-300 hover:border-slate-800 transition-all cursor-pointer">
+                        ➕ <span data-demo-i18n="tab_add">Agregar</span>
+                    </button>
+                    <button id="tab-query" class="px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-300 hover:border-slate-800 transition-all cursor-pointer">
+                        🔍 <span data-demo-i18n="tab_query">Consultas</span>
+                    </button>
+                    <button id="tab-calc" class="px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-300 hover:border-slate-800 transition-all cursor-pointer">
+                        🧮 <span data-demo-i18n="tab_calculate">Calcular Precio</span>
+                    </button>
+                </div>
+
+                <!-- Contenido de Pestañas -->
+                <div class="bg-slate-950/40 p-6 rounded-2xl border border-theme-secondary/20 shadow-md min-h-[400px]">
+                    
+                    <!-- Alerta de Excepciones Simuladas (UI Exception Box) -->
+                    <div id="demo-exception-alert" class="hidden mb-6 p-4 rounded-xl border border-rose-500/30 bg-rose-950/20 text-rose-400 font-mono text-xs relative animate-pulse">
+                        <div class="font-bold flex items-center gap-2 mb-1">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span id="exception-type">ExceptionName</span>
+                        </div>
+                        <p id="exception-message">Exception detail message here...</p>
+                    </div>
+
+                    <!-- Pestaña 1: Lista de Servicios -->
+                    <div id="content-list" class="block">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-bold text-slate-400 font-mono uppercase tracking-wider" data-demo-i18n="list_title">
+                                Lista de Servicios Registrados
+                            </h3>
+                            <span id="service-count" class="text-xs font-mono text-theme-primary bg-theme-primary/10 border border-theme-primary/20 px-2 py-0.5 rounded-full font-bold">
+                                4 Servicios
+                            </span>
+                        </div>
+                        
+                        <div id="services-grid" class="flex flex-col gap-3">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Pestaña 2: Agregar Servicio -->
+                    <div id="content-add" class="hidden">
+                        <h3 class="text-sm font-bold text-slate-400 font-mono uppercase tracking-wider mb-6" data-demo-i18n="add_title">
+                            Registrar Nuevo Servicio
+                        </h3>
+                        
+                        <form id="add-service-form" class="space-y-4 text-xs font-mono">
+                            <!-- Tipo de Servicio -->
+                            <div class="space-y-1.5">
+                                <label class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_type">Tipo de Servicio</label>
+                                <div class="flex gap-4">
+                                    <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                                        <input type="radio" name="serviceType" value="gastronomia" checked class="accent-theme-primary" />
+                                        <span data-demo-i18n="type_gastronomy">Gastronomía</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                                        <input type="radio" name="serviceType" value="hospedaje" class="accent-theme-primary" />
+                                        <span data-demo-i18n="type_hosting">Hospedaje</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Campos Comunes -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label for="form-code" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_code">Código del Servicio (Exacto 6 Chars)</label>
+                                    <input type="text" id="form-code" placeholder="Ej: 858927" required class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label for="form-name" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_name">Nombre / Descripción del Servicio</label>
+                                    <input type="text" id="form-name" placeholder="Ej: Milanesa con puré" required class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="space-y-1.5">
+                                    <label id="label-price" for="form-price" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_price_gastronomy">Precio Base ($)</label>
+                                    <input type="number" step="0.01" id="form-price" placeholder="180.0" required class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label for="form-date" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_date">Fecha de Adquisición</label>
+                                    <input type="date" id="form-date" required class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 placeholder-slate-600 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                </div>
+                                <div class="space-y-1.5 flex flex-col justify-end pb-3">
+                                    <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                                        <input type="checkbox" id="form-promo" class="accent-theme-primary w-4 h-4" />
+                                        <span class="font-bold uppercase tracking-wider" data-demo-i18n="form_promo">¿En Promoción?</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Campos Condicionales de Descuento -->
+                            <div id="promo-fields-group" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 border border-theme-primary/20 p-4 rounded-xl bg-theme-primary/5">
+                                <div class="space-y-1.5">
+                                    <label for="form-discount" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_discount_pct">Porcentaje de Descuento (0 - 100%)</label>
+                                    <input type="number" step="0.1" id="form-discount" value="15.0" class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                </div>
+                                
+                                <!-- Para Gastronomía: Día de Descuento -->
+                                <div id="group-day-discount" class="space-y-1.5">
+                                    <label for="form-day-desc" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_day_desc">Día de la semana de Descuento</label>
+                                    <select id="form-day-desc" class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-theme-primary/50 transition-colors">
+                                        <option value="1">Lunes / Monday</option>
+                                        <option value="2">Martes / Tuesday</option>
+                                        <option value="3">Miércoles / Wednesday</option>
+                                        <option value="4">Jueves / Thursday</option>
+                                        <option value="5">Viernes / Friday</option>
+                                        <option value="6">Sábado / Saturday</option>
+                                        <option value="7">Domingo / Sunday</option>
+                                    </select>
+                                </div>
+
+                                <!-- Para Hospedaje: Cantidad de noches -->
+                                <div id="group-nights" class="hidden space-y-1.5">
+                                    <label for="form-nights" class="text-slate-400 uppercase font-bold tracking-wider" data-demo-i18n="form_nights">Cantidad de Noches Reservadas</label>
+                                    <input type="number" id="form-nights" value="5" class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-theme-primary hover:bg-theme-primary/95 text-black font-black py-3.5 rounded-xl transition-all shadow-[0_0_12px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-plus-circle"></i>
+                                <span data-demo-i18n="form_submit">Crear y Guardar Servicio</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Pestaña 3: Consultas / Filtrado -->
+                    <div id="content-query" class="hidden flex flex-col gap-6">
+                        <div class="flex flex-col gap-4 font-mono text-xs">
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider" data-demo-i18n="query_title">
+                                Consultar el Sistema de Servicios
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                <button id="query-by-code-tab" class="p-3 border border-slate-800 rounded-xl bg-slate-900/20 hover:border-theme-primary/30 transition text-white font-bold cursor-pointer text-left flex items-center justify-between">
+                                    <span>🔑 Buscar Código</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                                <button id="query-by-promo-tab" class="p-3 border border-slate-800 rounded-xl bg-slate-900/20 hover:border-theme-primary/30 transition text-slate-400 cursor-pointer text-left flex items-center justify-between">
+                                    <span>📢 Filtrar Promociones</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                                <button id="query-by-date-tab" class="p-3 border border-slate-800 rounded-xl bg-slate-900/20 hover:border-theme-primary/30 transition text-slate-400 cursor-pointer text-left flex items-center justify-between">
+                                    <span>📅 Filtrar Promoción + Fecha</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sección de Ejecución de Filtro Activo -->
+                        <div class="border border-slate-900 p-5 rounded-2xl bg-black/40 space-y-4">
+                            
+                            <!-- Subconsulta A: Por Código -->
+                            <div id="subquery-code" class="block space-y-3 font-mono text-xs">
+                                <label for="query-code" class="text-[10px] font-bold uppercase text-slate-500 tracking-wider" data-demo-i18n="query_code_lbl">Ingresar Código de Servicio (6 Caracteres)</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="query-code" placeholder="Ej: 858927" class="flex-1 bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-theme-primary/50 transition-colors" />
+                                    <button id="btn-query-code" class="bg-theme-primary hover:bg-theme-primary/95 text-black font-black px-5 rounded-xl uppercase tracking-wider cursor-pointer">Buscar</button>
+                                </div>
+                            </div>
+
+                            <!-- Subconsulta B: Por Promoción -->
+                            <div id="subquery-promo" class="hidden space-y-3 font-mono text-xs">
+                                <label class="text-[10px] font-bold uppercase text-slate-500 tracking-wider" data-demo-i18n="query_promo_lbl">Filtrar por Estado de Promoción</label>
+                                <div class="flex items-center gap-4">
+                                    <button id="btn-query-promo-true" class="flex-1 bg-theme-primary/10 border border-theme-primary/30 text-theme-primary font-bold py-3 rounded-xl hover:bg-theme-primary/20 transition cursor-pointer">En Promoción (True)</button>
+                                    <button id="btn-query-promo-false" class="flex-1 bg-slate-900 border border-slate-800 text-slate-400 py-3 rounded-xl hover:bg-slate-800 transition cursor-pointer">Sin Promoción (False)</button>
+                                </div>
+                            </div>
+
+                            <!-- Subconsulta C: Por Fecha + Promoción -->
+                            <div id="subquery-date" class="hidden space-y-3 font-mono text-xs">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-1.5">
+                                        <label for="query-date-val" class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Fecha de Adquisición</label>
+                                        <input type="date" id="query-date-val" class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-theme-primary/50" />
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <label class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">¿En Promoción?</label>
+                                        <div class="flex gap-4 pt-3.5">
+                                            <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                                                <input type="radio" name="queryPromoVal" value="true" checked class="accent-theme-primary" />
+                                                <span>Sí (True)</span>
+                                            </label>
+                                            <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                                                <input type="radio" name="queryPromoVal" value="false" class="accent-theme-primary" />
+                                                <span>No (False)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="btn-query-date" class="w-full bg-theme-primary hover:bg-theme-primary/95 text-black font-black py-3 rounded-xl uppercase tracking-wider cursor-pointer">Filtrar</button>
+                            </div>
+
+                            <!-- Resultados de la Consulta -->
+                            <div class="border-t border-slate-900 pt-4 mt-2">
+                                <h4 class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider mb-3" data-demo-i18n="query_results">Resultados de la Consulta</h4>
+                                <div id="query-results-box" class="flex flex-col gap-2">
+                                    <p class="text-xs italic text-slate-600 font-mono" data-demo-i18n="query_no_searched">No se ha realizado ninguna búsqueda aún.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pestaña 4: Calcular Precio Final -->
+                    <div id="content-calc" class="hidden flex flex-col gap-5 font-mono text-xs">
+                        <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider" data-demo-i18n="calc_title">
+                            Calcular Precio Final de un Servicio
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label for="calc-select-service" class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Seleccionar Servicio</label>
+                                <select id="calc-select-service" class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-theme-primary/50 transition-colors">
+                                    <!-- Cargado dinámicamente -->
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="calc-date" class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Fecha de Consumo / Simulación</label>
+                                <input type="date" id="calc-date" required class="w-full bg-black border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none" />
+                            </div>
+                        </div>
+
+                        <button id="btn-calc-price" class="w-full bg-theme-primary hover:bg-theme-primary/95 text-black font-black py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-[0_0_12px_var(--theme-glow)] cursor-pointer flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Calcular Precio Final</span>
+                        </button>
+
+                        <!-- Box de Resultados Matemáticos -->
+                        <div id="calc-result-box" class="hidden border border-theme-primary/20 p-5 rounded-2xl bg-theme-primary/[0.02] flex flex-col gap-4 animate-fade-in">
+                            <div class="flex justify-between items-center border-b border-slate-900 pb-3">
+                                <div>
+                                    <h4 class="text-white font-bold text-sm" id="calc-res-title">Servicio de Prueba</h4>
+                                    <span class="text-[10px] text-slate-500" id="calc-res-type">Tipo de servicio</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-slate-500 text-[10px]">Día de la Semana</span>
+                                    <p class="text-slate-300 font-bold" id="calc-res-day-name">Jueves</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2 text-[11px]">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Cálculo Base:</span>
+                                    <span class="text-slate-300 font-bold" id="calc-res-base-math">1 x $180.00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500">Estado Promoción:</span>
+                                    <span class="font-bold text-slate-300" id="calc-res-promo">Activo</span>
+                                </div>
+                                <div class="flex justify-between items-center text-emerald-400" id="row-discount-applied">
+                                    <span>Descuento Aplicado:</span>
+                                    <span class="font-bold" id="calc-res-discount">-15% ($27.00)</span>
+                                </div>
+                                <div class="border-t border-slate-900 pt-2 flex justify-between text-white font-extrabold text-sm mt-1">
+                                    <span class="text-theme-primary">Precio Final Final:</span>
+                                    <span class="text-theme-primary" id="calc-res-total">$153.00</span>
+                                </div>
+                            </div>
+
+                            <div class="p-3 bg-black/40 border border-slate-950 rounded-xl text-[10px] text-slate-400">
+                                💡 <strong>Explicación de la regla de negocio:</strong>
+                                <p class="mt-1" id="calc-res-rule">Regla de negocio explicada aquí...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Columna Derecha (4 cols): Consola Terminal Java -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                <div class="bg-black border border-slate-900 rounded-2xl overflow-hidden shadow-2xl relative">
+                    <!-- Cabecera de Consola -->
+                    <div class="bg-slate-950 px-4 py-3 border-b border-slate-900 flex justify-between items-center">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        </div>
+                        <span class="text-[10px] font-mono text-slate-500">Main.java Console Outputs</span>
+                        <i class="fa-solid fa-terminal text-xs text-slate-700"></i>
+                    </div>
+
+                    <!-- Cuerpo de Consola -->
+                    <div class="p-4 font-mono text-[10.5px] leading-relaxed text-emerald-400/90 h-[420px] overflow-y-auto bg-slate-950/70" id="terminal-content">
+                        <span class="text-slate-600">// Haz click en "Ejecutar Pruebas" para compilar y ejecutar Main.java en tiempo real...</span>
+                        <div class="mt-3 text-slate-400" id="terminal-cursor-line">
+                            <span class="text-theme-primary">Ignacio-MacBook-Pro:~$</span> java Test.Main
+                            <button id="btn-run-terminal" class="mt-4 block bg-theme-primary hover:bg-theme-primary/90 text-black font-extrabold px-4 py-2 rounded-lg transition-transform hover:scale-[1.03] uppercase cursor-pointer text-xs">
+                                <i class="fa-solid fa-play mr-1.5"></i> Ejecutar Pruebas Java
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</Layout>
+
+<script>
+    // ==========================================
+    // Lógica Interactiva en Javascript (Cliente)
+    // ==========================================
+
+    // Estructuras de clases simuladas
+    class Servicio {
+        constructor(codServicio, porcentajeDescuento, enPromocion, dia) {
+            if (!codServicio || codServicio.length !== 6) {
+                throw {
+                    type: 'CodigoInvalidoException',
+                    message: `El codigo debe tener 6 caracteres unicos! (Ingresado: ${codServicio || 'nulo'})`
+                };
+            }
+            if (porcentajeDescuento < 0 || porcentajeDescuento > 100) {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El porcentaje de descuento debe estar entre 0 y 100.'
+                };
+            }
+            if (!dia) {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El dia no puede ser nulo.'
+                };
+            }
+            this.codServicio = codServicio;
+            this.porcentajeDescuento = porcentajeDescuento;
+            this.enPromocion = enPromocion;
+            this.dia = dia; // formato String YYYY-MM-DD
+        }
+    }
+
+    class Gastronomia extends Servicio {
+        constructor(codServicio, porcentajeDescuento, enPromocion, dia, gastronomia, precio, diaSemDesc) {
+            super(codServicio, porcentajeDescuento, enPromocion, dia);
+            if (!gastronomia || gastronomia.trim() === '') {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El nombre de la gastronomia no puede estar vacio.'
+                };
+            }
+            if (precio < 0) {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El precio no puede ser negativo.'
+                };
+            }
+            if (diaSemDesc < 1 || diaSemDesc > 7) {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El dia de la semana de descuento debe estar entre 1 (Lunes) y 7 (Domingo).'
+                };
+            }
+            this.gastronomia = gastronomia;
+            this.precio = precio;
+            this.diaSemDesc = diaSemDesc;
+        }
+
+        calcularPrecioFinal(simDateStr) {
+            let precioFinal = this.precio;
+            const simDate = new Date(simDateStr + 'T00:00:00');
+            // Obtener el día de la semana (1 = Lunes, ..., 7 = Domingo)
+            // getDay() de JS retorna 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+            let dayOfWeekJS = simDate.getDay();
+            let dayOfWeekJava = dayOfWeekJS === 0 ? 7 : dayOfWeekJS;
+
+            if (this.enPromocion && dayOfWeekJava === this.diaSemDesc) {
+                let desc = this.porcentajeDescuento / 100;
+                precioFinal = precioFinal * (1 - desc);
+            }
+            return precioFinal;
+        }
+    }
+
+    class Hospedaje extends Servicio {
+        constructor(codServicio, porcentajeDescuento, enPromocion, dia, hospedaje, precioPorNoche, diasDeHospedaje) {
+            super(codServicio, porcentajeDescuento, enPromocion, dia);
+            if (!hospedaje || hospedaje.trim() === '') {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El nombre del hospedaje no puede estar vacio.'
+                };
+            }
+            if (precioPorNoche < 0) {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'El precio por noche no puede ser negativo.'
+                };
+            }
+            if (diasDeHospedaje < 1) {
+                throw {
+                    type: 'IllegalArgumentException',
+                    message: 'La cantidad de dias de hospedaje debe ser al menos 1.'
+                };
+            }
+            this.hospedaje = hospedaje;
+            this.precioPorNoche = precioPorNoche;
+            this.diasDeHospedaje = diasDeHospedaje;
+        }
+
+        calcularPrecioFinal(simDateStr) {
+            let precioFinal = this.precioPorNoche * this.diasDeHospedaje;
+            const simDate = new Date(simDateStr + 'T00:00:00');
+            let dayOfWeekJS = simDate.getDay(); // 0 = Domingo, 6 = Sábado
+
+            if (this.enPromocion) {
+                // Si NO es Sábado (6) ni Domingo (0), se aplica el descuento
+                if (dayOfWeekJS !== 0 && dayOfWeekJS !== 6) {
+                    let desc = this.porcentajeDescuento / 100;
+                    precioFinal *= (1 - desc);
+                }
+            }
+            return precioFinal;
+        }
+    }
+
+    // Inicializar base de datos de servicios en memoria (State local)
+    const services = [
+        new Gastronomia("858927", 15.0, true, "1968-01-01", "Milanesa con pure", 350.0, 3),
+        new Hospedaje("489259", 10.0, true, "2020-10-28", "Habitacion triple", 2200.0, 10),
+        new Gastronomia("182835", 20.0, false, "1993-06-04", "Gaseosa", 120.0, 3),
+        new Hospedaje("758972", 15.0, false, "1976-05-31", "Habitacion simple", 1000.0, 5)
+    ];
+
+    // ==========================================
+    // DOM Elements & UI Logics
+    // ==========================================
+    const tabs = {
+        list: document.getElementById('tab-list'),
+        add: document.getElementById('tab-add'),
+        query: document.getElementById('tab-query'),
+        calc: document.getElementById('tab-calc')
+    };
+
+    const sections = {
+        list: document.getElementById('content-list'),
+        add: document.getElementById('content-add'),
+        query: document.getElementById('content-query'),
+        calc: document.getElementById('content-calc')
+    };
+
+    const serviceCountBadge = document.getElementById('service-count');
+    const servicesGrid = document.getElementById('services-grid');
+
+    // Switch Tabs Helper
+    function activateTab(tabName) {
+        Object.keys(tabs).forEach(name => {
+            const tabBtn = tabs[name];
+            const section = sections[name];
+            
+            if (name === tabName) {
+                tabBtn.className = "px-4 py-2 border-b-2 border-theme-primary text-white font-bold transition-all bg-theme-primary/5 rounded-t-lg cursor-pointer";
+                section.classList.remove('hidden');
+                section.classList.add('block');
+            } else {
+                tabBtn.className = "px-4 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-300 hover:border-slate-800 transition-all cursor-pointer";
+                section.classList.remove('block');
+                section.classList.add('hidden');
+            }
+        });
+        // Limpiar excepciones visibles al cambiar de pestaña
+        hideException();
+    }
+
+    tabs.list.addEventListener('click', () => activateTab('list'));
+    tabs.add.addEventListener('click', () => activateTab('add'));
+    tabs.query.addEventListener('click', () => {
+        activateTab('query');
+        runQueryCode(); // Lanzar consulta por defecto al entrar
+    });
+    tabs.calc.addEventListener('click', () => {
+        activateTab('calc');
+        populateCalculatorDropdown();
+    });
+
+    // Form inputs and conditional group logic
+    const addForm = document.getElementById('add-service-form') as HTMLFormElement;
+    const typeRadios = document.getElementsByName('serviceType');
+    const labelPrice = document.getElementById('label-price');
+    const groupDayDiscount = document.getElementById('group-day-discount');
+    const groupNights = document.getElementById('group-nights');
+    const formPromo = document.getElementById('form-promo') as HTMLInputElement;
+    const promoFieldsGroup = document.getElementById('promo-fields-group');
+
+    // Cambiar dinámicamente inputs por tipo de servicio
+    typeRadios.forEach(radio => {
+        radio.addEventListener('change', (e: any) => {
+            if (e.target.value === 'gastronomia') {
+                if (labelPrice) labelPrice.textContent = 'Precio Base ($)';
+                groupDayDiscount.classList.remove('hidden');
+                groupNights.classList.add('hidden');
+            } else {
+                if (labelPrice) labelPrice.textContent = 'Precio por Noche ($)';
+                groupDayDiscount.classList.add('hidden');
+                groupNights.classList.remove('hidden');
+            }
+        });
+    });
+
+    // Mostrar/ocultar campos de descuento según promoción
+    formPromo.addEventListener('change', (e: any) => {
+        if (e.target.checked) {
+            promoFieldsGroup.classList.remove('hidden');
+            promoFieldsGroup.classList.add('grid');
+        } else {
+            promoFieldsGroup.classList.remove('grid');
+            promoFieldsGroup.classList.add('hidden');
+        }
+    });
+
+    // ==========================================
+    // Exception Display System (Custom alerts)
+    // ==========================================
+    const exceptionBox = document.getElementById('demo-exception-alert');
+    const exceptionTypeLabel = document.getElementById('exception-type');
+    const exceptionMsgLabel = document.getElementById('exception-message');
+
+    function showException(type, message) {
+        if (exceptionBox && exceptionTypeLabel && exceptionMsgLabel) {
+            exceptionTypeLabel.textContent = `Exception: ${type}`;
+            exceptionMsgLabel.textContent = message;
+            exceptionBox.classList.remove('hidden');
+            exceptionBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    function hideException() {
+        if (exceptionBox) exceptionBox.classList.add('hidden');
+    }
+
+    // ==========================================
+    // Dynamic List Renderer
+    // ==========================================
+    const dayNames = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+    function renderServicesList() {
+        if (!servicesGrid || !serviceCountBadge) return;
+
+        serviceCountBadge.textContent = `${services.length} Servicios`;
+        servicesGrid.innerHTML = '';
+
+        services.forEach(serv => {
+            const card = document.createElement('div');
+            const isGastro = serv instanceof Gastronomia;
+            
+            card.className = `p-4 rounded-xl border ${isGastro ? 'border-theme-primary/20 bg-theme-primary/[0.01]' : 'border-theme-secondary/20 bg-theme-secondary/[0.01]'} hover:border-slate-800 transition-all font-mono text-[11px] flex flex-col gap-2 relative overflow-hidden`;
+
+            const iconClass = isGastro ? 'fa-bowl-food text-theme-primary' : 'fa-hotel text-theme-secondary';
+            const typeLabel = isGastro ? 'GASTRONOMÍA' : 'HOSPEDAJE';
+
+            card.innerHTML = `
+                <div class="absolute -top-3 -right-3 text-[45px] text-slate-900/30 font-extrabold pointer-events-none uppercase">${isGastro ? 'G' : 'H'}</div>
+                <div class="flex justify-between items-center border-b border-slate-900 pb-1.5 z-10">
+                    <span class="text-white font-bold flex items-center gap-1.5">
+                        <i class="fa-solid ${iconClass}"></i>
+                        ${isGastro ? serv.gastronomia : serv.hospedaje}
+                    </span>
+                    <span class="text-[9px] text-slate-500 uppercase tracking-wide font-black">${typeLabel}</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-slate-400 mt-1 z-10">
+                    <div>🔑 CÓDIGO: <strong class="text-slate-200">${serv.codServicio}</strong></div>
+                    <div>💵 PRECIO: <strong class="text-slate-200">$${isGastro ? serv.precio : serv.precioPorNoche}</strong></div>
+                    <div>📅 FECHA: <strong class="text-slate-200">${serv.dia}</strong></div>
+                    <div>📢 PROMO: <strong class="${serv.enPromocion ? 'text-theme-primary' : 'text-slate-600'}">${serv.enPromocion ? 'SÍ' : 'NO'}</strong></div>
+                </div>
+                ${serv.enPromocion ? `
+                <div class="mt-1 text-[10px] text-slate-500 flex flex-wrap gap-x-4 border-t border-slate-950 pt-1.5 z-10">
+                    <div>📉 DESCUENTO: <span class="text-slate-300 font-bold">${serv.porcentajeDescuento}%</span></div>
+                    <div>${isGastro ? `📅 DÍA DESCUENTO: <span class="text-slate-300 font-bold">${dayNames[serv.diaSemDesc - 1]}</span>` : `🌙 NOCHES: <span class="text-slate-300 font-bold">${serv.diasDeHospedaje}</span>`}</div>
+                </div>` : ''}
+            `;
+            servicesGrid.appendChild(card);
+        });
+    }
+
+    // ==========================================
+    // Form Submission (Add Service)
+    // ==========================================
+    addForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        hideException();
+
+        const type = (document.querySelector('input[name="serviceType"]:checked') as HTMLInputElement).value;
+        const code = (document.getElementById('form-code') as HTMLInputElement).value;
+        const name = (document.getElementById('form-name') as HTMLInputElement).value;
+        const price = parseFloat((document.getElementById('form-price') as HTMLInputElement).value);
+        const date = (document.getElementById('form-date') as HTMLInputElement).value;
+        const enPromocion = (document.getElementById('form-promo') as HTMLInputElement).checked;
+        const discount = parseFloat((document.getElementById('form-discount') as HTMLInputElement).value);
+        const dayDesc = parseInt((document.getElementById('form-day-desc') as HTMLInputElement).value);
+        const nights = parseInt((document.getElementById('form-nights') as HTMLInputElement).value);
+
+        try {
+            // Validaciones equivalentes a Java (Sistema.agregarGastronomia / agregarHospedaje)
+            // 1. Validar duplicados de código
+            const exists = services.some(s => s.codServicio === code);
+            if (exists) {
+                throw {
+                    type: 'ServicioDuplicadoException',
+                    message: `No pueden existir dos servicios con el mismo codigo: ${code}`
+                };
+            }
+
+            let newService;
+            if (type === 'gastronomia') {
+                newService = new Gastronomia(code, enPromocion ? discount : 0, enPromocion, date, name, price, dayDesc);
+            } else {
+                newService = new Hospedaje(code, enPromocion ? discount : 0, enPromocion, date, name, price, nights);
+            }
+
+            services.push(newService);
+            addForm.reset();
+            if (promoFieldsGroup) promoFieldsGroup.classList.add('hidden');
+            
+            // Renderizar y redirigir
+            renderServicesList();
+            activateTab('list');
+            
+            // Show dynamic UI toast of success
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 bg-emerald-950 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl shadow-2xl z-50 text-xs font-mono animate-bounce";
+            toast.innerHTML = `✅ ¡Servicio registrado correctamente en el Sistema!`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+
+        } catch (err: any) {
+            showException(err.type || 'IllegalArgumentException', err.message || 'Error al validar atributos.');
+        }
+    });
+
+    // ==========================================
+    // Querying & Filtering Tab
+    // ==========================================
+    const queryTabs = {
+        code: document.getElementById('query-by-code-tab'),
+        promo: document.getElementById('query-by-promo-tab'),
+        date: document.getElementById('query-by-date-tab')
+    };
+
+    const querySubsections = {
+        code: document.getElementById('subquery-code'),
+        promo: document.getElementById('subquery-promo'),
+        date: document.getElementById('subquery-date')
+    };
+
+    const queryResultsBox = document.getElementById('query-results-box');
+
+    function activateQuerySub(activeName) {
+        Object.keys(queryTabs).forEach(name => {
+            const btn = queryTabs[name];
+            const section = querySubsections[name];
+            if (name === activeName) {
+                btn.className = "p-3 border border-theme-primary/30 rounded-xl bg-theme-primary/5 text-white font-bold cursor-pointer text-left flex items-center justify-between";
+                section.classList.remove('hidden');
+                section.classList.add('block');
+            } else {
+                btn.className = "p-3 border border-slate-800 rounded-xl bg-slate-900/20 text-slate-400 hover:border-slate-800 transition cursor-pointer text-left flex items-center justify-between";
+                section.classList.remove('block');
+                section.classList.add('hidden');
+            }
+        });
+        if (queryResultsBox) queryResultsBox.innerHTML = '<p class="text-xs italic text-slate-600 font-mono">Realiza una búsqueda para ver los resultados.</p>';
+    }
+
+    queryTabs.code.addEventListener('click', () => activateQuerySub('code'));
+    queryTabs.promo.addEventListener('click', () => {
+        activateQuerySub('promo');
+        runQueryPromo(true); // default true
+    });
+    queryTabs.date.addEventListener('click', () => activateQuerySub('date'));
+
+    // Búsqueda por código
+    const queryCodeInput = document.getElementById('query-code') as HTMLInputElement;
+    const btnQueryCode = document.getElementById('btn-query-code');
+
+    function runQueryCode() {
+        if (!queryResultsBox) return;
+        const code = queryCodeInput.value;
+        if (!code) {
+            queryResultsBox.innerHTML = '<p class="text-xs italic text-slate-600 font-mono">Ingresa un código para buscar.</p>';
+            return;
+        }
+
+        try {
+            // Simular Java: traerServicio(codServicio)
+            const matched = services.find(s => s.codServicio === code);
+            if (!matched) {
+                throw {
+                    type: 'ServicioNoEncontradoException',
+                    message: `No existe un servicio con el codigo que proporciono: ${code}`
+                };
+            }
+
+            hideException();
+            const isGastro = matched instanceof Gastronomia;
+            queryResultsBox.innerHTML = `
+                <div class="p-3 border border-emerald-500/20 bg-emerald-950/10 rounded-xl font-mono text-[11px] flex justify-between items-center">
+                    <div>
+                        <span class="text-white font-bold">${isGastro ? '🍽️ Gastronomía' : '🏨 Hospedaje'}: ${isGastro ? matched.gastronomia : matched.hospedaje}</span>
+                        <p class="text-[10px] text-slate-500 mt-1">Código: ${matched.codServicio} | Precio Base: $${isGastro ? matched.precio : matched.precioPorNoche} | Fecha: ${matched.dia}</p>
+                    </div>
+                    <span class="text-[10px] text-theme-primary font-bold">ENCONTRADO</span>
+                </div>
+            `;
+        } catch (err: any) {
+            queryResultsBox.innerHTML = `<p class="text-xs text-rose-400 font-mono">❌ Error: ${err.message}</p>`;
+            showException(err.type || 'IllegalArgumentException', err.message);
+        }
+    }
+
+    btnQueryCode?.addEventListener('click', runQueryCode);
+    queryCodeInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') runQueryCode();
+    });
+
+    // Búsqueda por promoción (Demuestra la no-acumulación corrigiendo la bug de Java!)
+    const btnQueryPromoTrue = document.getElementById('btn-query-promo-true');
+    const btnQueryPromoFalse = document.getElementById('btn-query-promo-false');
+
+    function runQueryPromo(promoVal) {
+        if (!queryResultsBox) return;
+        
+        // Simular traerServicio(enPromocion)
+        const matchedList = services.filter(s => s.enPromocion === promoVal);
+
+        btnQueryPromoTrue.className = promoVal 
+            ? "flex-1 bg-theme-primary/10 border border-theme-primary/30 text-theme-primary font-bold py-3 rounded-xl transition cursor-pointer"
+            : "flex-1 bg-slate-900 border border-slate-800 text-slate-400 py-3 rounded-xl hover:bg-slate-800 transition cursor-pointer";
+        btnQueryPromoFalse.className = !promoVal 
+            ? "flex-1 bg-theme-primary/10 border border-theme-primary/30 text-theme-primary font-bold py-3 rounded-xl transition cursor-pointer"
+            : "flex-1 bg-slate-900 border border-slate-800 text-slate-400 py-3 rounded-xl hover:bg-slate-800 transition cursor-pointer";
+
+        if (matchedList.length === 0) {
+            queryResultsBox.innerHTML = '<p class="text-xs text-slate-500 font-mono">No se encontraron servicios que coincidan.</p>';
+            return;
+        }
+
+        queryResultsBox.innerHTML = matchedList.map(s => {
+            const isGastro = s instanceof Gastronomia;
+            return `
+                <div class="p-3 border border-slate-900 bg-black/30 rounded-xl font-mono text-[11px] flex justify-between items-center">
+                    <div>
+                        <span class="text-slate-300 font-bold">${isGastro ? '🍽️' : '🏨'} ${isGastro ? s.gastronomia : s.hospedaje}</span>
+                        <p class="text-[10px] text-slate-500">Cod: ${s.codServicio} | Precio: $${isGastro ? s.precio : s.precioPorNoche} | Promo: ${s.enPromocion ? 'SÍ' : 'NO'}</p>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    btnQueryPromoTrue?.addEventListener('click', () => runQueryPromo(true));
+    btnQueryPromoFalse?.addEventListener('click', () => runQueryPromo(false));
+
+    // Búsqueda por promoción + fecha
+    const queryDateVal = document.getElementById('query-date-val') as HTMLInputElement;
+    const btnQueryDate = document.getElementById('btn-query-date');
+
+    function runQueryDatePromo() {
+        if (!queryResultsBox || !queryDateVal) return;
+        const dateStr = queryDateVal.value;
+        const promoVal = (document.querySelector('input[name="queryPromoVal"]:checked') as HTMLInputElement).value === 'true';
+
+        if (!dateStr) {
+            queryResultsBox.innerHTML = '<p class="text-xs text-amber-400 font-mono">⚠️ Selecciona una fecha para realizar el filtro.</p>';
+            return;
+        }
+
+        // Simular traerServicio(enPromocion, dia)
+        const matchedList = services.filter(s => s.enPromocion === promoVal && s.dia === dateStr);
+
+        if (matchedList.length === 0) {
+            queryResultsBox.innerHTML = `<p class="text-xs text-slate-500 font-mono">No se encontraron servicios registrados adquiridos el día <strong>${dateStr}</strong> en promoción <strong>${promoVal ? 'SÍ' : 'NO'}</strong>.</p>`;
+            return;
+        }
+
+        queryResultsBox.innerHTML = matchedList.map(s => {
+            const isGastro = s instanceof Gastronomia;
+            return `
+                <div class="p-3 border border-slate-900 bg-black/30 rounded-xl font-mono text-[11px] flex justify-between items-center">
+                    <div>
+                        <span class="text-slate-300 font-bold">${isGastro ? '🍽️' : '🏨'} ${isGastro ? s.gastronomia : s.hospedaje}</span>
+                        <p class="text-[10px] text-slate-500">Cod: ${s.codServicio} | Adquirido: ${s.dia} | Promo: ${s.enPromocion ? 'SÍ' : 'NO'}</p>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    btnQueryDate?.addEventListener('click', runQueryDatePromo);
+
+    // ==========================================
+    // Calculator Tab Logic
+    // ==========================================
+    const calcSelect = document.getElementById('calc-select-service') as HTMLSelectElement;
+    const calcDateInput = document.getElementById('calc-date') as HTMLInputElement;
+    const btnCalcPrice = document.getElementById('btn-calc-price');
+    const calcResultBox = document.getElementById('calc-result-box');
+
+    // Rellenar selector de servicios
+    function populateCalculatorDropdown() {
+        if (!calcSelect) return;
+        calcSelect.innerHTML = '';
+        services.forEach(s => {
+            const isGastro = s instanceof Gastronomia;
+            const opt = document.createElement('option');
+            opt.value = s.codServicio;
+            opt.textContent = `${isGastro ? '🍽️ [Gastro]' : '🏨 [Hospedaje]'} - ${isGastro ? s.gastronomia : s.hospedaje} (Cód: ${s.codServicio})`;
+            calcSelect.appendChild(opt);
+        });
+
+        // Seed date input with current date if empty
+        if (calcDateInput && !calcDateInput.value) {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            calcDateInput.value = `${yyyy}-${mm}-${dd}`;
+        }
+    }
+
+    btnCalcPrice?.addEventListener('click', () => {
+        if (!calcSelect || !calcDateInput || !calcResultBox) return;
+        
+        const code = calcSelect.value;
+        const dateStr = calcDateInput.value;
+
+        if (!dateStr) {
+            alert('Por favor selecciona una fecha.');
+            return;
+        }
+
+        const service = services.find(s => s.codServicio === code);
+        if (!service) return;
+
+        const isGastro = service instanceof Gastronomia;
+        const simDate = new Date(dateStr + 'T00:00:00');
+        const dayNamesLarge = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const dayName = dayNamesLarge[simDate.getDay()];
+        
+        const priceFinal = service.calcularPrecioFinal(dateStr);
+        let baseMath = '';
+        let rowDiscount = document.getElementById('row-discount-applied');
+        let discountLabel = document.getElementById('calc-res-discount');
+        let ruleLabel = document.getElementById('calc-res-rule');
+
+        // Text outputs UI
+        document.getElementById('calc-res-title').textContent = isGastro ? service.gastronomia : service.hospedaje;
+        document.getElementById('calc-res-type').textContent = isGastro ? 'SERVICIO DE GASTRONOMÍA' : 'SERVICIO DE HOSPEDAJE';
+        document.getElementById('calc-res-day-name').textContent = dayName;
+        document.getElementById('calc-res-promo').textContent = service.enPromocion ? 'HABILITADA' : 'DESHABILITADA';
+        document.getElementById('calc-res-total').textContent = `$${priceFinal.toFixed(2)}`;
+
+        if (isGastro) {
+            baseMath = `$${service.precio.toFixed(2)}`;
+            document.getElementById('calc-res-base-math').textContent = baseMath;
+
+            let dayOfWeekJS = simDate.getDay();
+            let dayOfWeekJava = dayOfWeekJS === 0 ? 7 : dayOfWeekJS;
+
+            if (service.enPromocion && dayOfWeekJava === service.diaSemDesc) {
+                rowDiscount.classList.remove('hidden');
+                rowDiscount.classList.add('flex');
+                const saving = service.precio * (service.porcentajeDescuento / 100);
+                discountLabel.textContent = `-${service.porcentajeDescuento}% (-$${saving.toFixed(2)})`;
+                ruleLabel.textContent = `Se aplicó un descuento del ${service.porcentajeDescuento}% porque el servicio está en promoción y el día simulado coincide con el día de descuento configurado (${dayNames[service.diaSemDesc - 1]}).`;
+            } else {
+                rowDiscount.classList.remove('flex');
+                rowDiscount.classList.add('hidden');
+                ruleLabel.textContent = service.enPromocion 
+                    ? `No se aplicó descuento porque el día simulado (${dayName}) no coincide con el día de descuento configurado (${dayNames[service.diaSemDesc - 1]}).`
+                    : `No se aplica descuento porque este servicio de gastronomía no se encuentra en promoción comercial.`;
+            }
+        } else {
+            baseMath = `${service.diasDeHospedaje} noches x $${service.precioPorNoche.toFixed(2)}/noche = $${(service.precioPorNoche * service.diasDeHospedaje).toFixed(2)}`;
+            document.getElementById('calc-res-base-math').textContent = baseMath;
+
+            let dayOfWeekJS = simDate.getDay(); // 0 = Dom, 6 = Sáb
+            const isWeekend = dayOfWeekJS === 0 || dayOfWeekJS === 6;
+
+            if (service.enPromocion && !isWeekend) {
+                rowDiscount.classList.remove('hidden');
+                rowDiscount.classList.add('flex');
+                const subTotal = service.precioPorNoche * service.diasDeHospedaje;
+                const saving = subTotal * (service.porcentajeDescuento / 100);
+                discountLabel.textContent = `-${service.porcentajeDescuento}% (-$${saving.toFixed(2)})`;
+                ruleLabel.textContent = `Se aplicó un descuento del ${service.porcentajeDescuento}% porque el servicio está en promoción y el día simulado (${dayName}) es un día de semana (Lunes a Viernes).`;
+            } else {
+                rowDiscount.classList.remove('flex');
+                rowDiscount.classList.add('hidden');
+                ruleLabel.textContent = service.enPromocion
+                    ? `No se aplicó descuento porque el día de simulación es fin de semana (${dayName}). La promoción para estadías prolongadas de hospedaje solo aplica para días de semana.`
+                    : `No se aplica descuento porque este servicio de hospedaje no se encuentra en promoción.`;
+            }
+        }
+
+        calcResultBox.classList.remove('hidden');
+    });
+
+    // ==========================================
+    // Hacker Terminal Simulator
+    // ==========================================
+    const btnRunTerminal = document.getElementById('btn-run-terminal');
+    const terminalContent = document.getElementById('terminal-content');
+
+    const terminalLogs = [
+        "Compiling java project...",
+        "javac -d build/classes src/Model/*.java src/Test/*.java [SUCCESS]",
+        "java -ea -cp build/classes Test.Main",
+        "",
+        "1-1",
+        "El codigo debe tener 6 caracteres unicos! [EXCEPCIÓN CAPTURADA]",
+        "1-2",
+        "Gastronomia{codServicio=489235, porcentajeDescuento=15.0, enPromocion=true, dia=2020-10-28, gastronomia=Hamburguesa criolla, precio=180.0, diaSemDesc=4}",
+        "1-3",
+        "El codigo debe tener 6 caracteres unicos! [EXCEPCIÓN CAPTURADA]",
+        "1-4",
+        "Hospedaje{codServicio=287282, porcentajeDescuento=10.0, enPromocion=true, dia=2009-04-21, hospedaje=Cabania 3 personas, precioPorNoche=1500.0, diasDeHospedaje=5}",
+        "2-1",
+        "Precio final calculado: 180.0 (Miércoles 28/10/2020, sin descuento)",
+        "2-2",
+        "Precio final calculado: 6750.0 (Martes 27/10/2020, aplica 10% desc. día de semana)",
+        "3",
+        "Agregando servicios al sistema...",
+        "Sistema{lstServicio=[Gastronomia{codServicio=858927, ...}, Hospedaje{codServicio=489259, ...}, Gastronomia{codServicio=182835, ...}, Hospedaje{codServicio=758972, ...}]}",
+        "4-1",
+        "Consultando servicios en promoción: traerServicio(true)",
+        "[Gastronomia{codServicio=858927, ...}, Hospedaje{codServicio=489259, ...}]",
+        "4-2",
+        "Consultando promoción por fecha: traerServicio(true, 2020-10-28)",
+        "[Hospedaje{codServicio=489259, ...}]",
+        "",
+        "--- PRUEBAS DE CALIDAD ADICIONALES (REFACTOR) ---",
+        "5-1: Gastronomía descuento aplicado (Jueves 29/10/2020 coincide con diaSemDesc = 4)",
+        "Precio final con descuento: 153.0 (Esperado: 153.0) -> [OK]",
+        "5-2: Verificación de no-acumulación en consultas múltiples",
+        "Primera llamada: 2 elementos, Segunda llamada: 2 elementos -> [OK]",
+        "5-3: Validaciones de negocio (Precio negativo)",
+        "Capturada correctamente: El precio no puede ser negativo. -> [OK]",
+        "5-4: Validaciones de negocio (Día de semana descuento fuera de rango)",
+        "Capturada correctamente: El dia de la semana de descuento debe estar entre 1 y 7. -> [OK]",
+        "5-5: Excepciones personalizadas - Código Duplicado",
+        "Capturada correctamente: ServicioDuplicadoException: No pueden existir dos servicios con el mismo codigo: 858927 -> [OK]",
+        "5-6: Excepciones personalizadas - Código Inválido",
+        "Capturada correctamente: CodigoInvalidoException: El codigo debe tener 6 caracteres unicos! -> [OK]",
+        "5-7: Excepciones personalizadas - Servicio No Encontrado",
+        "Capturada correctamente: ServicioNoEncontradoException: No existe un servicio con el codigo que proporciono: 999999 -> [OK]",
+        "",
+        "¡TODAS LAS PRUEBAS DE VERIFICACIÓN EJECUTADAS CON ÉXITO! 🎉"
+    ];
+
+    btnRunTerminal?.addEventListener('click', () => {
+        if (!terminalContent) return;
+        
+        btnRunTerminal.disabled = true;
+        btnRunTerminal.classList.add('opacity-50', 'pointer-events-none');
+        
+        terminalContent.innerHTML = '<span class="text-theme-primary">Ignacio-MacBook-Pro:~$</span> java Test.Main<br/>';
+        
+        let index = 0;
+        
+        function printLine() {
+            if (index < terminalLogs.length) {
+                const line = terminalLogs[index];
+                const p = document.createElement('div');
+                
+                if (line.includes('[SUCCESS]') || line.includes('[OK]') || line.includes('ÉXITO')) {
+                    p.className = 'text-emerald-400 font-bold';
+                } else if (line.includes('[EXCEPCIÓN') || line.includes('Error')) {
+                    p.className = 'text-rose-400';
+                } else if (line.startsWith('1-') || line.startsWith('2-') || line.startsWith('3') || line.startsWith('4-')) {
+                    p.className = 'text-white font-bold';
+                } else {
+                    p.className = 'text-slate-400';
+                }
+                
+                p.textContent = line;
+                terminalContent.appendChild(p);
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+                index++;
+                setTimeout(printLine, 120);
+            } else {
+                // Done
+                const endDiv = document.createElement('div');
+                endDiv.className = 'mt-3 text-slate-500';
+                endDiv.innerHTML = '<span class="text-theme-primary">Ignacio-MacBook-Pro:~$</span> <span class="animate-pulse">_</span>';
+                terminalContent.appendChild(endDiv);
+                
+                btnRunTerminal.disabled = false;
+                btnRunTerminal.classList.remove('opacity-50', 'pointer-events-none');
+            }
+        }
+        
+        setTimeout(printLine, 500);
+    });
+
+    // Initial render
+    renderServicesList();
+
+    // ==========================================
+    // Multi-language integration client-side
+    // ==========================================
+    const demoTranslations = {
+        es: {
+            back_btn: "← Volver al inicio",
+            page_title: "Simulador de Hospedaje y Gastronomía",
+            page_subtitle: "Portabilidad interactiva de la lógica de negocio POO Java a la Web",
+            poo_struct: "Estructura del Diagrama de Clases POO",
+            tab_services: "Servicios",
+            tab_add: "Agregar",
+            tab_query: "Consultas",
+            tab_calculate: "Calcular Precio",
+            list_title: "Lista de Servicios Registrados",
+            add_title: "Registrar Nuevo Servicio",
+            form_type: "Tipo de Servicio",
+            type_gastronomy: "Gastronomía",
+            type_hosting: "Hospedaje",
+            form_code: "Código del Servicio (Exacto 6 Chars)",
+            form_name: "Nombre / Descripción del Servicio",
+            form_price_gastronomy: "Precio Base ($)",
+            form_price_hosting: "Precio por Noche ($)",
+            form_date: "Fecha de Adquisición",
+            form_promo: "¿En Promoción?",
+            form_discount_pct: "Porcentaje de Descuento (0 - 100%)",
+            form_day_desc: "Día de la semana de Descuento",
+            form_nights: "Cantidad de Noches Reservadas",
+            form_submit: "Crear y Guardar Servicio",
+            query_title: "Consultar el Sistema de Servicios",
+            query_code_lbl: "Ingresar Código de Servicio (6 Caracteres)",
+            query_promo_lbl: "Filtrar por Estado de Promoción",
+            query_results: "Resultados de la Consulta",
+            query_no_searched: "No se ha realizado ninguna búsqueda aún.",
+            calc_title: "Calcular Precio Final de un Servicio"
+        },
+        en: {
+            back_btn: "← Back to home",
+            page_title: "Hosting & Gastronomy Simulator",
+            page_subtitle: "Interactive Java OOP Business Logic Ported to the Web",
+            poo_struct: "OOP Class Diagram Structure",
+            tab_services: "Services",
+            tab_add: "Add New",
+            tab_query: "Queries",
+            tab_calculate: "Calculate Price",
+            list_title: "List of Registered Services",
+            add_title: "Register New Service",
+            form_type: "Service Type",
+            type_gastronomy: "Gastronomy",
+            type_hosting: "Hosting",
+            form_code: "Service Code (Exact 6 Chars)",
+            form_name: "Service Name / Description",
+            form_price_gastronomy: "Base Price ($)",
+            form_price_hosting: "Price per Night ($)",
+            form_date: "Acquisition Date",
+            form_promo: "Is in Promotion?",
+            form_discount_pct: "Discount Percentage (0 - 100%)",
+            form_day_desc: "Weekly Discount Day",
+            form_nights: "Number of Nights Reserved",
+            form_submit: "Create and Save Service",
+            query_title: "Query the Services System",
+            query_code_lbl: "Enter Service Code (6 Characters)",
+            query_promo_lbl: "Filter by Promotion State",
+            query_results: "Query Results",
+            query_no_searched: "No query has been executed yet.",
+            calc_title: "Calculate Service's Final Price"
+        }
+    };
+
+    function translateDemoPage(lang) {
+        const dict = demoTranslations[lang] || demoTranslations.es;
+        const elements = document.querySelectorAll('[data-demo-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-demo-i18n');
+            if (key && dict[key]) {
+                el.innerHTML = dict[key];
+            }
+        });
+
+        // Update form labels
+        const serviceTypeRad = document.querySelector('input[name="serviceType"]:checked') as HTMLInputElement | null;
+        if (labelPrice && serviceTypeRad) {
+            if (serviceTypeRad.value === 'gastronomia') {
+                labelPrice.textContent = dict.form_price_gastronomy;
+            } else {
+                labelPrice.textContent = dict.form_price_hosting;
+            }
+        }
+    }
+
+    // Set initial language
+    let activeLang = (localStorage.getItem('language') || 'es') as 'es' | 'en';
+    translateDemoPage(activeLang);
+
+    // Listen to global changes
+    window.addEventListener('language-changed', (e: any) => {
+        activeLang = e.detail.language;
+        translateDemoPage(activeLang);
+    });
+</script>
+
+<style is:global>
+    /* Styling animations inside interactive calc result */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fadeIn 0.4s ease-out forwards;
+    }
+</style>
