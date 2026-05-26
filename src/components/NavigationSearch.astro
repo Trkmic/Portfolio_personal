@@ -1,0 +1,294 @@
+---
+// NavigationSearch.astro
+---
+
+<div class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[60%] min-w-[220px] max-w-[340px] sm:max-w-[420px] font-sans">
+  <!-- Input de búsqueda -->
+  <div class="relative bg-slate-950/85 backdrop-blur-md border border-slate-900 rounded-full flex items-center shadow-[0_4px_25px_rgba(0,0,0,0.6)] px-4 py-2.5 group focus-within:border-theme-primary/50 transition-all duration-300">
+    <i class="fa-solid fa-magnifying-glass text-slate-500 mr-2.5 text-[13px] group-focus-within:text-theme-primary transition-colors"></i>
+    <input 
+      type="text" 
+      id="nav-search-input" 
+      placeholder="Buscar sección o comando..." 
+      data-i18n-placeholder="search_placeholder"
+      class="bg-transparent border-none outline-none text-xs text-white placeholder-slate-500 w-full font-sans focus:ring-0 p-0"
+      autocomplete="off"
+    />
+    <span class="hidden sm:inline-block text-[9px] text-slate-500 bg-slate-900/60 border border-slate-800 px-1.5 py-0.5 rounded font-mono select-none shrink-0 ml-1.5">Ctrl K</span>
+  </div>
+  
+  <!-- Contenedor del Dropdown de Resultados -->
+  <div 
+    id="nav-search-results" 
+    class="hidden absolute top-12 left-0 right-0 bg-slate-950/95 backdrop-blur-xl border border-slate-900 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] p-2 max-h-[320px] overflow-y-auto z-50 animate-fadeIn"
+  >
+    <div id="nav-search-items-container" class="space-y-0.5">
+      <!-- Los elementos se renderizan dinámicamente con JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+  import { playChirp } from '../utils/audioHelper';
+
+  interface SearchItem {
+    id: string;
+    icon: string;
+    es: { title: string; desc: string };
+    en: { title: string; desc: string };
+    action: 'scroll' | 'click';
+    target: string;
+  }
+
+  const SEARCH_ITEMS: SearchItem[] = [
+    {
+      id: 'about',
+      icon: 'fa-user',
+      es: { title: 'Sobre Mí', desc: 'Conoce los estudios y perfil de Ignacio' },
+      en: { title: 'About Me', desc: 'Read about Ignacio\'s education and profile' },
+      action: 'scroll',
+      target: '#about-section'
+    },
+    {
+      id: 'projects',
+      icon: 'fa-folder-open',
+      es: { title: 'Proyectos Realizados', desc: 'Explora sus desarrollos en Github y Web' },
+      en: { title: 'Projects Accomplished', desc: 'Explore his developments on Github & Web' },
+      action: 'scroll',
+      target: '#projects-section'
+    },
+    {
+      id: 'timeline',
+      icon: 'fa-graduation-cap',
+      es: { title: 'Formación Académica', desc: 'Línea de tiempo de estudios y fechas' },
+      en: { title: 'Academic Education', desc: 'Education timeline and dates' },
+      action: 'scroll',
+      target: '#academic-section'
+    },
+    {
+      id: 'matcher',
+      icon: 'fa-wand-magic-sparkles',
+      es: { title: 'AI Job Matcher', desc: 'Comprueba compatibilidad con ofertas de empleo' },
+      en: { title: 'AI Job Matcher', desc: 'Check job post compatibility with AI' },
+      action: 'scroll',
+      target: '#job-matcher-section'
+    },
+    {
+      id: 'contact',
+      icon: 'fa-envelope',
+      es: { title: 'Contacto', desc: 'Envia un mensaje directo por formulario' },
+      en: { title: 'Contact', desc: 'Send a direct message via form' },
+      action: 'scroll',
+      target: '#contact-section'
+    },
+    {
+      id: 'chatbot',
+      icon: 'fa-robot',
+      es: { title: 'Hablar con Asistente (IgnacIA)', desc: 'Abre el chat de IA interactivo' },
+      en: { title: 'Talk to Assistant (IgnacIA)', desc: 'Open the interactive AI chat' },
+      action: 'click',
+      target: '#chat-toggle-btn'
+    },
+    {
+      id: 'terminal',
+      icon: 'fa-terminal',
+      es: { title: 'Abrir Terminal Hacker', desc: 'Accede a la consola de comandos (>_)' },
+      en: { title: 'Open Hacker Terminal', desc: 'Access the command-line console (>_)' },
+      action: 'click',
+      target: '#terminal-toggle'
+    },
+    {
+      id: 'mode',
+      icon: 'fa-circle-half-stroke',
+      es: { title: 'Alternar Modo Claro / Oscuro', desc: 'Cambia el estilo visual' },
+      en: { title: 'Toggle Light / Dark Mode', desc: 'Change visual styling' },
+      action: 'click',
+      target: '#mode-toggle'
+    },
+    {
+      id: 'lang',
+      icon: 'fa-language',
+      es: { title: 'Cambiar Idioma (EN / ES)', desc: 'Alterna el lenguaje de la página' },
+      en: { title: 'Change Language (EN / ES)', desc: 'Toggle page language' },
+      action: 'click',
+      target: '#lang-toggle'
+    }
+  ];
+
+  const searchInput = document.getElementById('nav-search-input') as HTMLInputElement;
+  const searchResults = document.getElementById('nav-search-results');
+  const itemsContainer = document.getElementById('nav-search-items-container');
+
+  let activeIndex = -1;
+  let filteredItems: SearchItem[] = [];
+
+  function getLang(): 'es' | 'en' {
+    return (localStorage.getItem('language') || 'es') as 'es' | 'en';
+  }
+
+  function renderItems(query = '') {
+    if (!itemsContainer) return;
+    itemsContainer.innerHTML = '';
+    const lang = getLang();
+    const cleanQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    filteredItems = SEARCH_ITEMS.filter(item => {
+      const data = item[lang];
+      const matchTitle = data.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(cleanQuery);
+      const matchDesc = data.desc.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(cleanQuery);
+      return matchTitle || matchDesc;
+    });
+
+    if (filteredItems.length === 0) {
+      itemsContainer.innerHTML = `
+        <div class="text-center text-slate-500 text-xs py-4 select-none font-mono">
+          ${lang === 'en' ? 'No sections found' : 'No se encontraron secciones'}
+        </div>
+      `;
+      activeIndex = -1;
+      return;
+    }
+
+    filteredItems.forEach((item, index) => {
+      const data = item[lang];
+      const div = document.createElement('button');
+      div.type = 'button';
+      div.className = `search-result-item w-full flex items-center gap-3 p-2.5 rounded-xl text-left transition-all cursor-pointer border-none outline-none ${
+        index === activeIndex 
+          ? 'bg-theme-primary/10 border border-theme-primary/30 text-white' 
+          : 'bg-transparent border border-transparent text-slate-400 hover:bg-slate-900/40 hover:text-white'
+      }`;
+      
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 group-hover:text-theme-primary shrink-0 transition-colors">
+          <i class="fa-solid ${item.icon} text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold font-mono tracking-tight text-white">${data.title}</div>
+          <div class="text-[10px] text-slate-500 truncate mt-0.5">${data.desc}</div>
+        </div>
+        <span class="text-[9px] font-mono text-slate-600 bg-slate-900/40 px-2 py-0.5 rounded border border-slate-800 uppercase shrink-0">
+          ${item.action === 'scroll' ? (lang === 'en' ? 'Go to' : 'Ir a') : (lang === 'en' ? 'Open' : 'Abrir')}
+        </span>
+      `;
+
+      div.addEventListener('click', () => {
+        executeItemAction(item);
+      });
+
+      itemsContainer.appendChild(div);
+    });
+  }
+
+  function executeItemAction(item: SearchItem) {
+    if (item.action === 'scroll') {
+      const element = document.querySelector(item.target) as HTMLElement;
+      if (element) {
+        const offset = 90; // Offset size of the fixed top navigation bar
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        playChirp();
+      }
+    } else if (item.action === 'click') {
+      const btn = document.querySelector(item.target) as HTMLButtonElement;
+      if (btn) {
+        btn.click();
+      }
+    }
+    closeDropdown();
+  }
+
+  function closeDropdown() {
+    searchResults?.classList.add('hidden');
+    activeIndex = -1;
+    if (searchInput) searchInput.blur();
+  }
+
+  // Input listeners
+  searchInput?.addEventListener('focus', () => {
+    searchResults?.classList.remove('hidden');
+    renderItems(searchInput.value);
+  });
+
+  searchInput?.addEventListener('input', () => {
+    activeIndex = 0; // Highlight the first matching item on input
+    renderItems(searchInput.value);
+  });
+
+  // Handle outside clicks to collapse the search results
+  document.addEventListener('click', (e) => {
+    if (searchResults && searchInput && !searchResults.contains(e.target as Node) && !searchInput.contains(e.target as Node)) {
+      closeDropdown();
+    }
+  });
+
+  // Hotkey listener: Ctrl/Cmd + K
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchInput?.focus();
+      searchResults?.classList.remove('hidden');
+      renderItems(searchInput?.value || '');
+    }
+
+    if (searchResults && !searchResults.classList.contains('hidden')) {
+      if (e.key === 'Escape') {
+        closeDropdown();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIndex = (activeIndex + 1) % filteredItems.length;
+        renderItems(searchInput.value);
+        scrollToActiveItem();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length;
+        renderItems(searchInput.value);
+        scrollToActiveItem();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIndex >= 0 && activeIndex < filteredItems.length) {
+          executeItemAction(filteredItems[activeIndex]);
+        }
+      }
+    }
+  });
+
+  // Ensure active element is scrolled into view in search dropdown
+  function scrollToActiveItem() {
+    const activeEl = itemsContainer?.children[activeIndex] as HTMLElement;
+    if (activeEl && searchResults) {
+      const containerTop = searchResults.scrollTop;
+      const containerBottom = containerTop + searchResults.clientHeight;
+      const elemTop = activeEl.offsetTop;
+      const elemBottom = elemTop + activeEl.clientHeight;
+
+      if (elemTop < containerTop) {
+        searchResults.scrollTop = elemTop;
+      } else if (elemBottom > containerBottom) {
+        searchResults.scrollTop = elemBottom - searchResults.clientHeight;
+      }
+    }
+  }
+
+  // Re-render items on language changes
+  window.addEventListener('language-changed', () => {
+    if (searchResults && !searchResults.classList.contains('hidden')) {
+      renderItems(searchInput?.value || '');
+    }
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translate3d(0, 10px, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

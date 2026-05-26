@@ -23,6 +23,9 @@ export const translations = {
     "profile_linkedin_title": "LinkedIn",
     "profile_github_title": "GitHub",
     "profile_email_title": "Enviar Email (Gmail)",
+    "profile_title_fullstack": "Desarrollador Full-Stack",
+    "profile_title_backend": "Backend & Integración de IA",
+    "search_placeholder": "Buscar sección o comando... (Ctrl+K)",
 
     // Sobre Mí
     "about_title": "Sobre Mí",
@@ -145,6 +148,9 @@ export const translations = {
     "profile_linkedin_title": "LinkedIn",
     "profile_github_title": "GitHub",
     "profile_email_title": "Send Email (Gmail)",
+    "profile_title_fullstack": "Full-Stack Developer",
+    "profile_title_backend": "Backend & AI Integrations",
+    "search_placeholder": "Search section or command... (Ctrl+K)",
 
     // Sobre Mí
     "about_title": "About Me",

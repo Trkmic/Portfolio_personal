@@ -5,6 +5,7 @@ import AIChatbot from '../components/AIChatbot.astro';
 import AIJobMatcher from '../components/AIJobMatcher.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import ThemeModeToggle from '../components/ThemeModeToggle.astro';
+import NavigationSearch from '../components/NavigationSearch.astro';
 import TerminalConsole from '../components/TerminalConsole.astro';
 
 const nombreCompleto = "Ignacio Trkmic Torres";
@@ -88,6 +89,8 @@ const proyectos = [
     <ThemeSwitcher />
     <!-- Toggle de Modo Claro/Oscuro -->
     <ThemeModeToggle />
+    <!-- Buscador Navegador Superior -->
+    <NavigationSearch />
 
     <!-- Efecto de Fondo Neon/Malla dinámico -->
     <div class="fixed inset-0 z-0 bg-black overflow-hidden pointer-events-none">
@@ -114,6 +117,14 @@ const proyectos = [
                     <span class="inline-block w-2.5 h-2.5 rounded-full bg-theme-primary animate-pulse"></span>
                     <span data-i18n="profile_location">Buenos Aires, Argentina</span>
                 </p>
+                <div class="flex flex-wrap justify-center sm:justify-start gap-2 mt-2.5 font-mono">
+                    <span class="bg-theme-primary/10 text-theme-primary border border-theme-primary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" data-i18n="profile_title_fullstack">
+                        Desarrollador Full-Stack
+                    </span>
+                    <span class="bg-theme-secondary/10 text-theme-secondary border border-theme-secondary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" data-i18n="profile_title_backend">
+                        Backend & Integración de IA
+                    </span>
+                </div>
                 
                 <div class="flex justify-center sm:justify-start gap-5 text-2xl mt-3">
                     <a href="https://linkedin.com/in/ignacio-trkmic-5a797827a/" 
@@ -145,7 +156,7 @@ const proyectos = [
         </section>
 
         <!-- Sobre Mí -->
-        <section class="bg-slate-950/40 p-6 rounded-2xl border border-theme-secondary/35 shadow-[inset_0_0_15px_var(--theme-glow)] hover:border-theme-primary/30 transition-all duration-300">
+        <section id="about-section" class="bg-slate-950/40 p-6 rounded-2xl border border-theme-secondary/35 shadow-[inset_0_0_15px_var(--theme-glow)] hover:border-theme-primary/30 transition-all duration-300">
             <h2 class="text-xl font-bold mb-4 text-theme-primary font-mono tracking-wide uppercase" data-i18n="about_title">Sobre Mí</h2>
             <div class="space-y-4 text-slate-300">
                 <div class="flex gap-4 items-start">
@@ -195,7 +206,7 @@ const proyectos = [
         </section>
 
         <!-- Proyectos Realizados -->
-        <section class="flex flex-col gap-6">
+        <section id="projects-section" class="flex flex-col gap-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-theme-secondary/50 pb-2 gap-2">
                 <h2 class="text-xl font-bold text-theme-primary font-mono uppercase tracking-wider" data-i18n="projects_title">Proyectos Realizados</h2>
                 
@@ -223,7 +234,7 @@ const proyectos = [
         </section>
 
         <!-- Formación Académica (Línea de Tiempo Neon) -->
-        <section class="flex flex-col gap-6 relative">
+        <section id="academic-section" class="flex flex-col gap-6 relative">
             <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider" data-i18n="academic_title">
                 Formación Académica
             </h2>
@@ -310,10 +321,12 @@ const proyectos = [
         </section>
 
         <!-- Comparador Inteligente de Puestos -->
-        <AIJobMatcher />
+        <div id="job-matcher-section">
+            <AIJobMatcher />
+        </div>
 
         <!-- Contacto -->
-        <section class="flex flex-col gap-6 mb-6">
+        <section id="contact-section" class="flex flex-col gap-6 mb-6">
             <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider" data-i18n="contact_title">
                 Contacto
             </h2>

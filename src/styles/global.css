@@ -57,37 +57,28 @@ html.theme-dracula {
 
 /* Emerald Light Theme */
 html.light.theme-emerald {
-  --theme-primary: #059669;
-  /* emerald-600 */
-  --theme-secondary: #047857;
-  /* emerald-700 */
+  --theme-primary: #059669; /* emerald-600 */
+  --theme-secondary: #047857; /* emerald-700 */
   --theme-glow: rgba(5, 150, 105, 0.15);
-  --theme-bg: #f0fdf4;
-  /* emerald-50 */
+  --theme-bg: #f0fdf4; /* emerald-50 */
   --theme-bg-accent: rgba(5, 150, 105, 0.05);
 }
 
 /* Cyberpunk Light Theme */
 html.light.theme-cyberpunk {
-  --theme-primary: #db2777;
-  /* pink-600 */
-  --theme-secondary: #0891b2;
-  /* cyan-600 */
+  --theme-primary: #db2777; /* pink-600 */
+  --theme-secondary: #0891b2; /* cyan-600 */
   --theme-glow: rgba(219, 39, 119, 0.15);
-  --theme-bg: #fdf2f8;
-  /* pink-50 */
+  --theme-bg: #fdf2f8; /* pink-50 */
   --theme-bg-accent: rgba(219, 39, 119, 0.05);
 }
 
 /* Dracula Light Theme */
 html.light.theme-dracula {
-  --theme-primary: #7c3aed;
-  /* violet-600 */
-  --theme-secondary: #db2777;
-  /* pink-600 */
+  --theme-primary: #7c3aed; /* violet-600 */
+  --theme-secondary: #db2777; /* pink-600 */
   --theme-glow: rgba(124, 58, 237, 0.15);
-  --theme-bg: #faf5ff;
-  /* purple-50 */
+  --theme-bg: #faf5ff; /* purple-50 */
   --theme-bg-accent: rgba(124, 58, 237, 0.05);
 }
 
@@ -98,8 +89,7 @@ html.light {
 
 html.light body {
   background-color: var(--theme-bg) !important;
-  color: #334155 !important;
-  /* slate-700 */
+  color: #334155 !important; /* slate-700 */
 }
 
 /* Main background glow effect container override */
@@ -274,4 +264,41 @@ html.light .timeline-active .timeline-node {
 
 html.light .timeline-item p.text-theme-secondary {
   color: var(--theme-secondary) !important;
+}
+
+/* Navigation Search Bar in light mode */
+html.light #nav-search-input {
+  color: #0f172a !important;
+}
+
+html.light #nav-search-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light #nav-search-results {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .search-result-item {
+  color: #475569 !important;
+}
+
+html.light .search-result-item:hover,
+html.light .search-result-item.bg-theme-primary\/10 {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-primary) !important;
+}
+
+html.light .search-result-item div.bg-slate-900 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+html.light .search-result-item span.bg-slate-900\/40 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #64748b !important;
 }
