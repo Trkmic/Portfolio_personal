@@ -10,11 +10,6 @@ interface Props {
 }
 
 const { titulo, descripcion, tags, linkGithub, linkWeb, slug } = Astro.props;
-
-// Extraer el nombre del repositorio de la URL de GitHub de Ignacio (Trkmic)
-const repoName = linkGithub.includes('github.com/Trkmic/') 
-  ? linkGithub.split('github.com/Trkmic/')[1]?.replace(/\/$/, '')
-  : null;
 ---
 
 <div 
@@ -74,26 +69,5 @@ const repoName = linkGithub.includes('github.com/Trkmic/')
         </span>
       ))}
     </div>
-
-    <!-- Sección de Estadísticas de GitHub en Vivo (Se muestra vía JS) -->
-    {repoName && (
-      <div 
-        class="github-stats-container mt-4 pt-3 border-t border-slate-900 flex flex-wrap gap-4 text-[11px] font-mono text-slate-500 hidden"
-        data-repo={repoName}
-      >
-        <span class="flex items-center gap-1.5" title="Estrellas en GitHub">
-          <i class="fa-solid fa-star text-amber-500/80"></i>
-          <span class="stars-count">0</span>
-        </span>
-        <span class="flex items-center gap-1.5" title="Bifurcaciones (Forks)">
-          <i class="fa-solid fa-code-branch text-theme-primary/80"></i>
-          <span class="forks-count">0</span>
-        </span>
-        <span class="flex items-center gap-1.5 ml-auto" title="Última actualización">
-          <i class="fa-solid fa-clock text-slate-600"></i>
-          <span class="commit-date">--/--</span>
-        </span>
-      </div>
-    )}
   </div>
 </div>
