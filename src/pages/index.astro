@@ -173,8 +173,8 @@ const proyectos = [
                 </div>
                 <a 
                     id="download-cv-btn"
-                    href="/CV_Trkmic (2) copy.pdf" 
-                    download="Ignacio_Trkmic_Torres.pdf"
+                    href="/es/CV_ignacio_Trkmic_Torres.pdf" 
+                    download="CV_ignacio_Trkmic_Torres.pdf"
                     class="mt-4 w-full bg-theme-primary hover:scale-[1.02] text-black font-black py-3 rounded-xl transition-all shadow-[0_0_15px_var(--theme-glow)] hover:shadow-[0_0_25px_var(--theme-glow)] uppercase tracking-tight flex justify-center items-center text-center decoration-none cursor-pointer"
                 >
                     <i class="fa-solid fa-download mr-2"></i> <span data-i18n="about_download_cv">Descargar CV</span>
@@ -513,11 +513,11 @@ const proyectos = [
         const downloadBtn = document.getElementById('download-cv-btn') as HTMLAnchorElement | null;
         if (downloadBtn) {
             if (lang === 'en') {
-                downloadBtn.href = '/CV_Trkmic_ingles.pdf';
-                downloadBtn.download = 'Ignacio_Trkmic_Torres.pdf';
+                downloadBtn.href = '/en/CV_ignacio_Trkmic_Torres.pdf';
+                downloadBtn.download = 'CV_ignacio_Trkmic_Torres.pdf';
             } else {
-                downloadBtn.href = '/CV_Trkmic (2) copy.pdf';
-                downloadBtn.download = 'Ignacio_Trkmic_Torres.pdf';
+                downloadBtn.href = '/es/CV_ignacio_Trkmic_Torres.pdf';
+                downloadBtn.download = 'CV_ignacio_Trkmic_Torres.pdf';
             }
         }
     }
