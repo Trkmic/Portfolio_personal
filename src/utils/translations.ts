@@ -54,8 +54,8 @@ export const translations = {
     "project_tienda_online_desc": "E-commerce premium de frutas orgánicas con creador de ensaladas interactivo, dashboard nutricional en Canvas y pasarela de pago vinculada a base de datos MySQL/SQLite.",
     "project_servicio_hospedaje_gatronomia_title": "Servicio de hospedaje y gastronomia",
     "project_servicio_hospedaje_gatronomia_desc": "Sistema en Java enfocado en POO para la administración de servicios turísticos, cálculos dinámicos de costos y gestión de inventario.",
-    "project_pygame_adivina_pokemon_title": "Adivina el pokemon",
-    "project_pygame_adivina_pokemon_desc": "Juego de trivia con Pygame. Soporte multi-idioma, manejo de archivos JSON/CSV para puntajes y base de datos, y lógica de estados.",
+    "project_inventory_erp_title": "Gestor de Inventario & IA",
+    "project_inventory_erp_desc": "Sistema ERP corporativo desarrollado en Java Spring Boot con JPA, H2 y Gemini AI. Permite el control de stock, compras con cálculo dinámico de precio y pronóstico predictivo de inventario.",
     "project_Gestion_peliculas_title": "Gestion de peliculas",
     "project_Gestion_peliculas_desc": "Sistema de procesamiento de datos con Python. Manejo de catálogos en CSV/JSON, algoritmos de ordenamiento y generación de reportes estadísticos.",
 
@@ -179,8 +179,8 @@ export const translations = {
     "project_tienda_online_desc": "Premium organic fruit e-commerce with a virtual fruit salad builder, dynamic nutrition dashboard in Canvas, and a payment gateway connected to a MySQL/SQLite database.",
     "project_servicio_hospedaje_gatronomia_title": "Hosting & Gastronomy Service",
     "project_servicio_hospedaje_gatronomia_desc": "Java system focused on OOP principles to manage tourism services, dynamic cost calculation algorithms, and stock administration.",
-    "project_pygame_adivina_pokemon_title": "Guess the Pokemon",
-    "project_pygame_adivina_pokemon_desc": "Trivia game created with Pygame. Supports multi-language, utilizes JSON/CSV files to store local scores and database, and manages state logic.",
+    "project_inventory_erp_title": "Inventory Manager & AI",
+    "project_inventory_erp_desc": "Corporate ERP system built in Java Spring Boot with JPA, H2, and Gemini AI. Features stock management, purchase transactions with dynamic pricing, and predictive inventory forecasting.",
     "project_Gestion_peliculas_title": "Movie Management",
     "project_Gestion_peliculas_desc": "Data processing system in Python. Handles CSV/JSON catalogs, applies custom sorting algorithms, and generates statistical reports.",
 
