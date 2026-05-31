@@ -106,8 +106,10 @@
     'python': ['python', 'pygame', 'movies', 'película', 'backend'],
     'java': ['java', 'poo', 'hospedaje', 'gastronomia', 'objetos'],
     'javascript': ['javascript', 'js', 'node', 'express', 'web', 'frontend'],
-    'typescript': ['typescript', 'ts', 'angular', 'nestjs'],
+    'typescript': ['typescript', 'ts', 'angular', 'react', 'expo', 'nestjs'],
     'angular': ['angular', 'frontend', 'spa', 'componentes'],
+    'react': ['react', 'react native', 'frontend', 'spa'],
+    'expo': ['expo', 'react native', 'movil', 'mobile', 'android', 'ios'],
     'nestjs': ['nestjs', 'nest', 'backend', 'api', 'jwt', 'auth'],
     'supabase': ['supabase', 'base de datos', 'realtime', 'chat'],
     'mongodb': ['mongodb', 'mongo', 'nosql'],
@@ -179,24 +181,24 @@
       });
     });
 
-    // Calcular score dinámico
+    // Calcular score dinámico (mínimo 80%)
     let score = 0;
     if (matchedSkills.size > 0) {
-      score = 75 + (matchedSkills.size * 6);
+      score = 80 + (matchedSkills.size * 4);
       if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
-        score += 8;
+        score += 5;
       }
       if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
-        score += 5;
+        score += 3;
       }
       if (score > 98) score = 98;
     } else {
-      score = 45;
+      score = 80;
       if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
-        score += 6;
+        score += 3;
       }
       if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
-        score += 4;
+        score += 2;
       }
     }
 
@@ -337,7 +339,7 @@
       Nombre: Ignacio Trkmic Torres
       Estudios: UTN Avellaneda (Tecnicatura Universitaria en Programación a 2 materias de recibirse, Ingeniería Mecánica comenzando en 2026).
       Idiomas: Inglés B2 First Certificate.
-      Stack: Python, Java, JavaScript, TypeScript, Angular, NestJS, Supabase, MongoDB, SQL, Astro.
+      Stack: Python, Java, JavaScript, TypeScript, Angular, React, Expo, NestJS, Supabase, MongoDB, SQL, Astro.
       Proyectos:
       - Red social (NestJS, Angular, JWT, MongoDB): Dashboard, multimedia con Cloudinary, charts.
       - Sala de juegos (Supabase, Angular, Express): Chat tiempo real, auth, hosting Vercel.
@@ -351,7 +353,7 @@
       Name: Ignacio Trkmic Torres
       Education: UTN Avellaneda (Assoc. Degree in Programming, 2 subjects away from graduation; Mechanical Engineering starting in 2026).
       Languages: B2 English level, First Certificate passed.
-      Stack: Python, Java, JavaScript, TypeScript, Angular, NestJS, Supabase, MongoDB, SQL, Astro.
+      Stack: Python, Java, JavaScript, TypeScript, Angular, React, Expo, NestJS, Supabase, MongoDB, SQL, Astro.
       Projects:
       - Social Network (NestJS, Angular, JWT, MongoDB): Dashboard, multimedia with Cloudinary, charts.
       - Game Room (Supabase, Angular, Express): Real-time chat, auth, hosting on Vercel.
