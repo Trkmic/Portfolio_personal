@@ -120,7 +120,7 @@
 
   const PROJECTS_DATA = {
     es: [
-      { titulo: "Experiencia QA Trainee @ Banco Patagonia (TecnoSoftware)", tags: ["QA & Testing", "Perfecto", "SQL & Backoffice"], description: "Pruebas funcionales y de regresión en entornos móviles/web con plataforma Perfecto, despliegue de paquetes IPA, validación SQL y Backoffice." },
+      { titulo: "Experiencia Software QA Analyst @ Banco Patagonia (TecnoSoftware)", tags: ["QA & Testing", "Perfecto", "SQL & Backoffice"], description: "Pruebas funcionales y de regresión en entornos móviles/web con plataforma Perfecto, despliegue de paquetes IPA, validación SQL y Backoffice." },
       { titulo: "Red social (NestJS / Angular)", tags: ["NestJS", "Angular", "MongoDB", "TypeScript"], description: "Plataforma social completa, APIs backend, autenticación JWT, Cloudinary, Chart.js." },
       { titulo: "Sala de juegos (Supabase / Express)", tags: ["Supabase", "TypeScript", "Express", "Angular"], description: "Juegos, chats en tiempo real, base de datos integrada y auth." },
       { titulo: "Organique - E-commerce de Frutas (SQL / JS / Express)", tags: ["JavaScript", "HTML", "CSS", "SQL & Backoffice", "NodeJS", "Express"], description: "E-commerce premium de frutas orgánicas, creador de ensaladas interactivo, dashboard nutricional en Canvas y pasarela de pago." },
@@ -129,7 +129,7 @@
       { titulo: "Gestion de peliculas (Python CSV)", tags: ["Python"], description: "Análisis y ordenamiento de estructuras de datos masivas." }
     ],
     en: [
-      { titulo: "QA Trainee Experience @ Banco Patagonia (TecnoSoftware)", tags: ["QA & Testing", "Perfecto", "SQL & Backoffice"], description: "Functional and regression testing on mobile/web using the Perfecto platform, IPA build testing, SQL data verification, and Backoffice tools." },
+      { titulo: "Software QA Analyst Experience @ Banco Patagonia (TecnoSoftware)", tags: ["QA & Testing", "Perfecto", "SQL & Backoffice"], description: "Functional and regression testing on mobile/web using the Perfecto platform, IPA build testing, SQL data verification, and Backoffice tools." },
       { titulo: "Social Network (NestJS / Angular)", tags: ["NestJS", "Angular", "MongoDB", "TypeScript"], description: "Complete social platform, backend APIs, JWT authentication, Cloudinary, Chart.js." },
       { titulo: "Game Room (Supabase / Express)", tags: ["Supabase", "TypeScript", "Express", "Angular"], description: "Games, real-time chats, integrated database, and auth." },
       { titulo: "Organique - Fruit E-commerce (SQL / JS / Express)", tags: ["JavaScript", "HTML", "CSS", "SQL & Backoffice", "NodeJS", "Express"], description: "Premium organic fruit e-commerce with a virtual fruit salad builder, nutrition dashboard in Canvas, and a payment gateway." },
@@ -184,19 +184,19 @@
       });
     });
 
-    // Calcular score dinámico
+    // Calcular score dinámico (mínimo 85%)
     let score = 0;
     if (matchedSkills.size > 0) {
-      score = 82 + (matchedSkills.size * 4);
-      if (lowercaseText.includes('qa') || lowercaseText.includes('tester') || lowercaseText.includes('testing') || lowercaseText.includes('banco') || lowercaseText.includes('sql')) {
-        score += 5;
+      score = 86 + (matchedSkills.size * 3);
+      if (lowercaseText.includes('qa') || lowercaseText.includes('tester') || lowercaseText.includes('testing') || lowercaseText.includes('banco') || lowercaseText.includes('sql') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
+        score += 4;
       }
       if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
-        score += 3;
+        score += 2;
       }
       if (score > 98) score = 98;
     } else {
-      score = 82;
+      score = 85;
       if (lowercaseText.includes('qa') || lowercaseText.includes('tester') || lowercaseText.includes('desarrollador') || lowercaseText.includes('developer')) {
         score += 3;
       }

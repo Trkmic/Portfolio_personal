@@ -10,28 +10,34 @@ import TerminalConsole from '../components/TerminalConsole.astro';
 
 const nombreCompleto = "Ignacio Trkmic Torres";
 const edad = 20;
-const estudios = "Graduado de la Tecnicatura Universitaria en Programación (UTN Avellaneda - Julio 2026) e Ingeniería Mecánica";
+const estudios = "Graduado de la Tecnicatura Universitaria en Programación (UTN Avellaneda) e Ingeniería Mecánica";
 const ingles = "Nivel B2 de inglés (First Certificate aprobado)";
 
 const stackTecnologico = [
-    { nombre: "SQL", icono: "devicon-azuresqldatabase-plain" },
-    { nombre: "Python", icono: "devicon-python-plain" },
-    { nombre: "Java", icono: "devicon-java-plain" },
-    { nombre: "JavaScript", icono: "devicon-javascript-plain" },
-    { nombre: "TypeScript", icono: "devicon-typescript-plain" },
-    { nombre: "Angular", icono: "devicon-angular-plain" },
-    { nombre: "NestJs", icono: "devicon-nestjs-original" },
-    { nombre: "Supabase", icono: "devicon-supabase-plain" },
-    { nombre: "MongoDB", icono: "devicon-mongodb-plain" },
-    { nombre: "HTML", icono: "devicon-html5-plain" },
-    { nombre: "CSS", icono: "devicon-css3-plain" },
-    { nombre: "React", icono: "devicon-react-original" },
-    { nombre: "Astro", icono: "devicon-astro-plain" },
-    { fontName: "VSCode", icono: "devicon-vscode-plain", nombre: "VSCode" },
-    { nombre: "Vercel", icono: "devicon-vercel-original" },
-];
+    // QA & Testing
+    { nombre: "Perfecto", icono: "fa-solid fa-mobile-screen-button", cat: "qa", tag: "perfecto" },
+    { nombre: "SQL", icono: "devicon-azuresqldatabase-plain", cat: "qa", tag: "sql" },
+    { nombre: "Jira", icono: "devicon-jira-plain", cat: "qa", tag: "jira" },
+    { nombre: "Backoffice", icono: "fa-solid fa-database", cat: "qa", tag: "backoffice" },
+    { nombre: "Scrum / Agile", icono: "fa-solid fa-users-gear", cat: "qa", tag: "scrum" },
+    { nombre: "Git", icono: "devicon-git-plain", cat: "qa", tag: "git" },
 
-const doubleStack = [...stackTecnologico, ...stackTecnologico];
+    // Lenguajes & Scripting
+    { nombre: "Python", icono: "devicon-python-plain", cat: "dev", tag: "python" },
+    { nombre: "Java", icono: "devicon-java-plain", cat: "dev", tag: "java" },
+    { nombre: "TypeScript", icono: "devicon-typescript-plain", cat: "dev", tag: "typescript" },
+    { nombre: "JavaScript", icono: "devicon-javascript-plain", cat: "dev", tag: "javascript" },
+    { nombre: "HTML5", icono: "devicon-html5-plain", cat: "dev", tag: "html" },
+    { nombre: "CSS3", icono: "devicon-css3-plain", cat: "dev", tag: "css" },
+
+    // Frameworks & Bases de Datos
+    { nombre: "Angular", icono: "devicon-angular-plain", cat: "tech", tag: "angular" },
+    { nombre: "NestJS", icono: "devicon-nestjs-original", cat: "tech", tag: "nestjs" },
+    { nombre: "Spring Boot", icono: "devicon-spring-plain", cat: "tech", tag: "java" },
+    { nombre: "Supabase", icono: "devicon-supabase-plain", cat: "tech", tag: "supabase" },
+    { nombre: "MongoDB", icono: "devicon-mongodb-plain", cat: "tech", tag: "mongodb" },
+    { nombre: "Vercel", icono: "devicon-vercel-original", cat: "tech", tag: "vercel" }
+];
 
 const proyectos = [
 	{
@@ -121,10 +127,10 @@ const proyectos = [
                 </p>
                 <div class="flex flex-wrap justify-center sm:justify-start gap-2 mt-2.5 font-mono">
                     <span class="bg-theme-primary/10 text-theme-primary border border-theme-primary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" data-i18n="profile_title_fullstack">
-                        QA Analyst Trainee
+                        Software QA Analyst
                     </span>
                     <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" data-i18n="profile_badge_patagonia">
-                        QA Trainee @ Banco Patagonia
+                        QA Analyst @ Banco Patagonia
                     </span>
                 </div>
                 
@@ -171,7 +177,7 @@ const proyectos = [
                 </div>
                 <div class="flex gap-4 items-start">
                     <i class="fa-solid fa-vial-circle-check mt-1 text-theme-primary text-lg"></i>
-                    <p data-i18n="about_passion">Apasionado por garantizar la calidad del software bancario mediante pruebas funcionales, de regresión, uso de la plataforma Perfecto, validaciones en Backoffice y consultas SQL, combinando el criterio del tester con la lógica del desarrollador.</p>
+                    <p data-i18n="about_passion">Apasionado por asegurar la máxima calidad en aplicaciones complejas y críticas (bancarias, fintech, e-commerce, salud y tecnología), combinando el rigor del testing funcional con la visión de la arquitectura de software.</p>
                 </div>
                 <a 
                     id="download-cv-btn"
@@ -193,7 +199,7 @@ const proyectos = [
             <div class="bg-slate-950/50 p-6 rounded-2xl border border-theme-secondary/40 shadow-[inset_0_0_15px_var(--theme-glow)] hover:border-theme-primary/40 transition-all duration-300 space-y-4">
                 <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-theme-secondary/20 pb-4">
                     <div>
-                        <h3 class="text-lg font-bold text-white tracking-wide" data-i18n="exp_patagonia_role">QA Trainee / Software QA Analyst</h3>
+                        <h3 class="text-lg font-bold text-white tracking-wide" data-i18n="exp_patagonia_role">Software QA Analyst</h3>
                         <p class="text-theme-primary text-sm font-semibold font-mono" data-i18n="exp_patagonia_company">TecnoSoftware (Asignado a Banco Patagonia)</p>
                     </div>
                     <span class="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full uppercase self-start sm:self-auto shrink-0" data-i18n="exp_patagonia_date">JULIO 2026 - PRESENTE</span>
@@ -224,27 +230,41 @@ const proyectos = [
             </div>
         </section>
 
-        <!-- Stack Tecnológico -->
-        <section class="space-y-4">
-            <h2 class="text-sm font-bold text-center text-theme-primary uppercase tracking-[0.3em] font-mono" data-i18n="stack_title">Stack Tecnológico</h2>
-            <p class="text-[11px] text-center text-slate-500 font-mono itsalic" data-i18n="stack_subtitle">Haz click en una tecnología para filtrar los proyectos</p>
-            
-            <div class="relative flex overflow-hidden group border-y border-theme-secondary/20 py-2">
-                <!-- Capas de sombra laterales para el carrusel -->
-                <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none"></div>
-                <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none"></div>
-                
-                <div class="flex gap-8 animate-marquee whitespace-nowrap py-4">
-                    {doubleStack.map((tech) => (
-                        <button 
-                            class="tech-filter-btn flex flex-col items-center gap-2 group/btn hover:scale-115 transition-all duration-300 cursor-pointer bg-transparent border-none outline-none"
-                            data-tech={tech.nombre.toLowerCase()}
-                        >
-                            <i class={`${tech.icono} text-4xl text-theme-primary/80 group-hover/btn:text-theme-primary transition-colors duration-300`}></i> 
-                            <span class="text-[10px] text-slate-600 group-hover/btn:text-theme-primary uppercase font-bold font-mono tracking-tight">{tech.nombre}</span>
-                        </button>
-                    ))}
-                </div>
+        <!-- Stack Tecnológico Interactivo por Categorías -->
+        <section class="space-y-6" id="stack-section">
+            <div class="text-center space-y-1">
+                <h2 class="text-sm font-bold text-theme-primary uppercase tracking-[0.3em] font-mono" data-i18n="stack_title">Habilidades Tecnológicas & QA Tools</h2>
+                <p class="text-[11px] text-slate-500 font-mono italic" data-i18n="stack_subtitle">Explora por categorías o selecciona una herramienta para filtrar los proyectos</p>
+            </div>
+
+            <!-- Filtros por Categoría -->
+            <div class="flex flex-wrap justify-center gap-2 font-mono text-xs">
+                <button class="stack-cat-btn active bg-theme-primary text-black font-bold px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-[0_0_12px_var(--theme-glow)]" data-cat="all">
+                    Todas
+                </button>
+                <button class="stack-cat-btn bg-slate-900 hover:bg-slate-800 text-slate-300 border border-theme-secondary/30 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer" data-cat="qa" data-i18n="stack_cat_qa">
+                    QA & Pruebas
+                </button>
+                <button class="stack-cat-btn bg-slate-900 hover:bg-slate-800 text-slate-300 border border-theme-secondary/30 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer" data-cat="dev" data-i18n="stack_cat_dev">
+                    Lenguajes & Scripts
+                </button>
+                <button class="stack-cat-btn bg-slate-900 hover:bg-slate-800 text-slate-300 border border-theme-secondary/30 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer" data-cat="tech" data-i18n="stack_cat_tech">
+                    Frameworks & BD
+                </button>
+            </div>
+
+            <!-- Grilla Interactiva Neón -->
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-3.5 pt-2">
+                {stackTecnologico.map((item) => (
+                    <button 
+                        class="tech-card-btn group flex flex-col items-center justify-center p-3.5 rounded-xl bg-slate-950/60 border border-theme-secondary/30 hover:border-theme-primary hover:shadow-[0_0_15px_var(--theme-glow)] hover:scale-105 transition-all duration-300 cursor-pointer"
+                        data-tech={item.tag}
+                        data-cat={item.cat}
+                    >
+                        <i class={`${item.icono} text-3xl text-theme-primary/80 group-hover:text-theme-primary transition-colors duration-300`}></i>
+                        <span class="text-[10px] text-slate-400 group-hover:text-white uppercase font-bold font-mono tracking-tight mt-2 text-center">{item.nombre}</span>
+                    </button>
+                ))}
             </div>
         </section>
 
@@ -570,8 +590,9 @@ const proyectos = [
         translatePage(currentLang);
     });
 
-    // Lógica para filtrar proyectos al hacer clic en el stack
-    const filterButtons = document.querySelectorAll('.tech-filter-btn');
+    // Lógica para filtrar proyectos y categorías en el stack
+    const techCardButtons = document.querySelectorAll('.tech-card-btn');
+    const catTabButtons = document.querySelectorAll('.stack-cat-btn');
     const projectCards = document.querySelectorAll('.project-card');
     const filterStatus = document.getElementById('filter-status');
     const filterNameLabel = document.getElementById('current-filter-name');
@@ -579,26 +600,50 @@ const proyectos = [
 
     let currentFilter: string | null = null;
 
+    // Filtrar por categoría (QA, Dev, Tech, Todas)
+    catTabButtons.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const cat = tab.getAttribute('data-cat');
+            
+            // Estilos de pestañas
+            catTabButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-theme-primary', 'text-black', 'font-bold', 'shadow-[0_0_12px_var(--theme-glow)]');
+                btn.classList.add('bg-slate-900', 'text-slate-300', 'border', 'border-theme-secondary/30');
+            });
+            tab.classList.remove('bg-slate-900', 'text-slate-300', 'border', 'border-theme-secondary/30');
+            tab.classList.add('active', 'bg-theme-primary', 'text-black', 'font-bold', 'shadow-[0_0_12px_var(--theme-glow)]');
+
+            // Filtrar cards de la grilla
+            techCardButtons.forEach(card => {
+                const cardCat = card.getAttribute('data-cat');
+                if (cat === 'all' || cardCat === cat) {
+                    (card as HTMLElement).style.display = 'flex';
+                } else {
+                    (card as HTMLElement).style.display = 'none';
+                }
+            });
+        });
+    });
+
     function applyFilter(tech: string) {
         currentFilter = tech;
         
-        // Mostrar estado del filtro
         if (filterStatus && filterNameLabel) {
             filterStatus.classList.remove('hidden');
             filterStatus.classList.add('flex');
             filterNameLabel.textContent = tech;
         }
 
-        // Resaltar u ocultar tarjetas de proyectos
         projectCards.forEach(card => {
             const cardTags = card.getAttribute('data-tags')?.split(',') || [];
             
-            // Especiales (ej. NestJs vs nestjs)
             const isMatch = cardTags.some(tag => {
                 const cleanTag = tag.trim().toLowerCase();
                 return cleanTag === tech || 
                        (tech === 'nestjs' && cleanTag === 'nest') || 
-                       (tech === 'sql' && (cleanTag === 'mysql' || cleanTag === 'postgres' || cleanTag === 'sqlite'));
+                       (tech === 'sql' && (cleanTag === 'mysql' || cleanTag === 'postgres' || cleanTag === 'sqlite')) ||
+                       (tech === 'perfecto' && (cleanTag === 'qa' || cleanTag === 'testing')) ||
+                       (tech === 'backoffice' && (cleanTag === 'sql' || cleanTag === 'java'));
             });
 
             if (isMatch) {
@@ -614,20 +659,18 @@ const proyectos = [
     function clearFilter() {
         currentFilter = null;
 
-        // Ocultar estado del filtro
         if (filterStatus) {
             filterStatus.classList.remove('flex');
             filterStatus.classList.add('hidden');
         }
 
-        // Restablecer todas las tarjetas a su estado normal
         projectCards.forEach(card => {
             card.classList.remove('opacity-30', 'scale-95', 'pointer-events-none', 'border-theme-secondary/10', 'border-theme-primary/40', 'shadow-[0_0_15px_var(--theme-glow)]');
             card.classList.add('opacity-100', 'scale-100', 'border-slate-900');
         });
     }
 
-    filterButtons.forEach(btn => {
+    techCardButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const tech = btn.getAttribute('data-tech');
             if (tech) {
