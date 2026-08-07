@@ -738,8 +738,21 @@ const proyectos = [
 
     // Evento del botón de preguntar al Bot desde el banner inteligente
     bannerChatBtn?.addEventListener('click', () => {
-        const toggleBtn = document.getElementById('chatbot-toggle-btn');
-        if (toggleBtn) toggleBtn.click();
+        const toggleBtn = document.getElementById('chat-toggle-btn');
+        if (toggleBtn) {
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow?.classList.contains('hidden')) {
+                toggleBtn.click();
+            }
+            const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+            if (chatInput && currentFilter) {
+                const questionText = currentLang === 'en' 
+                    ? `What is Ignacio's experience with ${currentFilter.toUpperCase()}?`
+                    : `¿Cuál es la experiencia de Ignacio con ${currentFilter.toUpperCase()}?`;
+                chatInput.value = questionText;
+                chatInput.focus();
+            }
+        }
     });
 
     // ==========================================
