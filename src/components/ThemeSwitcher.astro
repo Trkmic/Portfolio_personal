@@ -84,7 +84,7 @@
 </script>
 
 <script>
-  import { playChirp, playBeep, toggleBackgroundMusic } from '../utils/audioHelper';
+  import { playChirp, playBeep, toggleBackgroundMusic, startBackgroundMusic, stopBackgroundMusic } from '../utils/audioHelper';
 
   const themeButtons = document.querySelectorAll('.theme-btn');
   const termBtn = document.getElementById('terminal-toggle');
@@ -155,11 +155,9 @@
     if (isMuted) {
       volIcon?.classList.remove('fa-volume-high', 'text-theme-primary');
       volIcon?.classList.add('fa-volume-xmark', 'text-slate-500');
-      toggleBackgroundMusic(false);
     } else {
       volIcon?.classList.remove('fa-volume-xmark', 'text-slate-500');
       volIcon?.classList.add('fa-volume-high', 'text-theme-primary');
-      toggleBackgroundMusic(true);
     }
   }
 
@@ -173,7 +171,10 @@
     updateVolumeUI();
     
     if (nextState === 'false') {
+      startBackgroundMusic();
       setTimeout(playBeep, 50);
+    } else {
+      stopBackgroundMusic();
     }
   });
 
@@ -181,7 +182,7 @@
   window.addEventListener('click', () => {
     const isMuted = localStorage.getItem('muted') === 'true';
     if (!isMuted) {
-      toggleBackgroundMusic(true);
+      startBackgroundMusic();
     }
   }, { once: true });
 </script>
