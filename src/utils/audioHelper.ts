@@ -1,7 +1,5 @@
 let audioCtx: AudioContext | null = null;
-let musicInterval: any = null;
-let musicGain: GainNode | null = null;
-let isMusicPlaying = false;
+let bgAudio: HTMLAudioElement | null = null;
 
 function getAudioContext(): AudioContext {
   if (!audioCtx) {
@@ -14,79 +12,33 @@ export function isMuted(): boolean {
   return localStorage.getItem('muted') === 'true';
 }
 
-// ===============================================
-// Motor de Música de Fondo Ambiental (Lofi Synth)
-// ===============================================
-const CHORDS = [
-  [220.00, 261.63, 329.63, 392.00], // Am7 (A3, C4, E4, G4)
-  [174.61, 220.00, 261.63, 329.63], // Fmaj7 (F3, A3, C4, E4)
-  [261.63, 329.63, 392.00, 493.88], // Cmaj7 (C4, E4, G4, B4)
-  [196.00, 246.94, 293.66, 392.00]  // G6 (G3, B3, D4, G4)
-];
-
-let chordIndex = 0;
-
-export function startBackgroundMusic() {
-  if (isMuted() || isMusicPlaying) return;
-  try {
-    const ctx = getAudioContext();
-    if (ctx.state === 'suspended') ctx.resume();
-
-    isMusicPlaying = true;
-    musicGain = ctx.createGain();
-    
-    // Filtro pasa-bajos suave para tono ambiente cálido
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(650, ctx.currentTime);
-
-    musicGain.gain.setValueAtTime(0.08, ctx.currentTime); // Volumen confortable
-    musicGain.connect(filter);
-    filter.connect(ctx.destination);
-
-    function playNextChord() {
-      if (!isMusicPlaying || isMuted()) return;
-      const now = ctx.currentTime;
-      const currentNotes = CHORDS[chordIndex % CHORDS.length];
-
-      currentNotes.forEach((freq) => {
-        const osc = ctx.createOscillator();
-        const noteGain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-
-        // Suave ataque y caída para sonido pad ambiente
-        noteGain.gain.setValueAtTime(0.001, now);
-        noteGain.gain.linearRampToValueAtTime(0.035, now + 0.8);
-        noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 3.8);
-
-        osc.connect(noteGain);
-        if (musicGain) noteGain.connect(musicGain);
-
-        osc.start(now);
-        osc.stop(now + 4.0);
-      });
-
-      chordIndex++;
-    }
-
-    playNextChord();
-    musicInterval = setInterval(playNextChord, 4000);
-  } catch (e) {
-    console.warn("Autoplay ambient music blocked by browser policy:", e);
+function getBgAudio(): HTMLAudioElement | null {
+  if (typeof window === 'undefined') return null;
+  if (!bgAudio) {
+    bgAudio = new Audio('/lofi.mp3');
+    bgAudio.loop = true;
+    bgAudio.volume = 0.25; // Volumen normal, ambiental y muy agradable
   }
+  return bgAudio;
+}
+
+// ===============================================
+// Motor de Música de Fondo MP3 Real (Lofi Beats)
+// ===============================================
+export function startBackgroundMusic() {
+  if (isMuted()) return;
+  try {
+    const audio = getBgAudio();
+    if (audio && audio.paused) {
+      audio.play().catch((e) => console.warn("Autoplay blocked by browser policy:", e));
+    }
+  } catch (e) {}
 }
 
 export function stopBackgroundMusic() {
-  isMusicPlaying = false;
-  if (musicInterval) {
-    clearInterval(musicInterval);
-    musicInterval = null;
-  }
-  if (musicGain && audioCtx) {
+  if (bgAudio) {
     try {
-      musicGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+      bgAudio.pause();
     } catch (e) {}
   }
 }
