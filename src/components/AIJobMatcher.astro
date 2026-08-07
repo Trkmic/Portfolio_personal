@@ -101,37 +101,40 @@
 </section>
 
 <script>
-  // Estructura de tecnologías de Ignacio para match local
+  // Estructura de tecnologías y habilidades de Ignacio para match local
   const SKILLS_MAP: Record<string, string[]> = {
+    'qa & testing': ['qa', 'testing', 'tester', 'pruebas', 'funcional', 'regresion', 'exploratorias', 'test cases', 'casos de prueba', 'bug', 'defectos', 'jira', 'scrum', 'agile'],
+    'perfecto': ['perfecto', 'mobile', 'ipa', 'dispositivos', 'cloud testing'],
+    'sql & backoffice': ['sql', 'backoffice', 'consultas', 'base de datos', 'relacional', 'postgres', 'mysql', 'queries', 'integridad'],
     'python': ['python', 'pygame', 'movies', 'película', 'backend'],
-    'java': ['java', 'poo', 'hospedaje', 'gastronomia', 'objetos'],
+    'java': ['java', 'poo', 'hospedaje', 'gastronomia', 'objetos', 'spring boot'],
     'javascript': ['javascript', 'js', 'node', 'express', 'web', 'frontend'],
-    'typescript': ['typescript', 'ts', 'angular', 'react', 'expo', 'nestjs'],
+    'typescript': ['typescript', 'ts', 'angular', 'react', 'nestjs'],
     'angular': ['angular', 'frontend', 'spa', 'componentes'],
-    'react': ['react', 'react native', 'frontend', 'spa'],
-    'expo': ['expo', 'react native', 'movil', 'mobile', 'android', 'ios'],
+    'react': ['react', 'frontend', 'spa'],
     'nestjs': ['nestjs', 'nest', 'backend', 'api', 'jwt', 'auth'],
     'supabase': ['supabase', 'base de datos', 'realtime', 'chat'],
     'mongodb': ['mongodb', 'mongo', 'nosql'],
-    'sql': ['sql', 'base de datos', 'relacional', 'postgres', 'mysql'],
     'astro': ['astro', 'portfolio', 'estatico', 'html', 'css']
   };
 
   const PROJECTS_DATA = {
     es: [
+      { titulo: "Experiencia QA Trainee @ Banco Patagonia (TecnoSoftware)", tags: ["QA & Testing", "Perfecto", "SQL & Backoffice"], description: "Pruebas funcionales y de regresión en entornos móviles/web con plataforma Perfecto, despliegue de paquetes IPA, validación SQL y Backoffice." },
       { titulo: "Red social (NestJS / Angular)", tags: ["NestJS", "Angular", "MongoDB", "TypeScript"], description: "Plataforma social completa, APIs backend, autenticación JWT, Cloudinary, Chart.js." },
       { titulo: "Sala de juegos (Supabase / Express)", tags: ["Supabase", "TypeScript", "Express", "Angular"], description: "Juegos, chats en tiempo real, base de datos integrada y auth." },
-      { titulo: "Organique - E-commerce de Frutas (SQL / JS / Express)", tags: ["JavaScript", "HTML", "CSS", "SQL", "NodeJS", "Express"], description: "E-commerce premium de frutas orgánicas, creador de ensaladas interactivo, dashboard nutricional en Canvas y pasarela de pago." },
+      { titulo: "Organique - E-commerce de Frutas (SQL / JS / Express)", tags: ["JavaScript", "HTML", "CSS", "SQL & Backoffice", "NodeJS", "Express"], description: "E-commerce premium de frutas orgánicas, creador de ensaladas interactivo, dashboard nutricional en Canvas y pasarela de pago." },
       { titulo: "Servicio de hospedaje y gastronomia (Java POO)", tags: ["Java"], description: "Lógica avanzada orientada a objetos en Java, algoritmos de cálculo de tarifas." },
-      { titulo: "Gestor de Inventario & IA (Spring Boot / SQL)", tags: ["Java", "Spring Boot", "SQL"], description: "Sistema ERP corporativo, control de stock, compras con reglas de negocio y estimaciones con Gemini AI." },
+      { titulo: "Gestor de Inventario & IA (Spring Boot / SQL)", tags: ["Java", "Spring Boot", "SQL & Backoffice"], description: "Sistema ERP corporativo, control de stock, compras con reglas de negocio y estimaciones con Gemini AI." },
       { titulo: "Gestion de peliculas (Python CSV)", tags: ["Python"], description: "Análisis y ordenamiento de estructuras de datos masivas." }
     ],
     en: [
+      { titulo: "QA Trainee Experience @ Banco Patagonia (TecnoSoftware)", tags: ["QA & Testing", "Perfecto", "SQL & Backoffice"], description: "Functional and regression testing on mobile/web using the Perfecto platform, IPA build testing, SQL data verification, and Backoffice tools." },
       { titulo: "Social Network (NestJS / Angular)", tags: ["NestJS", "Angular", "MongoDB", "TypeScript"], description: "Complete social platform, backend APIs, JWT authentication, Cloudinary, Chart.js." },
       { titulo: "Game Room (Supabase / Express)", tags: ["Supabase", "TypeScript", "Express", "Angular"], description: "Games, real-time chats, integrated database, and auth." },
-      { titulo: "Organique - Fruit E-commerce (SQL / JS / Express)", tags: ["JavaScript", "HTML", "CSS", "SQL", "NodeJS", "Express"], description: "Premium organic fruit e-commerce with a virtual fruit salad builder, nutrition dashboard in Canvas, and a payment gateway." },
+      { titulo: "Organique - Fruit E-commerce (SQL / JS / Express)", tags: ["JavaScript", "HTML", "CSS", "SQL & Backoffice", "NodeJS", "Express"], description: "Premium organic fruit e-commerce with a virtual fruit salad builder, nutrition dashboard in Canvas, and a payment gateway." },
       { titulo: "Hosting & Gastronomy Service (Java OOP)", tags: ["Java"], description: "Advanced object-oriented logic in Java, rate calculation algorithms." },
-      { titulo: "Inventory Manager & AI (Spring Boot / SQL)", tags: ["Java", "Spring Boot", "SQL"], description: "Corporate ERP system, stock control, purchase transactions with business rules, and Gemini AI estimations." },
+      { titulo: "Inventory Manager & AI (Spring Boot / SQL)", tags: ["Java", "Spring Boot", "SQL & Backoffice"], description: "Corporate ERP system, stock control, purchase transactions with business rules, and Gemini AI estimations." },
       { titulo: "Movie Management (Python CSV)", tags: ["Python"], description: "Analysis and sorting of massive data structures." }
     ]
   };
@@ -181,11 +184,11 @@
       });
     });
 
-    // Calcular score dinámico (mínimo 80%)
+    // Calcular score dinámico
     let score = 0;
     if (matchedSkills.size > 0) {
-      score = 80 + (matchedSkills.size * 4);
-      if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
+      score = 82 + (matchedSkills.size * 4);
+      if (lowercaseText.includes('qa') || lowercaseText.includes('tester') || lowercaseText.includes('testing') || lowercaseText.includes('banco') || lowercaseText.includes('sql')) {
         score += 5;
       }
       if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
@@ -193,12 +196,9 @@
       }
       if (score > 98) score = 98;
     } else {
-      score = 80;
-      if (lowercaseText.includes('backend') || lowercaseText.includes('fullstack') || lowercaseText.includes('programador') || lowercaseText.includes('developer') || lowercaseText.includes('desarrollador')) {
+      score = 82;
+      if (lowercaseText.includes('qa') || lowercaseText.includes('tester') || lowercaseText.includes('desarrollador') || lowercaseText.includes('developer')) {
         score += 3;
-      }
-      if (lowercaseText.includes('ingles') || lowercaseText.includes('english')) {
-        score += 2;
       }
     }
 
@@ -212,20 +212,20 @@
         verdict = isEn ? "Excellent Compatibility! 🚀" : "¡Excelente Compatibilidad! 🚀";
         const skillsList = Array.from(matchedSkills).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
         summary = isEn
-          ? `Ignacio covers key technologies required for this role (such as ${skillsList}). His projects demonstrate mastery and immediate practical implementation in these areas.`
-          : `Ignacio cubre tecnologías clave requeridas para este puesto (como ${skillsList}). Sus proyectos demuestran dominio e implementación práctica inmediata en estas áreas.`;
+          ? `Ignacio covers key requirements for this role (${skillsList}). His experience as QA Trainee at Banco Patagonia and his UTN programming degree ensure immediate contribution.`
+          : `Ignacio cubre requerimientos clave para este puesto (${skillsList}). Su experiencia como QA Trainee en Banco Patagonia y su título en programación de la UTN garantizan una contribución inmediata.`;
       } else {
         verdict = isEn ? "Solid Compatibility 👍" : "Compatibilidad Sólida 👍";
         const skillsList = Array.from(matchedSkills).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ');
         summary = isEn
-          ? `Ignacio has matching experience and practical skills in role-related tools like ${skillsList}. His solid academic background and versatility will facilitate quick integration.`
-          : `Ignacio cuenta con coincidencia y experiencia práctica en herramientas del puesto como ${skillsList}. Su sólida formación y versatilidad facilitarán una integración rápida.`;
+          ? `Ignacio has solid practical experience in core skills such as ${skillsList}. His university background facilitates rapid integration.`
+          : `Ignacio cuenta con experiencia práctica en habilidades centrales como ${skillsList}. Su sólida formación universitaria facilitará una integración veloz.`;
       }
     } else {
       verdict = isEn ? "Adaptability Potential 🌱" : "Potencial de Adaptación 🌱";
       summary = isEn
-        ? "Although the offer targets technologies outside his usual stack, Ignacio's solid university training at UTN, combined with his strong foundations in Object-Oriented Programming (OOP), logical design, and a B2 English level (FCE), guarantee rapid adaptability and capacity to transition to the new required stack."
-        : "Aunque la oferta se orienta a tecnologías fuera de su stack habitual, la sólida preparación universitaria de Ignacio en la UTN, junto con sus firmes bases en Programación Orientada a Objetos (POO), diseño lógico y un nivel de inglés B2 (FCE), garantizan una rápida adaptabilidad y capacidad de migración hacia el nuevo stack requerido.";
+        ? "Ignacio's university degree in programming from UTN, combined with his QA work at Banco Patagonia, SQL knowledge, and B2 English level (FCE), ensure fast adaptability to the required tools."
+        : "El título de programador de Ignacio en la UTN, combinado con su trabajo actual en QA en Banco Patagonia, manejo de SQL y nivel B2 de inglés (FCE), garantizan una rápida adaptabilidad a las herramientas requeridas.";
     }
 
     // Generar tags coincidentes en UI
@@ -254,7 +254,6 @@
       const currentProjects = isEn ? PROJECTS_DATA.en : PROJECTS_DATA.es;
 
       currentProjects.forEach((proj, idx) => {
-        // Enlazar usando los tags originales en minúscula
         const originalProj = PROJECTS_DATA.es[idx];
         const matchesProject = originalProj.tags.some(tag => matchedSkills.has(tag.toLowerCase()));
         if (matchesProject || (suggestedCount < 2 && matchedSkills.size === 0)) {
@@ -272,8 +271,8 @@
       });
       if (suggestedCount === 0) {
         projectsList.innerHTML = isEn
-          ? `<li class="text-slate-600 italic">No specific projects, but it is recommended to review his Social Network.</li>`
-          : `<li class="text-slate-600 italic">No hay proyectos específicos, pero se recomienda revisar su Red Social.</li>`;
+          ? `<li class="text-slate-600 italic">Reviewing his QA experience at Banco Patagonia is highly recommended.</li>`
+          : `<li class="text-slate-600 italic">Se recomienda revisar su experiencia en QA en Banco Patagonia.</li>`;
       }
     }
 
@@ -337,30 +336,20 @@
     
     const cvInfoEs = `
       Nombre: Ignacio Trkmic Torres
-      Estudios: UTN Avellaneda (Tecnicatura Universitaria en Programación a 2 materias de recibirse, Ingeniería Mecánica comenzando en 2026).
+      Puesto Actual: QA Trainee en TecnoSoftware (Asignado a Banco Patagonia) desde Julio de 2026.
+      Tareas QA: Pruebas funcionales y de regresión en móviles/web con plataforma **Perfecto**, pruebas con paquetes **IPA**, consultas **SQL** y herramientas de **Backoffice** bancario.
+      Estudios: UTN Avellaneda (Graduado de la Tecnicatura Universitaria en Programación en Julio 2026, e iniciando Ingeniería Mecánica).
       Idiomas: Inglés B2 First Certificate.
-      Stack: Python, Java, JavaScript, TypeScript, Angular, React, Expo, NestJS, Supabase, MongoDB, SQL, Astro.
-      Proyectos:
-      - Red social (NestJS, Angular, JWT, MongoDB): Dashboard, multimedia con Cloudinary, charts.
-      - Sala de juegos (Supabase, Angular, Express): Chat tiempo real, auth, hosting Vercel.
-      - Organique - E-commerce de Frutas (JS, NodeJS, Express, SQL/SQLite/MySQL): Creador de ensaladas interactivo, dashboard nutricional en Canvas, pasarela de pago, bases de datos MySQL/SQLite.
-      - Servicio de hospedaje y gastronomia (Java POO): Sistema de gestión de tarifas de turismo.
-      - Gestor de Inventario & IA (Java, Spring Boot, SQL, H2): Control de stock, compras con reglas de negocio y estimaciones predictivas con Gemini AI.
-      - Gestion de peliculas (Python CSV): Estructuras de datos, ordenamientos, reportes.
+      Stack Técnico: SQL, Perfecto, Backoffice, Jira, Python, Java, JavaScript, TypeScript, Angular, NestJS, Supabase, MongoDB.
     `;
 
     const cvInfoEn = `
       Name: Ignacio Trkmic Torres
-      Education: UTN Avellaneda (Assoc. Degree in Programming, 2 subjects away from graduation; Mechanical Engineering starting in 2026).
+      Current Position: QA Trainee at TecnoSoftware (Assigned to Banco Patagonia) since July 2026.
+      QA Responsibilities: Functional and regression testing on mobile/web using the **Perfecto** platform, **IPA** package testing, **SQL** queries, and banking **Backoffice** tools.
+      Education: UTN Avellaneda (Graduated with Higher Technical Degree in Programming in July 2026; Mechanical Engineering student).
       Languages: B2 English level, First Certificate passed.
-      Stack: Python, Java, JavaScript, TypeScript, Angular, React, Expo, NestJS, Supabase, MongoDB, SQL, Astro.
-      Projects:
-      - Social Network (NestJS, Angular, JWT, MongoDB): Dashboard, multimedia with Cloudinary, charts.
-      - Game Room (Supabase, Angular, Express): Real-time chat, auth, hosting on Vercel.
-      - Organique - Fruit E-commerce (JS, NodeJS, Express, SQL/SQLite/MySQL): Virtual fruit salad builder, Canvas nutrition dashboard, payment gateway, MySQL/SQLite DB.
-      - Hosting & Gastronomy Service (Java OOP): Tourism rate management system.
-      - Inventory Manager & AI (Java, Spring Boot, SQL, H2): Stock control, purchase transactions with business rules, and predictive Gemini AI estimations.
-      - Movie Management (Python CSV): Data structures, sorting, and reporting.
+      Tech Stack: SQL, Perfecto, Backoffice, Jira, Python, Java, JavaScript, TypeScript, Angular, NestJS, Supabase, MongoDB.
     `;
 
     const isEn = currentLang === 'en';
@@ -378,12 +367,12 @@
          Calculated compatibility percentage: ${calculatedScore}%.
 
          Write a short and persuasive analysis (maximum 3 short paragraphs) in English addressed to the recruiter explaining:
-         1. Why Ignacio would fit the role well based on his specific projects (explicitly cite which of his projects demonstrate the required knowledge).
-         2. His key strengths (UTN technical education and B2 English FCE).
+         1. Why Ignacio would fit the QA / IT role well based on his experience at Banco Patagonia and UTN programming degree.
+         2. His key strengths (Perfecto platform, SQL, Backoffice tools, UTN degree, B2 English FCE).
          3. A brief and friendly final recommendation.
 
          Use emojis to structure ideas in an appealing and modern way.`
-      : `Eres un consultor experto en reclutamiento de tecnología. 
+      : `Eres un consultor experto en reclutamiento de tecnología y QA. 
           
          Dado el perfil del candidato Ignacio Torres:
          ${cvInfo}
@@ -394,8 +383,8 @@
          Porcentaje de compatibilidad calculado: ${calculatedScore}%.
 
          Escribe un análisis corto y persuasivo (máximo 3 párrafos cortos) en español dirigido al reclutador que explica:
-         1. Por qué Ignacio se adaptaría bien al puesto basado en sus proyectos específicos (cita explícitamente qué proyectos de él demuestran el conocimiento requerido).
-         2. Sus puntos fuertes clave (formación técnica en UTN y nivel de inglés FCE).
+         1. Por qué Ignacio se adaptaría bien al puesto de QA / Tecnología basado en su trabajo en Banco Patagonia y su título en la UTN.
+         2. Sus puntos fuertes clave (plataforma Perfecto, consultas SQL, Backoffice bancario, título UTN e inglés B2 FCE).
          3. Una recomendación final breve y amigable.
 
          Usa emojis para estructurar las ideas de forma agradable y moderna.`;

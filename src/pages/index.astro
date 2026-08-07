@@ -10,25 +10,24 @@ import TerminalConsole from '../components/TerminalConsole.astro';
 
 const nombreCompleto = "Ignacio Trkmic Torres";
 const edad = 20;
-const estudios = "Estudiante de la Tecnicatura Universitaria en Programación (a 2 materias del título) e Ingeniería Mecánica";
+const estudios = "Graduado de la Tecnicatura Universitaria en Programación (UTN Avellaneda - Julio 2026) e Ingeniería Mecánica";
 const ingles = "Nivel B2 de inglés (First Certificate aprobado)";
 
 const stackTecnologico = [
+    { nombre: "SQL", icono: "devicon-azuresqldatabase-plain" },
     { nombre: "Python", icono: "devicon-python-plain" },
     { nombre: "Java", icono: "devicon-java-plain" },
     { nombre: "JavaScript", icono: "devicon-javascript-plain" },
     { nombre: "TypeScript", icono: "devicon-typescript-plain" },
-    { nombre: "HTML", icono: "devicon-html5-plain" },
-    { nombre: "CSS", icono: "devicon-css3-plain" },
     { nombre: "Angular", icono: "devicon-angular-plain" },
-    { nombre: "React", icono: "devicon-react-original" },
-    { nombre: "Expo", icono: "devicon-expo-original" },
-    { nombre: "SQL", icono: "devicon-azuresqldatabase-plain" },
-    { nombre: "MongoDB", icono: "devicon-mongodb-plain" },
-    { nombre: "Astro", icono: "devicon-astro-plain" },
-    { fontName: "VSCode", icono: "devicon-vscode-plain", nombre: "VSCode" },
     { nombre: "NestJs", icono: "devicon-nestjs-original" },
     { nombre: "Supabase", icono: "devicon-supabase-plain" },
+    { nombre: "MongoDB", icono: "devicon-mongodb-plain" },
+    { nombre: "HTML", icono: "devicon-html5-plain" },
+    { nombre: "CSS", icono: "devicon-css3-plain" },
+    { nombre: "React", icono: "devicon-react-original" },
+    { nombre: "Astro", icono: "devicon-astro-plain" },
+    { fontName: "VSCode", icono: "devicon-vscode-plain", nombre: "VSCode" },
     { nombre: "Vercel", icono: "devicon-vercel-original" },
 ];
 
@@ -122,7 +121,10 @@ const proyectos = [
                 </p>
                 <div class="flex flex-wrap justify-center sm:justify-start gap-2 mt-2.5 font-mono">
                     <span class="bg-theme-primary/10 text-theme-primary border border-theme-primary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" data-i18n="profile_title_fullstack">
-                        Desarrollador Full-Stack
+                        QA Analyst Trainee
+                    </span>
+                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" data-i18n="profile_badge_patagonia">
+                        QA Trainee @ Banco Patagonia
                     </span>
                 </div>
                 
@@ -168,8 +170,8 @@ const proyectos = [
                     <p data-i18n="about_english">{ingles}.</p>
                 </div>
                 <div class="flex gap-4 items-start">
-                    <i class="fa-solid fa-code mt-1 text-theme-primary text-lg"></i>
-                    <p data-i18n="about_passion">Apasionado por resolver problemas complejos y construir soluciones backend sólidas y frontend altamente interactivas.</p>
+                    <i class="fa-solid fa-vial-circle-check mt-1 text-theme-primary text-lg"></i>
+                    <p data-i18n="about_passion">Apasionado por garantizar la calidad del software bancario mediante pruebas funcionales, de regresión, uso de la plataforma Perfecto, validaciones en Backoffice y consultas SQL, combinando el criterio del tester con la lógica del desarrollador.</p>
                 </div>
                 <a 
                     id="download-cv-btn"
@@ -179,6 +181,46 @@ const proyectos = [
                 >
                     <i class="fa-solid fa-download mr-2"></i> <span data-i18n="about_download_cv">Descargar CV</span>
                 </a>
+            </div>
+        </section>
+
+        <!-- Experiencia Laboral -->
+        <section id="experience-section" class="flex flex-col gap-6 relative">
+            <h2 class="text-xl font-bold text-theme-primary border-b border-theme-secondary/50 pb-2 font-mono uppercase tracking-wider flex items-center gap-2" data-i18n="experience_title">
+                Experiencia Laboral
+            </h2>
+
+            <div class="bg-slate-950/50 p-6 rounded-2xl border border-theme-secondary/40 shadow-[inset_0_0_15px_var(--theme-glow)] hover:border-theme-primary/40 transition-all duration-300 space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-theme-secondary/20 pb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white tracking-wide" data-i18n="exp_patagonia_role">QA Trainee / Software QA Analyst</h3>
+                        <p class="text-theme-primary text-sm font-semibold font-mono" data-i18n="exp_patagonia_company">TecnoSoftware (Asignado a Banco Patagonia)</p>
+                    </div>
+                    <span class="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full uppercase self-start sm:self-auto shrink-0" data-i18n="exp_patagonia_date">JULIO 2026 - PRESENTE</span>
+                </div>
+
+                <p class="text-sm text-slate-300 italic" data-i18n="exp_patagonia_desc">
+                    Aseguramiento de la calidad en aplicaciones y canales digitales bancarios de alta criticidad.
+                </p>
+
+                <ul class="space-y-2.5 text-xs text-slate-300 font-sans">
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-theme-primary mt-0.5"><i class="fa-solid fa-square-check"></i></span>
+                        <span data-i18n="exp_patagonia_task1">Ejecución de pruebas funcionales, de regresión y exploratorias en entornos móviles y web mediante la plataforma <strong>Perfecto</strong>.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-theme-primary mt-0.5"><i class="fa-solid fa-square-check"></i></span>
+                        <span data-i18n="exp_patagonia_task2">Aprovisionamiento, despliegue y validación de builds bancarias mediante paquetes <strong>IPA</strong> e integraciones de <strong>API</strong> en Perfecto.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-theme-primary mt-0.5"><i class="fa-solid fa-square-check"></i></span>
+                        <span data-i18n="exp_patagonia_task3">Verificación e integridad de datos transaccionales utilizando consultas <strong>SQL</strong> complejas y herramientas de <strong>Backoffice</strong> bancario.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-theme-primary mt-0.5"><i class="fa-solid fa-square-check"></i></span>
+                        <span data-i18n="exp_patagonia_task4">Documentación, reporte y seguimiento del ciclo de vida de defectos (Bug Lifecycle) garantizando los estándares de calidad en células <strong>Agile/Scrum</strong>.</span>
+                    </li>
+                </ul>
             </div>
         </section>
 
