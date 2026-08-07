@@ -103,6 +103,17 @@ export const translations = {
     "matcher_empty_projects": "Se recomienda revisar su experiencia en Banco Patagonia y sus proyectos de arquitectura en GitHub.",
     "matcher_pitch_loading": "Generando pitch personalizado con Gemini...",
 
+    // Banner Inteligente de Habilidades Profesionales
+    "banner_skill_pro_title": "Habilidad Aplicada en Entorno Profesional",
+    "banner_skill_pro_perfecto": "Ignacio utiliza la plataforma **Perfecto** en su rol diario como Software QA Analyst en **Banco Patagonia (TecnoSoftware)** para la ejecución de pruebas funcionales y regresión sobre dispositivos móviles y web.",
+    "banner_skill_pro_jira": "Ignacio gestiona el ciclo de vida de defectos (Bug Lifecycle), documentación y reporte de incidencias en **Jira** dentro de células de trabajo ágiles Scrum.",
+    "banner_skill_pro_backoffice": "Ignacio realiza verificaciones de transacciones e integridad de datos utilizando herramientas de **Backoffice** bancario en producción real.",
+    "banner_skill_pro_scrum": "Ignacio trabaja bajo metodologías ágiles **Scrum** en celdas de desarrollo bancario, participando en plannings, dailies y reviews.",
+    "banner_skill_pro_git": "Ignacio utiliza **Git** para el control de versiones y colaboración en todos sus repositorios de software y proyectos universitarios.",
+    "banner_skill_pro_general": "Ignacio aplica esta herramienta en su día a día profesional o en la estructura de sus proyectos de código.",
+    "banner_btn_exp": "Ver Experiencia Laboral",
+    "banner_btn_chat": "Preguntar a IgnacIA Bot",
+
     // Contacto
     "contact_title": "Contacto",
     "contact_subtitle": "Software QA Analyst / Software Tester",
@@ -242,6 +253,17 @@ export const translations = {
     "matcher_empty_skills": "No explicit direct matches, but fits well due to general software logic and QA skills.",
     "matcher_empty_projects": "Reviewing his experience at Banco Patagonia and GitHub architecture projects is recommended.",
     "matcher_pitch_loading": "Generating customized pitch with Gemini...",
+
+    // Banner Inteligente de Habilidades Profesionales
+    "banner_skill_pro_title": "Skill Applied in Production / Professional Environment",
+    "banner_skill_pro_perfecto": "Ignacio actively uses the **Perfecto** platform in his daily role as Software QA Analyst at **Banco Patagonia (TecnoSoftware)** for functional and regression testing on real mobile devices and web applications.",
+    "banner_skill_pro_jira": "Ignacio manages the bug lifecycle, documentation, and issue reporting in **Jira** within Agile Scrum delivery teams.",
+    "banner_skill_pro_backoffice": "Ignacio performs transaction and data integrity verifications using production banking **Backoffice** tools.",
+    "banner_skill_pro_scrum": "Ignacio works under Agile **Scrum** methodologies in continuous delivery cells, participating in plannings, dailies, and reviews.",
+    "banner_skill_pro_git": "Ignacio uses **Git** for version control and collaboration across all his code repositories and software development projects.",
+    "banner_skill_pro_general": "Ignacio applies this skill in his daily professional role or software development architecture.",
+    "banner_btn_exp": "View Work Experience",
+    "banner_btn_chat": "Ask IgnacIA Bot",
 
     // Contacto
     "contact_title": "Contact",

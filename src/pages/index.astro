@@ -239,10 +239,7 @@ const proyectos = [
 
             <!-- Filtros por Categoría -->
             <div class="flex flex-wrap justify-center gap-2 font-mono text-xs">
-                <button class="stack-cat-btn active bg-theme-primary text-black font-bold px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-[0_0_12px_var(--theme-glow)]" data-cat="all">
-                    Todas
-                </button>
-                <button class="stack-cat-btn bg-slate-900 hover:bg-slate-800 text-slate-300 border border-theme-secondary/30 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer" data-cat="qa" data-i18n="stack_cat_qa">
+                <button class="stack-cat-btn active bg-theme-primary text-black font-bold px-3.5 py-1.5 rounded-xl transition-all cursor-pointer shadow-[0_0_12px_var(--theme-glow)]" data-cat="qa" data-i18n="stack_cat_qa">
                     QA & Pruebas
                 </button>
                 <button class="stack-cat-btn bg-slate-900 hover:bg-slate-800 text-slate-300 border border-theme-secondary/30 px-3.5 py-1.5 rounded-xl transition-all cursor-pointer" data-cat="dev" data-i18n="stack_cat_dev">
@@ -278,6 +275,23 @@ const proyectos = [
                     <span><span data-i18n="projects_filtering">Filtrando:</span> <strong id="current-filter-name" class="uppercase text-white"></strong></span>
                     <button id="clear-filter-btn" class="text-rose-400 hover:text-rose-300 font-bold ml-1 cursor-pointer transition-colors" title="Quitar filtro" data-i18n-title="projects_clear_filter">
                         <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Banner Inteligente de Habilidad Profesional (Oculto por defecto) -->
+            <div id="skill-highlight-banner" class="hidden bg-slate-950/90 border border-theme-primary/50 p-5 rounded-2xl shadow-[0_0_25px_var(--theme-glow)] space-y-3 animate-fadeIn">
+                <div class="flex items-center gap-2 text-theme-primary font-mono font-bold text-xs uppercase tracking-wider">
+                    <i class="fa-solid fa-certificate text-base"></i>
+                    <span id="banner-skill-title" data-i18n="banner_skill_pro_title">Habilidad Aplicada en Entorno Profesional</span>
+                </div>
+                <p id="banner-skill-text" class="text-sm text-slate-200 leading-relaxed font-sans"></p>
+                <div class="flex flex-wrap gap-3 pt-1 font-mono text-xs">
+                    <a href="#experience-section" class="bg-theme-primary hover:bg-theme-primary/90 text-black font-bold px-4 py-2 rounded-xl transition-all flex items-center gap-2 decoration-none">
+                        <i class="fa-solid fa-briefcase"></i> <span data-i18n="banner_btn_exp">Ver Experiencia Laboral</span>
+                    </a>
+                    <button id="banner-chat-btn" class="bg-slate-900 hover:bg-slate-800 text-theme-primary border border-theme-secondary/40 font-bold px-4 py-2 rounded-xl transition-all flex items-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-robot"></i> <span data-i18n="banner_btn_chat">Preguntar a IgnacIA Bot</span>
                     </button>
                 </div>
             </div>
@@ -597,10 +611,26 @@ const proyectos = [
     const filterStatus = document.getElementById('filter-status');
     const filterNameLabel = document.getElementById('current-filter-name');
     const clearFilterBtn = document.getElementById('clear-filter-btn');
+    const skillBanner = document.getElementById('skill-highlight-banner');
+    const bannerSkillText = document.getElementById('banner-skill-text');
+    const bannerChatBtn = document.getElementById('banner-chat-btn');
 
     let currentFilter: string | null = null;
 
-    // Filtrar por categoría (QA, Dev, Tech, Todas)
+    // Inicializar visualización por defecto: mostrar únicamente la categoría QA & Pruebas
+    function initTechCategory() {
+        techCardButtons.forEach(card => {
+            const cardCat = card.getAttribute('data-cat');
+            if (cardCat === 'qa') {
+                (card as HTMLElement).style.display = 'flex';
+            } else {
+                (card as HTMLElement).style.display = 'none';
+            }
+        });
+    }
+    initTechCategory();
+
+    // Filtrar por categoría (QA, Dev, Tech)
     catTabButtons.forEach(tab => {
         tab.addEventListener('click', () => {
             const cat = tab.getAttribute('data-cat');
@@ -613,10 +643,10 @@ const proyectos = [
             tab.classList.remove('bg-slate-900', 'text-slate-300', 'border', 'border-theme-secondary/30');
             tab.classList.add('active', 'bg-theme-primary', 'text-black', 'font-bold', 'shadow-[0_0_12px_var(--theme-glow)]');
 
-            // Filtrar cards de la grilla
+            // Filtrar tarjetas de la grilla
             techCardButtons.forEach(card => {
                 const cardCat = card.getAttribute('data-cat');
-                if (cat === 'all' || cardCat === cat) {
+                if (cardCat === cat) {
                     (card as HTMLElement).style.display = 'flex';
                 } else {
                     (card as HTMLElement).style.display = 'none';
@@ -634,6 +664,8 @@ const proyectos = [
             filterNameLabel.textContent = tech;
         }
 
+        let matchCount = 0;
+
         projectCards.forEach(card => {
             const cardTags = card.getAttribute('data-tags')?.split(',') || [];
             
@@ -641,12 +673,11 @@ const proyectos = [
                 const cleanTag = tag.trim().toLowerCase();
                 return cleanTag === tech || 
                        (tech === 'nestjs' && cleanTag === 'nest') || 
-                       (tech === 'sql' && (cleanTag === 'mysql' || cleanTag === 'postgres' || cleanTag === 'sqlite')) ||
-                       (tech === 'perfecto' && (cleanTag === 'qa' || cleanTag === 'testing')) ||
-                       (tech === 'backoffice' && (cleanTag === 'sql' || cleanTag === 'java'));
+                       (tech === 'sql' && (cleanTag === 'mysql' || cleanTag === 'postgres' || cleanTag === 'sqlite'));
             });
 
             if (isMatch) {
+                matchCount++;
                 card.classList.remove('opacity-30', 'scale-95', 'pointer-events-none', 'border-theme-secondary/10');
                 card.classList.add('opacity-100', 'scale-100', 'border-theme-primary/40', 'shadow-[0_0_15px_var(--theme-glow)]');
             } else {
@@ -654,6 +685,20 @@ const proyectos = [
                 card.classList.add('opacity-30', 'scale-95', 'pointer-events-none', 'border-theme-secondary/10');
             }
         });
+
+        // Si es una herramienta profesional/QA o no tiene tarjeta directa en proyectos web:
+        if (skillBanner && bannerSkillText) {
+            const dict = (translations as any)[currentLang] || translations.es;
+            const skillKey = `banner_skill_pro_${tech}`;
+            const message = dict[skillKey] || dict['banner_skill_pro_general'];
+
+            if (matchCount === 0 || tech === 'perfecto' || tech === 'jira' || tech === 'backoffice' || tech === 'scrum') {
+                bannerSkillText.innerHTML = message;
+                skillBanner.classList.remove('hidden');
+            } else {
+                skillBanner.classList.add('hidden');
+            }
+        }
     }
 
     function clearFilter() {
@@ -662,6 +707,10 @@ const proyectos = [
         if (filterStatus) {
             filterStatus.classList.remove('flex');
             filterStatus.classList.add('hidden');
+        }
+
+        if (skillBanner) {
+            skillBanner.classList.add('hidden');
         }
 
         projectCards.forEach(card => {
@@ -678,12 +727,20 @@ const proyectos = [
                     clearFilter();
                 } else {
                     applyFilter(tech);
+                    // Scroll suave hacia la sección de proyectos
+                    document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' });
                 }
             }
         });
     });
 
     clearFilterBtn?.addEventListener('click', clearFilter);
+
+    // Evento del botón de preguntar al Bot desde el banner inteligente
+    bannerChatBtn?.addEventListener('click', () => {
+        const toggleBtn = document.getElementById('chatbot-toggle-btn');
+        if (toggleBtn) toggleBtn.click();
+    });
 
     // ==========================================
     // Línea de Tiempo Académica Neon Interactiva
