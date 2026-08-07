@@ -84,7 +84,7 @@
 </script>
 
 <script>
-  import { playChirp, playBeep } from '../utils/audioHelper';
+  import { playChirp, playBeep, toggleBackgroundMusic } from '../utils/audioHelper';
 
   const themeButtons = document.querySelectorAll('.theme-btn');
   const termBtn = document.getElementById('terminal-toggle');
@@ -149,15 +149,17 @@
     window.dispatchEvent(new CustomEvent('open-terminal'));
   });
 
-  // Actualizar UI del altavoz
+  // Actualizar UI del altavoz y reproducir/pausar música de fondo
   function updateVolumeUI() {
     const isMuted = localStorage.getItem('muted') === 'true';
     if (isMuted) {
       volIcon?.classList.remove('fa-volume-high', 'text-theme-primary');
       volIcon?.classList.add('fa-volume-xmark', 'text-slate-500');
+      toggleBackgroundMusic(false);
     } else {
       volIcon?.classList.remove('fa-volume-xmark', 'text-slate-500');
       volIcon?.classList.add('fa-volume-high', 'text-theme-primary');
+      toggleBackgroundMusic(true);
     }
   }
 
@@ -166,12 +168,20 @@
   // Escuchar clics de volumen
   volBtn?.addEventListener('click', () => {
     const isMuted = localStorage.getItem('muted') === 'true';
-    localStorage.setItem('muted', isMuted ? 'false' : 'true');
+    const nextState = isMuted ? 'false' : 'true';
+    localStorage.setItem('muted', nextState);
     updateVolumeUI();
     
-    if (isMuted) {
-      // Si estaba silenciado y ahora se activó, reproducir sonido de confirmación
+    if (nextState === 'false') {
       setTimeout(playBeep, 50);
     }
   });
+
+  // Activar música tras primera interacción del usuario si ya tenía volumen activado previamente
+  window.addEventListener('click', () => {
+    const isMuted = localStorage.getItem('muted') === 'true';
+    if (!isMuted) {
+      toggleBackgroundMusic(true);
+    }
+  }, { once: true });
 </script>

@@ -61,10 +61,14 @@ const { titulo, descripcion, tags, linkGithub, linkWeb, slug } = Astro.props;
   </div>
   
   <div class="space-y-4 mt-auto">
-    <!-- Tags del Stack -->
+    <!-- Tags del Stack & QA -->
     <div class="flex flex-wrap gap-2">
       {tags.map(tag => (
-        <span class="text-[10px] px-2.5 py-1 rounded-md bg-theme-primary/5 text-theme-primary border border-theme-primary/20 font-bold uppercase tracking-tight">
+        <span class={`text-[10px] px-2.5 py-1 rounded-md font-bold uppercase tracking-tight ${
+          tag.startsWith('QA:') 
+            ? 'bg-theme-secondary/20 text-theme-secondary border border-theme-secondary/40 shadow-[0_0_8px_var(--theme-glow)]' 
+            : 'bg-theme-primary/5 text-theme-primary border border-theme-primary/20'
+        }`}>
           {tag}
         </span>
       ))}
